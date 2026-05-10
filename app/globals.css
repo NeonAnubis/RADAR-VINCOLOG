@@ -90,3 +90,33 @@
   }
   .divider { border-color: rgba(255,255,255,0.07); }
 }
+
+/* ── Auth page animations ────────────────────────────────── */
+@keyframes radarSweep {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes blipPulse {
+  0%, 100% { opacity: 0.25; transform: scale(0.7); }
+  50%       { opacity: 1;    transform: scale(1.1); }
+}
+@keyframes blipRing {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  100% { transform: scale(3.5); opacity: 0;   }
+}
+@keyframes routeDash {
+  from { stroke-dashoffset: 0;   }
+  to   { stroke-dashoffset: -28; }
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-6px); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+@keyframes truckMove {
+  0%   { offset-distance: 0%;   }
+  100% { offset-distance: 100%; }
+}

@@ -1,11 +1,16 @@
 import { BarChart2, TrendingUp, Package, CheckCircle } from 'lucide-react'
-import { mockOrders } from '@/lib/mockData'
+import { createClient } from '@/lib/supabase/server'
+import { fmtCurrency } from '@/lib/utils/format'
 
-export default function RelatoriosPage() {
-  const total    = mockOrders.length
-  const entregues = mockOrders.filter(o => o.status === 'entregue').length
-  const receita   = mockOrders.reduce((s, o) => s + o.value, 0)
-  const taxa      = Math.round((entregues / total) * 100)
+export default async function RelatoriosPage() {
+  const supabase = createClient()
+  const { data: orders } = await supabase.from('orders').select('id,status,frete_value')
+
+  const all       = orders ?? []
+  const total     = all.length
+  const entregues = all.filter(o => ['entregue','finalizado'].includes(o.status)).length
+  const receita   = all.reduce((s, o) => s + (o.frete_value ?? 0), 0)
+  const taxa      = total ? Math.round((entregues / total) * 100) : 0
 
   return (
     <div className="p-6 space-y-6">
@@ -16,10 +21,10 @@ export default function RelatoriosPage() {
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: 'Total de fretes',   value: total,                          icon: Package,    bg: 'rgba(59,130,246,0.18)',  color: 'text-blue-300' },
-          { label: 'Taxa de entrega',   value: `${taxa}%`,                     icon: CheckCircle, bg: 'rgba(52,211,153,0.18)', color: 'text-emerald-300' },
-          { label: 'Receita total',     value: `R$ ${receita.toLocaleString('pt-BR')}`, icon: TrendingUp, bg: 'rgba(167,139,250,0.18)', color: 'text-violet-300' },
-          { label: 'Média por frete',   value: `R$ ${Math.round(receita/total).toLocaleString('pt-BR')}`, icon: BarChart2, bg: 'rgba(245,158,11,0.18)', color: 'text-amber-300' },
+          { label:'Total de fretes',  value: total,                 icon: Package,    bg:'rgba(59,130,246,0.18)',  color:'text-blue-300' },
+          { label:'Taxa de entrega',  value: `${taxa}%`,            icon: CheckCircle, bg:'rgba(52,211,153,0.18)', color:'text-emerald-300' },
+          { label:'Receita total',    value: fmtCurrency(receita),  icon: TrendingUp,  bg:'rgba(167,139,250,0.18)',color:'text-violet-300' },
+          { label:'Média por frete',  value: total ? fmtCurrency(Math.round(receita/total)) : '—', icon: BarChart2, bg:'rgba(245,158,11,0.18)', color:'text-amber-300' },
         ].map(({ label, value, icon: Icon, bg, color }) => (
           <div key={label} className="glass rounded-2xl p-5">
             <div className="flex items-start justify-between">
@@ -38,7 +43,7 @@ export default function RelatoriosPage() {
       <div className="glass rounded-2xl p-10 flex items-center justify-center">
         <div className="text-center">
           <BarChart2 className="w-12 h-12 text-blue-800 mx-auto mb-3" />
-          <p className="text-blue-500 text-sm">Relatórios detalhados disponíveis após 30 dias de operação.</p>
+          <p className="text-blue-500 text-sm">Gráficos e relatórios detalhados disponíveis após 30 dias de operação.</p>
         </div>
       </div>
     </div>

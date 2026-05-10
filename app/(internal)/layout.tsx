@@ -1,9 +1,15 @@
+import { redirect } from 'next/navigation'
+import { createClient } from '@/lib/supabase/server'
 import Sidebar from '@/components/Sidebar'
 
-export default function InternalLayout({ children }: { children: React.ReactNode }) {
+export default async function InternalLayout({ children }: { children: React.ReactNode }) {
+  const supabase = createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect('/login')
+
   return (
     <div className="flex min-h-screen">
-      <Sidebar />
+      <Sidebar userEmail={user.email} />
       <main className="flex-1 overflow-auto">
         {children}
       </main>
