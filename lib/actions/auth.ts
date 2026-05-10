@@ -27,6 +27,7 @@ export async function signUp(formData: FormData) {
     // Insert directly into auth.users with email pre-confirmed — no email sent, no rate limits
     await client.query(
       `INSERT INTO auth.users (
+         id,
          instance_id, aud, role,
          email, encrypted_password,
          email_confirmed_at,
@@ -36,6 +37,7 @@ export async function signUp(formData: FormData) {
          raw_app_meta_data, raw_user_meta_data,
          is_super_admin
        ) VALUES (
+         gen_random_uuid(),
          '00000000-0000-0000-0000-000000000000',
          'authenticated', 'authenticated',
          $1, crypt($2, gen_salt('bf')),
