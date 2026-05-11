@@ -120,3 +120,58 @@
   0%   { offset-distance: 0%;   }
   100% { offset-distance: 100%; }
 }
+
+/* ── Landing-specific animations ───────────────────────── */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+@keyframes marqueeLtr {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 0.85; }
+}
+
+/* Headlines that previously used a multi-color gradient now use a single
+   bright white with a subtle glow — keeps emphasis without the rainbow. */
+.text-vincolog-gradient {
+  color: #FFFFFF;
+  text-shadow: 0 0 24px rgba(96, 165, 250, 0.45);
+}
+
+/* Single-color transparent glass button — dark-theme appropriate.
+   The blue tint, backdrop-blur and inner highlight make it read as glass. */
+.btn-glass-primary {
+  background: rgba(59, 130, 246, 0.16);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(96, 165, 250, 0.38);
+  box-shadow:
+    0 6px 24px rgba(59, 130, 246, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  color: #FFFFFF;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.btn-glass-primary:hover {
+  background: rgba(59, 130, 246, 0.24);
+  border-color: rgba(96, 165, 250, 0.55);
+  box-shadow:
+    0 8px 32px rgba(59, 130, 246, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Page-level deep navy background — subtle blue radial accents, no rainbow. */
+.bg-vincolog-radial {
+  background:
+    radial-gradient(ellipse 120% 80% at 10% 0%,   rgba(15,  42, 110, 0.55) 0%, transparent 60%),
+    radial-gradient(ellipse  90% 70% at 95% 30%,  rgba(10,  28,  80, 0.45) 0%, transparent 60%),
+    radial-gradient(ellipse  80% 60% at 50% 100%, rgba(20,  50, 130, 0.35) 0%, transparent 60%),
+    #03060F;
+}
