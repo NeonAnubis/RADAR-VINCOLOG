@@ -3,20 +3,22 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
-  LayoutDashboard, Package, Users, FileText,
-  BarChart2, Settings, Truck, DollarSign, ShieldCheck, LogOut,
+  LayoutDashboard, FileText, Briefcase, Users, FileSignature,
+  DollarSign, AlertTriangle, BarChart2, Settings, Truck, LogOut, ShieldCheck,
 } from 'lucide-react'
 import clsx from 'clsx'
 import { signOut } from '@/lib/actions/auth'
 
 const nav = [
-  { href: '/dashboard',   label: 'Torre de Controle', icon: LayoutDashboard },
-  { href: '/pedidos',     label: 'Pedidos',            icon: Package },
-  { href: '/prestadores', label: 'Prestadores',        icon: Users },
-  { href: '/contratos',   label: 'Contratos',          icon: FileText },
-  { href: '/financeiro',  label: 'Financeiro',         icon: DollarSign },
-  { href: '/relatorios',  label: 'Relatórios',         icon: BarChart2 },
-  { href: '/auditoria',   label: 'Auditoria',          icon: ShieldCheck },
+  { href: '/dashboard',    label: 'Torre de Controle',  icon: LayoutDashboard },
+  { href: '/orcamentos',   label: 'Orçamentos',          icon: Briefcase },
+  { href: '/oits',         label: 'OITs (Operação)',     icon: FileText },
+  { href: '/prestadores',  label: 'Prestadores',         icon: Users },
+  { href: '/contratos',    label: 'Contratos',           icon: FileSignature },
+  { href: '/financeiro',   label: 'Financeiro',          icon: DollarSign },
+  { href: '/ocorrencias',  label: 'Ocorrências',         icon: AlertTriangle },
+  { href: '/relatorios',   label: 'Relatórios',          icon: BarChart2 },
+  { href: '/auditoria',    label: 'Auditoria',           icon: ShieldCheck },
 ]
 
 interface SidebarProps { userEmail?: string }
@@ -28,7 +30,6 @@ export default function Sidebar({ userEmail }: SidebarProps) {
     <aside className="w-64 min-h-screen flex flex-col"
       style={{ background: '#020B1E', borderRight: '1px solid rgba(255,255,255,0.07)' }}>
 
-      {/* Logo */}
       <div className="px-6 py-5" style={{ borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl flex items-center justify-center"
@@ -42,8 +43,7 @@ export default function Sidebar({ userEmail }: SidebarProps) {
         </div>
       </div>
 
-      {/* Nav */}
-      <nav className="flex-1 px-3 py-4 space-y-0.5">
+      <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto scrollbar-thin">
         {nav.map(({ href, label, icon: Icon }) => {
           const active = pathname === href || pathname.startsWith(href + '/')
           return (
@@ -64,11 +64,9 @@ export default function Sidebar({ userEmail }: SidebarProps) {
         })}
       </nav>
 
-      {/* Bottom */}
       <div className="px-3 pb-4 space-y-2" style={{ borderTop: '1px solid rgba(255,255,255,0.07)', paddingTop: '1rem' }}>
         <Link href="/configuracoes"
-          className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-blue-400 hover:text-white transition-all"
-          style={{ border: '1px solid transparent' }}>
+          className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-blue-400 hover:text-white transition-all">
           <Settings className="w-4 h-4" />
           Configurações
         </Link>
