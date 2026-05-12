@@ -140,13 +140,27 @@ export default function NovoOrcamentoPage() {
       }
     })
 
+    // Dimension fields are folded into cargo_dimensions (JSONB) — strip them
+    // out of the top-level payload so Supabase doesn't reject the insert with
+    // "Could not find the 'cargo_cubage' column of 'budgets'".
+    const {
+      cargo_length, cargo_width, cargo_height, cargo_cubage,
+      ...cargoColumns
+    } = cargo
+    void cargo_length; void cargo_width; void cargo_height; void cargo_cubage
+
     const payload = {
       ...identification,
       ...client,
-      ...cargo,
+      ...cargoColumns,
       document_value: cargo.document_value ? parseFloat(cargo.document_value) : null,
       cargo_volumes: cargo.cargo_volumes ? parseInt(cargo.cargo_volumes) : null,
-      cargo_dimensions: { length: cargo.cargo_length, width: cargo.cargo_width, height: cargo.cargo_height, cubage: cargo.cargo_cubage },
+      cargo_dimensions: {
+        length: cargo.cargo_length,
+        width:  cargo.cargo_width,
+        height: cargo.cargo_height,
+        cubage: cargo.cargo_cubage,
+      },
       ...vehicle,
       freight_components: freight,
       service_levels: computedLevels,
