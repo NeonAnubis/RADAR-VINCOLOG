@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Radio, RadioTower, Loader2, Cloud, CloudOff } from 'lucide-react'
 import { receiveGpsBatch } from '@/lib/actions/gps'
+import { useT, useI18n } from '@/lib/i18n/I18nProvider'
 
 interface QueuedPosition {
   latitude: number
@@ -18,6 +19,9 @@ const STATE_KEY = (token: string) => `radar-gps-active-${token}`
 
 /** Tracks GPS in browser + queues positions when offline + flushes when back online (spec §26.3) */
 export default function GpsTracker({ token, initiallyActive }: { token: string; initiallyActive: boolean }) {
+  const t = useT()
+  const { locale } = useI18n()
+  const localeTag = locale === 'pt' ? 'pt-BR' : 'en-US'
   const [active, setActive] = useState(initiallyActive)
   const [last, setLast] = useState<QueuedPosition | null>(null)
   const [queueSize, setQueueSize] = useState(0)
@@ -71,7 +75,7 @@ export default function GpsTracker({ token, initiallyActive }: { token: string; 
   }, [token])
 
   function start() {
-    if (!navigator.geolocation) { setPermErr('Geolocalização indisponível neste dispositivo.'); return }
+    if (!navigator.geolocation) { setPermErr(t('providerPortal.gpsUnavailable')); return }
     setActive(true)
     localStorage.setItem(STATE_KEY(token), '1')
 
@@ -116,34 +120,34 @@ export default function GpsTracker({ token, initiallyActive }: { token: string; 
           {active
             ? <RadioTower className="w-4 h-4 text-violet-300 animate-pulse" />
             : <Radio className="w-4 h-4 text-blue-500" />}
-          <p className="text-sm font-bold text-white">Rastreamento GPS</p>
+          <p className="text-sm font-bold text-white">{t('providerPortal.gpsTitle')}</p>
         </div>
         <button onClick={toggle}
           className="px-3 py-1.5 rounded-lg text-xs font-bold transition-all"
           style={active
             ? { background: 'rgba(239,68,68,0.2)', color: '#FCA5A5', border: '1px solid rgba(239,68,68,0.4)' }
             : { background: 'rgba(167,139,250,0.25)', color: '#C4B5FD', border: '1px solid rgba(167,139,250,0.5)' }}>
-          {active ? 'Parar' : 'Iniciar Viagem'}
+          {active ? t('providerPortal.gpsStop') : t('providerPortal.gpsStart')}
         </button>
       </div>
 
       <div className="grid grid-cols-3 gap-2 text-[10px]">
         <div className="flex items-center gap-1.5">
           {isOnline ? <Cloud className="w-3 h-3 text-emerald-400" /> : <CloudOff className="w-3 h-3 text-amber-400" />}
-          <span className={isOnline ? 'text-emerald-300' : 'text-amber-300'}>{isOnline ? 'Online' : 'Offline'}</span>
+          <span className={isOnline ? 'text-emerald-300' : 'text-amber-300'}>{isOnline ? t('common.online') : t('common.offline')}</span>
         </div>
         <div className="text-blue-400">
-          Fila: <span className="font-bold text-white">{queueSize}</span>
+          {t('providerPortal.queue')} <span className="font-bold text-white">{queueSize}</span>
         </div>
         <div className="flex items-center gap-1 justify-end">
           {syncing && <Loader2 className="w-3 h-3 animate-spin text-blue-400" />}
-          <span className="text-blue-400">{syncing ? 'Sincronizando' : 'Sincronizado'}</span>
+          <span className="text-blue-400">{syncing ? t('providerPortal.syncing') : t('providerPortal.synced')}</span>
         </div>
       </div>
 
       {last && (
         <p className="mt-2 text-[10px] text-blue-500 font-mono">
-          Última: {last.latitude.toFixed(5)}, {last.longitude.toFixed(5)} · {new Date(last.recorded_at).toLocaleTimeString('pt-BR')}
+          {t('providerPortal.lastPos')} {last.latitude.toFixed(5)}, {last.longitude.toFixed(5)} · {new Date(last.recorded_at).toLocaleTimeString(localeTag)}
         </p>
       )}
 
@@ -151,7 +155,7 @@ export default function GpsTracker({ token, initiallyActive }: { token: string; 
 
       {active && (
         <p className="mt-2 text-[10px] text-blue-500">
-          GPS é coletado em tempo real e sincronizado quando há conexão. Bateria otimizada — pings a cada ~30s.
+          {t('providerPortal.gpsHelp')}
         </p>
       )}
     </div>

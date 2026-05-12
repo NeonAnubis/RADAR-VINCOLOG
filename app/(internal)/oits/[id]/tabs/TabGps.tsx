@@ -4,9 +4,11 @@ import { useState, useTransition } from 'react'
 import { Radio, RadioTower, ExternalLink, Loader2, MapPin } from 'lucide-react'
 import { toggleGpsTracking } from '@/lib/actions/oits'
 import { fmtDateTime } from '@/lib/utils/format'
+import { useT } from '@/lib/i18n/I18nProvider'
 import type { DbOit, DbGpsPosition } from '@/lib/types'
 
 export default function TabGps({ oit, positions }: { oit: DbOit; positions: DbGpsPosition[] }) {
+  const t = useT()
   const [pending, start] = useTransition()
   const [active, setActive] = useState(oit.gps_tracking_active)
 
@@ -38,6 +40,12 @@ export default function TabGps({ oit, positions }: { oit: DbOit; positions: DbGp
     })
   }
 
+  const lastUpdateLabel =
+    minutesSinceLast === null ? t('oits.gpsTab.never') :
+    minutesSinceLast < 1 ? t('oits.gpsTab.now') :
+    minutesSinceLast < 60 ? `${minutesSinceLast} min` :
+    `${Math.floor(minutesSinceLast/60)}h ${minutesSinceLast%60}m`
+
   return (
     <div className="glass rounded-2xl p-6 space-y-5">
       <div className="flex items-center justify-between">
@@ -45,7 +53,7 @@ export default function TabGps({ oit, positions }: { oit: DbOit; positions: DbGp
           {active
             ? <RadioTower className="w-4 h-4 text-violet-300 animate-pulse" />
             : <Radio className="w-4 h-4 text-blue-400" />}
-          Rastreamento GPS
+          {t('oits.gpsTab.title')}
         </h2>
         <button onClick={handleToggle} disabled={pending}
           className="px-3 py-1.5 rounded-xl text-xs font-bold disabled:opacity-50"
@@ -53,32 +61,27 @@ export default function TabGps({ oit, positions }: { oit: DbOit; positions: DbGp
             ? { background: 'rgba(167,139,250,0.25)', color: '#C4B5FD', border: '1px solid rgba(167,139,250,0.5)' }
             : { background: 'rgba(255,255,255,0.05)', color: '#94A3B8', border: '1px solid rgba(255,255,255,0.1)' }}>
           {pending ? <Loader2 className="w-3 h-3 animate-spin inline mr-1" /> : null}
-          {active ? 'Pausar rastreamento' : 'Ativar rastreamento'}
+          {active ? t('oits.gpsTab.pause') : t('oits.gpsTab.activate')}
         </button>
       </div>
 
       <div className="grid grid-cols-3 gap-3">
-        <Stat label="Status" value={active ? 'Ativo' : 'Inativo'} color={active ? '#A78BFA' : '#94A3B8'} />
-        <Stat label="Pings recebidos" value={String(positions.length)} color="#60A5FA" />
-        <Stat label="Última atualização" value={
-          minutesSinceLast === null ? 'nunca' :
-          minutesSinceLast < 1 ? 'agora' :
-          minutesSinceLast < 60 ? `${minutesSinceLast} min` :
-          `${Math.floor(minutesSinceLast/60)}h ${minutesSinceLast%60}m`
-        } color={minutesSinceLast !== null && minutesSinceLast > 20 ? '#F87171' : '#34D399'} />
+        <Stat label={t('oits.gpsTab.statusLabel')} value={active ? t('oits.gpsTab.statusActive') : t('oits.gpsTab.statusInactive')} color={active ? '#A78BFA' : '#94A3B8'} />
+        <Stat label={t('oits.gpsTab.pingsReceived')} value={String(positions.length)} color="#60A5FA" />
+        <Stat label={t('oits.gpsTab.lastUpdate')} value={lastUpdateLabel} color={minutesSinceLast !== null && minutesSinceLast > 20 ? '#F87171' : '#34D399'} />
       </div>
 
       {minutesSinceLast !== null && minutesSinceLast > 20 && active && (
         <div className="p-3 rounded-xl text-xs" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)', color: '#FCA5A5' }}>
-          ⚠ Sem atualização há {minutesSinceLast} minutos — possível perda de sinal ou parada do motorista.
+          {t('oits.gpsTab.noSignal', { minutes: minutesSinceLast })}
         </div>
       )}
 
       {positions.length === 0 ? (
         <div className="rounded-xl py-12 text-center" style={{ background: 'rgba(255,255,255,0.03)' }}>
           <MapPin className="w-10 h-10 text-blue-800 mx-auto mb-2" />
-          <p className="text-sm text-blue-600">Nenhuma posição GPS recebida ainda.</p>
-          <p className="text-xs text-blue-700 mt-1">O motorista deve abrir o link do prestador e clicar em &quot;Iniciar Viagem&quot;.</p>
+          <p className="text-sm text-blue-600">{t('oits.gpsTab.noPings')}</p>
+          <p className="text-xs text-blue-700 mt-1">{t('oits.gpsTab.noPingsSub')}</p>
         </div>
       ) : (
         <>
@@ -138,7 +141,7 @@ export default function TabGps({ oit, positions }: { oit: DbOit; positions: DbGp
 
           {/* Position list */}
           <div>
-            <p className="text-xs font-bold text-blue-400 uppercase tracking-wider mb-2">Últimas posições</p>
+            <p className="text-xs font-bold text-blue-400 uppercase tracking-wider mb-2">{t('oits.gpsTab.lastPositionsTitle')}</p>
             <div className="space-y-1 max-h-64 overflow-y-auto scrollbar-thin">
               {positions.slice(0, 30).map(p => (
                 <div key={p.id} className="flex items-center justify-between px-3 py-2 text-xs rounded-lg" style={{ background: 'rgba(255,255,255,0.03)' }}>

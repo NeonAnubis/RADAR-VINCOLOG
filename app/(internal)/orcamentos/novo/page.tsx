@@ -4,6 +4,7 @@ import { useState, useTransition } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, ChevronRight, ChevronLeft, Plus, Trash2, CheckCircle, Loader2, Package, User, MapPin, Truck, Settings, FileText } from 'lucide-react'
 import { createBudget } from '@/lib/actions/budgets'
+import { useT } from '@/lib/i18n/I18nProvider'
 import type { FreightComponents, ServiceLevelsConfig } from '@/lib/types'
 import ClientSelector from '@/components/ClientSelector'
 
@@ -23,16 +24,17 @@ const emptyPoint = (): PointForm => ({
 })
 
 const STEPS = [
-  { id: 1, label: 'Identificação',     icon: FileText },
-  { id: 2, label: 'Cliente',           icon: User },
-  { id: 3, label: 'Coletas e Entregas', icon: MapPin },
-  { id: 4, label: 'Carga',              icon: Package },
-  { id: 5, label: 'Veículo',            icon: Truck },
-  { id: 6, label: 'Valores',            icon: Settings },
-  { id: 7, label: 'Níveis de Serviço',  icon: CheckCircle },
-]
+  { id: 1, tkey: 'stepId',       icon: FileText },
+  { id: 2, tkey: 'stepClient',   icon: User },
+  { id: 3, tkey: 'stepPoints',   icon: MapPin },
+  { id: 4, tkey: 'stepCargo',    icon: Package },
+  { id: 5, tkey: 'stepVehicle',  icon: Truck },
+  { id: 6, tkey: 'stepValues',   icon: Settings },
+  { id: 7, tkey: 'stepLevels',   icon: CheckCircle },
+] as const
 
 export default function NovoOrcamentoPage() {
+  const t = useT()
   const [step, setStep] = useState(1)
   const [error, setError] = useState<string | null>(null)
   const [pending, start] = useTransition()
@@ -169,8 +171,8 @@ export default function NovoOrcamentoPage() {
       <div className="flex items-center gap-3">
         <Link href="/orcamentos" className="p-2 rounded-xl text-blue-400 hover:text-white glass"><ArrowLeft className="w-4 h-4" /></Link>
         <div>
-          <h1 className="text-2xl font-extrabold text-white">Novo Orçamento</h1>
-          <p className="text-sm text-blue-400">Passo {step} de {STEPS.length} — {STEPS[step-1].label}</p>
+          <h1 className="text-2xl font-extrabold text-white">{t('budgets.new')}</h1>
+          <p className="text-sm text-blue-400">{t('budgets.form.stepProgress', { step, total: STEPS.length, label: t(`budgets.form.${STEPS[step-1].tkey}`) })}</p>
         </div>
       </div>
 
@@ -186,7 +188,7 @@ export default function NovoOrcamentoPage() {
                     : { background:'rgba(255,255,255,0.06)',border:'1px solid rgba(255,255,255,0.1)',color:'#475569' }}>
                   {done ? <CheckCircle className="w-4 h-4" /> : <Icon className="w-4 h-4" />}
                 </div>
-                <span className="text-[10px] mt-1 font-semibold whitespace-nowrap" style={{ color: active ? '#93C5FD' : done ? '#6EE7B7' : '#475569' }}>{s.label}</span>
+                <span className="text-[10px] mt-1 font-semibold whitespace-nowrap" style={{ color: active ? '#93C5FD' : done ? '#6EE7B7' : '#475569' }}>{t(`budgets.form.${s.tkey}`)}</span>
               </div>
               {i < STEPS.length - 1 && <div className="w-10 h-px mb-4 mx-1" style={{ background: done ? 'rgba(52,211,153,0.4)' : 'rgba(255,255,255,0.1)' }} />}
             </div>
@@ -199,21 +201,21 @@ export default function NovoOrcamentoPage() {
         {/* Step 1 — Identificação */}
         {step === 1 && (
           <div className="space-y-4">
-            <h2 className="text-base font-bold text-white">Identificação</h2>
+            <h2 className="text-base font-bold text-white">{t('budgets.form.blockId')}</h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className={L}>Origem da demanda</label>
+                <label className={L}>{t('budgets.form.demandOrigin')}</label>
                 <select value={identification.origin_source} onChange={e => setId({...identification, origin_source: e.target.value})} className="glass-select">
-                  <option value="">Selecione...</option>
-                  <option value="email">E-mail</option>
-                  <option value="whatsapp">WhatsApp</option>
-                  <option value="ligacao">Ligação</option>
-                  <option value="portal">Portal</option>
-                  <option value="indicacao">Indicação</option>
-                  <option value="outro">Outro</option>
+                  <option value="">{t('common.selectPlaceholder')}</option>
+                  <option value="email">{t('budgets.form.sourceEmail')}</option>
+                  <option value="whatsapp">{t('budgets.form.sourceWhatsapp')}</option>
+                  <option value="ligacao">{t('budgets.form.sourceCall')}</option>
+                  <option value="portal">{t('budgets.form.sourcePortal')}</option>
+                  <option value="indicacao">{t('budgets.form.sourceReferral')}</option>
+                  <option value="outro">{t('budgets.form.sourceOther')}</option>
                 </select>
               </div>
-              <div className="col-span-2"><label className={L}>Descrição / Assunto do pedido</label>
+              <div className="col-span-2"><label className={L}>{t('budgets.form.demandDescription')}</label>
                 <textarea value={identification.description} onChange={e => setId({...identification, description: e.target.value})} rows={3} className="glass-input resize-none" /></div>
             </div>
           </div>
@@ -222,7 +224,7 @@ export default function NovoOrcamentoPage() {
         {/* Step 2 — Cliente */}
         {step === 2 && (
           <div className="space-y-4">
-            <h2 className="text-base font-bold text-white">Cliente</h2>
+            <h2 className="text-base font-bold text-white">{t('budgets.form.blockClient')}</h2>
             <ClientSelector
               value={{
                 client_id: client.client_id,
@@ -236,7 +238,7 @@ export default function NovoOrcamentoPage() {
               onChange={v => setClient({ ...client, ...v })}
             />
             <div className="pt-3" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-              <label className={L}>Observações comerciais</label>
+              <label className={L}>{t('budgets.form.commercialNotes')}</label>
               <textarea value={client.client_notes} onChange={e => setClient({...client, client_notes: e.target.value})} rows={2} className="glass-input resize-none" />
             </div>
           </div>
@@ -247,16 +249,16 @@ export default function NovoOrcamentoPage() {
           <div className="space-y-6">
             <div>
               <div className="flex items-center justify-between mb-3">
-                <h2 className="text-base font-bold text-white">Pontos de Coleta ({collections.length})</h2>
+                <h2 className="text-base font-bold text-white">{t('budgets.form.pickupPointsLabel', { count: collections.length })}</h2>
                 <button type="button" onClick={() => setCollections([...collections, emptyPoint()])}
                   className="flex items-center gap-1 text-xs font-bold text-blue-400 hover:text-blue-300 glass px-2.5 py-1.5 rounded-lg">
-                  <Plus className="w-3 h-3" /> Adicionar coleta
+                  <Plus className="w-3 h-3" /> {t('budgets.form.addPickup')}
                 </button>
               </div>
               {collections.map((c, i) => (
                 <div key={i} className="rounded-xl p-4 space-y-3 mb-3" style={{ background:'rgba(59,130,246,0.08)', border:'1px solid rgba(96,165,250,0.2)' }}>
                   <div className="flex items-center justify-between">
-                    <p className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Coleta #{i+1}</p>
+                    <p className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">{t('budgets.form.pickupNumber', { n: i+1 })}</p>
                     {collections.length > 1 && (
                       <button type="button" onClick={() => setCollections(collections.filter((_,k) => k !== i))} className="text-red-400 hover:text-red-300">
                         <Trash2 className="w-3.5 h-3.5" />
@@ -264,35 +266,35 @@ export default function NovoOrcamentoPage() {
                     )}
                   </div>
                   <div className="grid grid-cols-3 gap-3">
-                    <div className="col-span-2"><label className={L}>Nome do local</label>
+                    <div className="col-span-2"><label className={L}>{t('budgets.form.locationName')}</label>
                       <input value={c.name} onChange={e => updatePoint(collections, setCollections, i, 'name', e.target.value)} className="glass-input" /></div>
-                    <div><label className={L}>CNPJ</label>
+                    <div><label className={L}>{t('common.fields.cnpj')}</label>
                       <input value={c.cnpj} onChange={e => updatePoint(collections, setCollections, i, 'cnpj', e.target.value)} className="glass-input" /></div>
-                    <div><label className={L}>Contato</label>
+                    <div><label className={L}>{t('budgets.form.pointContact')}</label>
                       <input value={c.contact_name} onChange={e => updatePoint(collections, setCollections, i, 'contact_name', e.target.value)} className="glass-input" /></div>
-                    <div><label className={L}>Telefone</label>
+                    <div><label className={L}>{t('common.fields.phone')}</label>
                       <input value={c.phone} onChange={e => updatePoint(collections, setCollections, i, 'phone', e.target.value)} className="glass-input" /></div>
-                    <div><label className={L}>E-mail</label>
+                    <div><label className={L}>{t('common.fields.email')}</label>
                       <input value={c.email} onChange={e => updatePoint(collections, setCollections, i, 'email', e.target.value)} className="glass-input" /></div>
-                    <div className="col-span-3"><label className={L}>Endereço completo</label>
+                    <div className="col-span-3"><label className={L}>{t('budgets.form.fullAddress')}</label>
                       <input value={c.full_address} onChange={e => updatePoint(collections, setCollections, i, 'full_address', e.target.value)} className="glass-input" /></div>
-                    <div><label className={L}>Cidade</label>
+                    <div><label className={L}>{t('budgets.form.city')}</label>
                       <input value={c.city} onChange={e => updatePoint(collections, setCollections, i, 'city', e.target.value)} className="glass-input" /></div>
-                    <div><label className={L}>UF</label>
+                    <div><label className={L}>{t('budgets.form.uf')}</label>
                       <input value={c.uf} onChange={e => updatePoint(collections, setCollections, i, 'uf', e.target.value)} className="glass-input" maxLength={2} /></div>
-                    <div><label className={L}>CEP</label>
+                    <div><label className={L}>{t('budgets.form.cep')}</label>
                       <input value={c.cep} onChange={e => updatePoint(collections, setCollections, i, 'cep', e.target.value)} className="glass-input" /></div>
-                    <div><label className={L}>Data coleta</label>
+                    <div><label className={L}>{t('budgets.form.pickupDate')}</label>
                       <input type="date" value={c.scheduled_date} onChange={e => updatePoint(collections, setCollections, i, 'scheduled_date', e.target.value)} className="glass-input" /></div>
-                    <div><label className={L}>Horário/Janela</label>
+                    <div><label className={L}>{t('budgets.form.schedule')}</label>
                       <input value={c.time_window} onChange={e => updatePoint(collections, setCollections, i, 'time_window', e.target.value)} className="glass-input" placeholder="08h-12h" /></div>
                     <div className="flex items-end gap-2">
                       <label className="flex items-center gap-2 text-xs text-blue-300 pb-2">
                         <input type="checkbox" checked={c.needs_scheduling} onChange={e => updatePoint(collections, setCollections, i, 'needs_scheduling', e.target.checked)} />
-                        Precisa agendamento
+                        {t('budgets.form.needsScheduling')}
                       </label>
                     </div>
-                    <div className="col-span-3"><label className={L}>Observações de acesso</label>
+                    <div className="col-span-3"><label className={L}>{t('budgets.form.accessNotes')}</label>
                       <textarea value={c.access_instructions} onChange={e => updatePoint(collections, setCollections, i, 'access_instructions', e.target.value)} rows={1} className="glass-input resize-none" /></div>
                   </div>
                 </div>
@@ -301,16 +303,16 @@ export default function NovoOrcamentoPage() {
 
             <div>
               <div className="flex items-center justify-between mb-3">
-                <h2 className="text-base font-bold text-white">Pontos de Entrega ({deliveries.length})</h2>
+                <h2 className="text-base font-bold text-white">{t('budgets.form.deliveryPointsLabel', { count: deliveries.length })}</h2>
                 <button type="button" onClick={() => setDeliveries([...deliveries, emptyPoint()])}
                   className="flex items-center gap-1 text-xs font-bold text-emerald-400 hover:text-emerald-300 glass px-2.5 py-1.5 rounded-lg">
-                  <Plus className="w-3 h-3" /> Adicionar entrega
+                  <Plus className="w-3 h-3" /> {t('budgets.form.addDelivery')}
                 </button>
               </div>
               {deliveries.map((d, i) => (
                 <div key={i} className="rounded-xl p-4 space-y-3 mb-3" style={{ background:'rgba(52,211,153,0.06)', border:'1px solid rgba(52,211,153,0.2)' }}>
                   <div className="flex items-center justify-between">
-                    <p className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Entrega #{i+1}</p>
+                    <p className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">{t('budgets.form.deliveryNumber', { n: i+1 })}</p>
                     {deliveries.length > 1 && (
                       <button type="button" onClick={() => setDeliveries(deliveries.filter((_,k) => k !== i))} className="text-red-400 hover:text-red-300">
                         <Trash2 className="w-3.5 h-3.5" />
@@ -318,35 +320,35 @@ export default function NovoOrcamentoPage() {
                     )}
                   </div>
                   <div className="grid grid-cols-3 gap-3">
-                    <div className="col-span-2"><label className={L}>Nome do local</label>
+                    <div className="col-span-2"><label className={L}>{t('budgets.form.locationName')}</label>
                       <input value={d.name} onChange={e => updatePoint(deliveries, setDeliveries, i, 'name', e.target.value)} className="glass-input" /></div>
-                    <div><label className={L}>CNPJ</label>
+                    <div><label className={L}>{t('common.fields.cnpj')}</label>
                       <input value={d.cnpj} onChange={e => updatePoint(deliveries, setDeliveries, i, 'cnpj', e.target.value)} className="glass-input" /></div>
-                    <div><label className={L}>Contato</label>
+                    <div><label className={L}>{t('budgets.form.pointContact')}</label>
                       <input value={d.contact_name} onChange={e => updatePoint(deliveries, setDeliveries, i, 'contact_name', e.target.value)} className="glass-input" /></div>
-                    <div><label className={L}>Telefone</label>
+                    <div><label className={L}>{t('common.fields.phone')}</label>
                       <input value={d.phone} onChange={e => updatePoint(deliveries, setDeliveries, i, 'phone', e.target.value)} className="glass-input" /></div>
-                    <div><label className={L}>E-mail</label>
+                    <div><label className={L}>{t('common.fields.email')}</label>
                       <input value={d.email} onChange={e => updatePoint(deliveries, setDeliveries, i, 'email', e.target.value)} className="glass-input" /></div>
-                    <div className="col-span-3"><label className={L}>Endereço completo</label>
+                    <div className="col-span-3"><label className={L}>{t('budgets.form.fullAddress')}</label>
                       <input value={d.full_address} onChange={e => updatePoint(deliveries, setDeliveries, i, 'full_address', e.target.value)} className="glass-input" /></div>
-                    <div><label className={L}>Cidade</label>
+                    <div><label className={L}>{t('budgets.form.city')}</label>
                       <input value={d.city} onChange={e => updatePoint(deliveries, setDeliveries, i, 'city', e.target.value)} className="glass-input" /></div>
-                    <div><label className={L}>UF</label>
+                    <div><label className={L}>{t('budgets.form.uf')}</label>
                       <input value={d.uf} onChange={e => updatePoint(deliveries, setDeliveries, i, 'uf', e.target.value)} className="glass-input" maxLength={2} /></div>
-                    <div><label className={L}>CEP</label>
+                    <div><label className={L}>{t('budgets.form.cep')}</label>
                       <input value={d.cep} onChange={e => updatePoint(deliveries, setDeliveries, i, 'cep', e.target.value)} className="glass-input" /></div>
-                    <div><label className={L}>Data entrega</label>
+                    <div><label className={L}>{t('budgets.form.deliveryDate')}</label>
                       <input type="date" value={d.scheduled_date} onChange={e => updatePoint(deliveries, setDeliveries, i, 'scheduled_date', e.target.value)} className="glass-input" /></div>
-                    <div><label className={L}>Horário/Janela</label>
+                    <div><label className={L}>{t('budgets.form.schedule')}</label>
                       <input value={d.time_window} onChange={e => updatePoint(deliveries, setDeliveries, i, 'time_window', e.target.value)} className="glass-input" /></div>
                     <div className="flex items-end gap-2">
                       <label className="flex items-center gap-2 text-xs text-blue-300 pb-2">
                         <input type="checkbox" checked={d.needs_scheduling} onChange={e => updatePoint(deliveries, setDeliveries, i, 'needs_scheduling', e.target.checked)} />
-                        Precisa agendamento
+                        {t('budgets.form.needsScheduling')}
                       </label>
                     </div>
-                    <div className="col-span-3"><label className={L}>Observações de acesso</label>
+                    <div className="col-span-3"><label className={L}>{t('budgets.form.accessNotes')}</label>
                       <textarea value={d.access_instructions} onChange={e => updatePoint(deliveries, setDeliveries, i, 'access_instructions', e.target.value)} rows={1} className="glass-input resize-none" /></div>
                   </div>
                 </div>
@@ -358,49 +360,49 @@ export default function NovoOrcamentoPage() {
         {/* Step 4 — Carga */}
         {step === 4 && (
           <div className="space-y-4">
-            <h2 className="text-base font-bold text-white">Documento e Carga</h2>
+            <h2 className="text-base font-bold text-white">{t('budgets.form.documentCargo')}</h2>
             <div className="grid grid-cols-3 gap-4">
-              <div><label className={L}>Nº NF / Documento</label>
+              <div><label className={L}>{t('budgets.form.nfDocument')}</label>
                 <input value={cargo.document_number} onChange={e => setCargo({...cargo, document_number: e.target.value})} className="glass-input" /></div>
-              <div><label className={L}>Valor da NF (R$)</label>
+              <div><label className={L}>{t('budgets.form.nfValue')}</label>
                 <input type="number" step="0.01" value={cargo.document_value} onChange={e => setCargo({...cargo, document_value: e.target.value})} className="glass-input" /></div>
               <div className="flex items-end pb-2">
                 <label className="flex items-center gap-2 text-sm text-blue-300">
                   <input type="checkbox" checked={cargo.xml_received} onChange={e => setCargo({...cargo, xml_received: e.target.checked})} />
-                  XML recebido
+                  {t('budgets.form.xmlReceived')}
                 </label>
               </div>
-              <div className="col-span-3"><label className={L}>Descrição da carga</label>
+              <div className="col-span-3"><label className={L}>{t('budgets.form.cargoDescription')}</label>
                 <input value={cargo.cargo_description} onChange={e => setCargo({...cargo, cargo_description: e.target.value})} className="glass-input" /></div>
-              <div><label className={L}>Volumes</label>
+              <div><label className={L}>{t('budgets.form.volumes')}</label>
                 <input type="number" value={cargo.cargo_volumes} onChange={e => setCargo({...cargo, cargo_volumes: e.target.value})} className="glass-input" /></div>
-              <div><label className={L}>Peso total</label>
+              <div><label className={L}>{t('budgets.form.totalWeight')}</label>
                 <input value={cargo.cargo_weight} onChange={e => setCargo({...cargo, cargo_weight: e.target.value})} placeholder="kg" className="glass-input" /></div>
-              <div><label className={L}>Cubagem (m³)</label>
+              <div><label className={L}>{t('budgets.form.cubage')}</label>
                 <input value={cargo.cargo_cubage} onChange={e => setCargo({...cargo, cargo_cubage: e.target.value})} className="glass-input" /></div>
-              <div><label className={L}>Comprimento (m)</label>
+              <div><label className={L}>{t('budgets.form.length')}</label>
                 <input value={cargo.cargo_length} onChange={e => setCargo({...cargo, cargo_length: e.target.value})} className="glass-input" /></div>
-              <div><label className={L}>Largura (m)</label>
+              <div><label className={L}>{t('budgets.form.width')}</label>
                 <input value={cargo.cargo_width} onChange={e => setCargo({...cargo, cargo_width: e.target.value})} className="glass-input" /></div>
-              <div><label className={L}>Altura (m)</label>
+              <div><label className={L}>{t('budgets.form.height')}</label>
                 <input value={cargo.cargo_height} onChange={e => setCargo({...cargo, cargo_height: e.target.value})} className="glass-input" /></div>
             </div>
             <div className="grid grid-cols-3 gap-3 mt-3">
               {([
-                ['cargo_sensitive','Sensível'],
-                ['cargo_high_value','Alto valor'],
-                ['cargo_needs_tarp','Exige lona'],
-                ['cargo_needs_strap','Exige amarração'],
-                ['cargo_needs_tracker','Exige rastreador'],
-                ['cargo_needs_photo','Exige foto'],
-              ] as const).map(([k,l]) => (
+                ['cargo_sensitive','cargoSensitive'],
+                ['cargo_high_value','cargoHighValue'],
+                ['cargo_needs_tarp','cargoNeedsTarp'],
+                ['cargo_needs_strap','cargoNeedsStrap'],
+                ['cargo_needs_tracker','cargoNeedsTracker'],
+                ['cargo_needs_photo','cargoNeedsPhoto'],
+              ] as const).map(([k, tk]) => (
                 <label key={k} className="flex items-center gap-2 text-sm text-blue-300 glass-sm rounded-lg px-3 py-2">
                   <input type="checkbox" checked={cargo[k]} onChange={e => setCargo({...cargo, [k]: e.target.checked})} />
-                  {l}
+                  {t(`budgets.form.${tk}`)}
                 </label>
               ))}
             </div>
-            <div><label className={L}>Observações da carga</label>
+            <div><label className={L}>{t('budgets.form.cargoNotes')}</label>
               <textarea value={cargo.cargo_notes} onChange={e => setCargo({...cargo, cargo_notes: e.target.value})} rows={2} className="glass-input resize-none" /></div>
           </div>
         )}
@@ -408,31 +410,31 @@ export default function NovoOrcamentoPage() {
         {/* Step 5 — Veículo */}
         {step === 5 && (
           <div className="space-y-4">
-            <h2 className="text-base font-bold text-white">Perfil de Veículo</h2>
+            <h2 className="text-base font-bold text-white">{t('budgets.form.vehicleProfile')}</h2>
             <div className="grid grid-cols-2 gap-4">
-              <div><label className={L}>Tipo de veículo sugerido</label>
+              <div><label className={L}>{t('budgets.form.suggestedVehicle')}</label>
                 <select value={vehicle.vehicle_suggested_type} onChange={e => setVehicle({...vehicle, vehicle_suggested_type: e.target.value})} className="glass-select">
-                  <option value="">Selecione...</option>
+                  <option value="">{t('common.selectPlaceholder')}</option>
                   {['Fiorino','VUC','3/4','Toco','Truck','Carreta','Prancha','Munck','Baú','Sider','Outro'].map(v=> <option key={v}>{v}</option>)}
                 </select></div>
-              <div><label className={L}>Carroceria</label>
+              <div><label className={L}>{t('budgets.form.bodyType')}</label>
                 <input value={vehicle.vehicle_body_type} onChange={e => setVehicle({...vehicle, vehicle_body_type: e.target.value})} className="glass-input" /></div>
             </div>
             <div className="grid grid-cols-3 gap-3">
               {([
-                ['vehicle_exclusive','Veículo exclusivo'],
-                ['vehicle_full_load','Carga lotação'],
-                ['operation_dedicated','Operação dedicada'],
-                ['operation_aero','Operação aérea'],
-                ['operation_project','Carga projeto'],
-              ] as const).map(([k,l]) => (
+                ['vehicle_exclusive','vehicleExclusive'],
+                ['vehicle_full_load','fullLoad'],
+                ['operation_dedicated','dedicatedOp'],
+                ['operation_aero','airOp'],
+                ['operation_project','projectOp'],
+              ] as const).map(([k, tk]) => (
                 <label key={k} className="flex items-center gap-2 text-sm text-blue-300 glass-sm rounded-lg px-3 py-2">
                   <input type="checkbox" checked={vehicle[k]} onChange={e => setVehicle({...vehicle, [k]: e.target.checked})} />
-                  {l}
+                  {t(`budgets.form.${tk}`)}
                 </label>
               ))}
             </div>
-            <div><label className={L}>Observações sobre veículo</label>
+            <div><label className={L}>{t('budgets.form.vehicleNotes')}</label>
               <textarea value={vehicle.vehicle_notes} onChange={e => setVehicle({...vehicle, vehicle_notes: e.target.value})} rows={2} className="glass-input resize-none" /></div>
           </div>
         )}
@@ -440,27 +442,27 @@ export default function NovoOrcamentoPage() {
         {/* Step 6 — Valores */}
         {step === 6 && (
           <div className="space-y-4">
-            <h2 className="text-base font-bold text-white">Composição do Frete</h2>
+            <h2 className="text-base font-bold text-white">{t('budgets.form.freightComposition')}</h2>
             <div className="grid grid-cols-4 gap-3">
               {([
-                ['fretePeso','Frete Peso'],['freteValor','Frete Valor'],['freteMinimo','Frete Mínimo'],
-                ['pedagio','Pedágio'],['valePedagio','Vale-pedágio'],['seguro','Seguro'],['gris','GRIS'],
-                ['descarga','Descarga'],['movimentacao','Movimentação'],['ajudante','Ajudante'],
-                ['diaria','Diária'],['pernoite','Pernoite'],['escolta','Escolta'],['batedor','Batedor'],
-                ['munck','Munck'],['empilhadeira','Empilhadeira'],
-                ['taxaDificilAcesso','Difícil acesso'],['taxaAgendamento','Agendamento'],
-                ['taxaUrgencia','Urgência'],['taxaEspera','Espera'],['taxaReentrega','Reentrega'],
-                ['outrasTaxas','Outras taxas'],['icms','ICMS'],
-              ] as const).map(([k,l]) => (
+                ['fretePeso','freightWeight'],['freteValor','freightValue'],['freteMinimo','freightMin'],
+                ['pedagio','toll'],['valePedagio','tollVoucher'],['seguro','insurance'],['gris','gris'],
+                ['descarga','unload'],['movimentacao','handling'],['ajudante','helper'],
+                ['diaria','daily'],['pernoite','overnight'],['escolta','escort'],['batedor','convoy'],
+                ['munck','munck'],['empilhadeira','forklift'],
+                ['taxaDificilAcesso','feeAccess'],['taxaAgendamento','feeSchedule'],
+                ['taxaUrgencia','feeUrgency'],['taxaEspera','feeWait'],['taxaReentrega','feeRedelivery'],
+                ['outrasTaxas','feeOther'],['icms','icms'],
+              ] as const).map(([k, tk]) => (
                 <div key={k}>
-                  <label className="block text-[10px] font-bold text-blue-300 mb-1 uppercase tracking-wider">{l}</label>
+                  <label className="block text-[10px] font-bold text-blue-300 mb-1 uppercase tracking-wider">{t(`budgets.form.${tk}`)}</label>
                   <input type="number" step="0.01"
                     value={freight[k] ?? ''} onChange={e => setFreight({...freight, [k]: e.target.value ? parseFloat(e.target.value) : undefined})}
                     placeholder="0,00" className="glass-input" />
                 </div>
               ))}
             </div>
-            <div><label className={L}>Observações de valores</label>
+            <div><label className={L}>{t('budgets.form.valueNotes')}</label>
               <textarea value={freight.observacoes ?? ''} onChange={e => setFreight({...freight, observacoes: e.target.value})} rows={2} className="glass-input resize-none" /></div>
           </div>
         )}
@@ -468,15 +470,15 @@ export default function NovoOrcamentoPage() {
         {/* Step 7 — Níveis de Serviço */}
         {step === 7 && (
           <div className="space-y-5">
-            <h2 className="text-base font-bold text-white">Níveis de Serviço Ofertados</h2>
-            <p className="text-sm text-blue-400">Marque quais produtos serão enviados na proposta. Para cada um, informe o valor adicional.</p>
+            <h2 className="text-base font-bold text-white">{t('budgets.form.levelsOfferedTitle')}</h2>
+            <p className="text-sm text-blue-400">{t('budgets.form.levelsHelp')}</p>
 
-            {[
-              { key:'essencial' as const,           name:'Essencial',           desc:'Comunicação básica + comprovante final', color:'#94A3B8' },
-              { key:'assistido_basico' as const,    name:'Assistido Básico',    desc:'Status por marcos principais',           color:'#60A5FA' },
-              { key:'assistido_completo' as const,  name:'Assistido Completo',  desc:'Acompanhamento ativo + evidências',      color:'#A78BFA' },
-              { key:'prime_critico' as const,       name:'Prime / Crítico',     desc:'Gestão operacional + relatórios',        color:'#F59E0B' },
-            ].map(({ key, name, desc, color }) => {
+            {([
+              { key:'essencial' as const,           tkey:'essencial',          descTkey:'essencialDesc', color:'#94A3B8' },
+              { key:'assistido_basico' as const,    tkey:'assistido_basico',   descTkey:'basicoDesc',    color:'#60A5FA' },
+              { key:'assistido_completo' as const,  tkey:'assistido_completo', descTkey:'completoDesc',  color:'#A78BFA' },
+              { key:'prime_critico' as const,       tkey:'prime_critico',      descTkey:'primeDesc',     color:'#F59E0B' },
+            ]).map(({ key, tkey, descTkey, color }) => {
               const cfg = levels[key] ?? { offered: false }
               return (
                 <div key={key} className="rounded-xl p-4" style={{ background: cfg.offered ? `${color}1a` : 'rgba(255,255,255,0.03)', border: cfg.offered ? `1px solid ${color}55` : '1px solid rgba(255,255,255,0.08)' }}>
@@ -485,22 +487,22 @@ export default function NovoOrcamentoPage() {
                       <input type="checkbox" checked={!!cfg.offered}
                         onChange={e => setLevels({ ...levels, [key]: { ...cfg, offered: e.target.checked }})} />
                       <div>
-                        <p className="text-sm font-bold" style={{ color }}>{name}</p>
-                        <p className="text-xs text-blue-400">{desc}</p>
+                        <p className="text-sm font-bold" style={{ color }}>{t(`serviceLevels.${tkey}`)}</p>
+                        <p className="text-xs text-blue-400">{t(`budgets.form.${descTkey}`)}</p>
                       </div>
                     </label>
                   </div>
                   {cfg.offered && (
                     <div className="grid grid-cols-3 gap-3 mt-3">
-                      <div><label className={L}>Valor adicional (R$)</label>
+                      <div><label className={L}>{t('budgets.form.additionalValue')}</label>
                         <input type="number" step="0.01" value={cfg.additionalValue ?? ''}
                           onChange={e => setLevels({...levels, [key]: { ...cfg, additionalValue: e.target.value ? parseFloat(e.target.value) : undefined }})}
                           className="glass-input" /></div>
-                      <div><label className={L}>Validade</label>
+                      <div><label className={L}>{t('common.fields.validity')}</label>
                         <input value={cfg.validity ?? ''} onChange={e => setLevels({...levels, [key]: { ...cfg, validity: e.target.value }})} className="glass-input" placeholder="7 dias" /></div>
-                      <div><label className={L}>Condição</label>
+                      <div><label className={L}>{t('budgets.form.condition')}</label>
                         <input value={cfg.conditions ?? ''} onChange={e => setLevels({...levels, [key]: { ...cfg, conditions: e.target.value }})} className="glass-input" /></div>
-                      <div className="col-span-3"><label className={L}>Observação</label>
+                      <div className="col-span-3"><label className={L}>{t('budgets.form.noteSpec')}</label>
                         <input value={cfg.notes ?? ''} onChange={e => setLevels({...levels, [key]: { ...cfg, notes: e.target.value }})} className="glass-input" /></div>
                     </div>
                   )}
@@ -509,17 +511,17 @@ export default function NovoOrcamentoPage() {
             })}
 
             <div className="mt-6 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-              <h3 className="text-sm font-bold text-white mb-3">Observações Comerciais</h3>
+              <h3 className="text-sm font-bold text-white mb-3">{t('budgets.form.commercialObs')}</h3>
               <div className="grid grid-cols-2 gap-4">
-                <div><label className={L}>Validade da proposta</label>
+                <div><label className={L}>{t('budgets.form.proposalValidity')}</label>
                   <input type="date" value={obs.validity_date} onChange={e => setObs({...obs, validity_date: e.target.value})} className="glass-input" /></div>
-                <div><label className={L}>Condição de pagamento</label>
+                <div><label className={L}>{t('budgets.form.paymentCondition')}</label>
                   <input value={obs.payment_condition} onChange={e => setObs({...obs, payment_condition: e.target.value})} className="glass-input" placeholder="28 dias" /></div>
-                <div className="col-span-2"><label className={L}>Premissas</label>
+                <div className="col-span-2"><label className={L}>{t('budgets.form.premises')}</label>
                   <textarea value={obs.premises} onChange={e => setObs({...obs, premises: e.target.value})} rows={2} className="glass-input resize-none" /></div>
-                <div className="col-span-2"><label className={L}>Exclusões</label>
+                <div className="col-span-2"><label className={L}>{t('budgets.form.exclusions')}</label>
                   <textarea value={obs.exclusions} onChange={e => setObs({...obs, exclusions: e.target.value})} rows={2} className="glass-input resize-none" /></div>
-                <div className="col-span-2"><label className={L}>Observações gerais</label>
+                <div className="col-span-2"><label className={L}>{t('budgets.form.generalObs')}</label>
                   <textarea value={obs.general_notes} onChange={e => setObs({...obs, general_notes: e.target.value})} rows={2} className="glass-input resize-none" /></div>
               </div>
             </div>
@@ -532,20 +534,20 @@ export default function NovoOrcamentoPage() {
       <div className="flex justify-between">
         <button onClick={() => step > 1 ? setStep(s=>s-1) : null} disabled={step===1}
           className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-blue-300 hover:text-white glass disabled:opacity-30">
-          <ChevronLeft className="w-4 h-4" /> Voltar
+          <ChevronLeft className="w-4 h-4" /> {t('common.back')}
         </button>
         {step < STEPS.length ? (
           <button onClick={() => setStep(s=>s+1)}
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white"
             style={{ background:'linear-gradient(135deg,#3B82F6,#1D4ED8)' }}>
-            Próximo <ChevronRight className="w-4 h-4" />
+            {t('common.next')} <ChevronRight className="w-4 h-4" />
           </button>
         ) : (
           <button onClick={handleSubmit} disabled={pending}
             className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold text-white disabled:opacity-50"
             style={{ background:'linear-gradient(135deg,#059669,#047857)',boxShadow:'0 4px 16px rgba(5,150,105,0.4)' }}>
             {pending ? <Loader2 className="w-4 h-4 animate-spin" /> : <CheckCircle className="w-4 h-4" />}
-            {pending ? 'Criando...' : 'Criar Orçamento'}
+            {pending ? t('budgets.form.creating') : t('budgets.form.create')}
           </button>
         )}
       </div>

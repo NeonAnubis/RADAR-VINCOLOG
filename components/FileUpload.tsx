@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react'
 import { Upload, CheckCircle, Loader2 } from 'lucide-react'
+import { useT } from '@/lib/i18n/I18nProvider'
 
 interface FileUploadProps {
   label: string
@@ -11,6 +12,7 @@ interface FileUploadProps {
 }
 
 export default function FileUpload({ label, accept = '*', onUpload, hint }: FileUploadProps) {
+  const t = useT()
   const inputRef = useRef<HTMLInputElement>(null)
   const [state, setState] = useState<'idle' | 'uploading' | 'done' | 'error'>('idle')
   const [msg, setMsg] = useState('')
@@ -23,7 +25,7 @@ export default function FileUpload({ label, accept = '*', onUpload, hint }: File
     fd.append('file', file)
     const res = await onUpload(fd)
     if (res.error) { setState('error'); setMsg(res.error) }
-    else            { setState('done');  setMsg(res.url ?? 'Enviado') }
+    else            { setState('done');  setMsg(res.url ?? t('common.sent')) }
   }
 
   return (
@@ -36,7 +38,7 @@ export default function FileUpload({ label, accept = '*', onUpload, hint }: File
         {state === 'uploading' && <Loader2 className="w-4 h-4 animate-spin" />}
         {state === 'done'      && <CheckCircle className="w-4 h-4 text-emerald-400" />}
         {state === 'idle' || state === 'error' ? <Upload className="w-4 h-4" /> : null}
-        {state === 'uploading' ? 'Enviando...' : state === 'done' ? 'Enviado' : label}
+        {state === 'uploading' ? t('common.uploading') : state === 'done' ? t('common.uploaded') : label}
       </button>
       {hint && state === 'idle' && <p className="text-xs text-blue-500 mt-1">{hint}</p>}
       {state === 'error' && <p className="text-xs text-red-400 mt-1">{msg}</p>}

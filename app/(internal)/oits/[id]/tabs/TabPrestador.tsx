@@ -2,13 +2,15 @@
 
 import { useState, useTransition } from 'react'
 import Link from 'next/link'
-import { Truck, Save, Loader2, CheckCircle, Phone, FileText } from 'lucide-react'
+import { Truck, Save, Loader2, CheckCircle, Phone } from 'lucide-react'
 import { allocateProviderToOit, generateProviderInvite } from '@/lib/actions/oits'
+import { useT } from '@/lib/i18n/I18nProvider'
 import type { DbOit, DbProvider } from '@/lib/types'
 
 const L = "block text-xs font-bold text-blue-300 mb-1 uppercase tracking-wider"
 
 export default function TabPrestador({ oit, availableProviders }: { oit: DbOit; availableProviders: DbProvider[] }) {
+  const t = useT()
   const [pending, start] = useTransition()
   const [selectedProvider, setSelected] = useState<string | null>(oit.provider_id)
   const [inviteToken, setInviteToken] = useState<string | null>(oit.provider_invite_token)
@@ -51,8 +53,8 @@ export default function TabPrestador({ oit, availableProviders }: { oit: DbOit; 
       <div className="space-y-4">
         <div className="glass rounded-2xl p-6 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-base font-bold text-white">Prestador Vinculado</h2>
-            <span className="px-2 py-0.5 rounded text-xs font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/35">Alocado</span>
+            <h2 className="text-base font-bold text-white">{t('oits.providerTab.linkedTitle')}</h2>
+            <span className="px-2 py-0.5 rounded text-xs font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/35">{t('oits.providerTab.allocated')}</span>
           </div>
           <div className="flex items-center gap-4">
             <div className="w-14 h-14 rounded-full flex items-center justify-center text-lg font-extrabold"
@@ -61,32 +63,32 @@ export default function TabPrestador({ oit, availableProviders }: { oit: DbOit; 
             </div>
             <div>
               <p className="text-base font-bold text-white">{p.name}</p>
-              <p className="text-xs text-blue-400">CPF: {p.cpf ?? '—'} · CNH: {p.cnh ?? '—'}</p>
+              <p className="text-xs text-blue-400">{t('oits.providerTab.cpf')}: {p.cpf ?? '—'} · {t('oits.providerTab.cnh')}: {p.cnh ?? '—'}</p>
               <p className="text-xs text-blue-400 flex items-center gap-1 mt-1"><Phone className="w-3 h-3" />{p.phone}</p>
             </div>
           </div>
-          <Link href={`/prestadores/${p.id}`} className="text-xs font-bold text-blue-400 hover:text-blue-300">Ver perfil completo →</Link>
+          <Link href={`/prestadores/${p.id}`} className="text-xs font-bold text-blue-400 hover:text-blue-300">{t('oits.providerTab.viewProfile')}</Link>
         </div>
 
         <div className="glass rounded-2xl p-6 space-y-3">
-          <h2 className="text-base font-bold text-white flex items-center gap-2"><Truck className="w-4 h-4" /> Veículo / Motorista</h2>
+          <h2 className="text-base font-bold text-white flex items-center gap-2"><Truck className="w-4 h-4" /> {t('oits.providerTab.vehicleDriverTitle')}</h2>
           <div className="grid grid-cols-2 gap-3 text-sm">
-            <div><p className="text-blue-500 text-xs">Tipo</p><p className="text-white">{oit.vehicle_type ?? '—'}</p></div>
-            <div><p className="text-blue-500 text-xs">Carroceria</p><p className="text-white">{oit.vehicle_body ?? '—'}</p></div>
-            <div><p className="text-blue-500 text-xs">Placa Cavalo</p><p className="text-white font-mono">{oit.vehicle_plate_cavalo ?? p.vehicle_plate}</p></div>
-            <div><p className="text-blue-500 text-xs">Placa Carreta</p><p className="text-white font-mono">{oit.vehicle_plate_carreta ?? '—'}</p></div>
-            <div><p className="text-blue-500 text-xs">Motorista</p><p className="text-white">{oit.driver_name ?? '—'}</p></div>
-            <div><p className="text-blue-500 text-xs">CPF</p><p className="text-white">{oit.driver_cpf ?? '—'}</p></div>
-            <div><p className="text-blue-500 text-xs">Telefone</p><p className="text-white">{oit.driver_phone ?? '—'}</p></div>
-            <div><p className="text-blue-500 text-xs">CNH</p><p className="text-white">{oit.driver_cnh ?? '—'}</p></div>
+            <div><p className="text-blue-500 text-xs">{t('oits.providerTab.type')}</p><p className="text-white">{oit.vehicle_type ?? '—'}</p></div>
+            <div><p className="text-blue-500 text-xs">{t('oits.providerTab.body')}</p><p className="text-white">{oit.vehicle_body ?? '—'}</p></div>
+            <div><p className="text-blue-500 text-xs">{t('oits.providerTab.plateCavalo')}</p><p className="text-white font-mono">{oit.vehicle_plate_cavalo ?? p.vehicle_plate}</p></div>
+            <div><p className="text-blue-500 text-xs">{t('oits.providerTab.plateCarreta')}</p><p className="text-white font-mono">{oit.vehicle_plate_carreta ?? '—'}</p></div>
+            <div><p className="text-blue-500 text-xs">{t('oits.providerTab.driver')}</p><p className="text-white">{oit.driver_name ?? '—'}</p></div>
+            <div><p className="text-blue-500 text-xs">{t('oits.providerTab.cpf')}</p><p className="text-white">{oit.driver_cpf ?? '—'}</p></div>
+            <div><p className="text-blue-500 text-xs">{t('oits.providerTab.phone')}</p><p className="text-white">{oit.driver_phone ?? '—'}</p></div>
+            <div><p className="text-blue-500 text-xs">{t('oits.providerTab.cnh')}</p><p className="text-white">{oit.driver_cnh ?? '—'}</p></div>
           </div>
           <div className="flex gap-2 pt-2">
-            {oit.vehicle_has_tarp    && <span className="px-2 py-0.5 rounded text-[10px] bg-blue-400/20 text-blue-300">Lona</span>}
-            {oit.vehicle_has_tracker && <span className="px-2 py-0.5 rounded text-[10px] bg-emerald-400/20 text-emerald-300">Rastreador</span>}
+            {oit.vehicle_has_tarp    && <span className="px-2 py-0.5 rounded text-[10px] bg-blue-400/20 text-blue-300">{t('oits.providerTab.hasTarp')}</span>}
+            {oit.vehicle_has_tracker && <span className="px-2 py-0.5 rounded text-[10px] bg-emerald-400/20 text-emerald-300">{t('oits.providerTab.hasTracker')}</span>}
           </div>
           {oit.vehicle_tracker_link && (
             <a href={oit.vehicle_tracker_link} target="_blank" className="text-xs text-blue-400 hover:text-blue-300 font-bold">
-              Abrir link do rastreador →
+              {t('oits.providerTab.openTrackerLink')}
             </a>
           )}
         </div>
@@ -96,20 +98,19 @@ export default function TabPrestador({ oit, availableProviders }: { oit: DbOit; 
 
   return (
     <div className="space-y-4">
-      {/* Invite link block */}
       <div className="rounded-2xl p-5" style={{ background: 'rgba(167,139,250,0.08)', border: '1px solid rgba(167,139,250,0.25)' }}>
         <div className="flex items-center justify-between mb-2">
-          <h3 className="text-sm font-bold text-violet-300 flex items-center gap-2"><Loader2 className="w-4 h-4" /> Convite Rápido para Prestador Avulso</h3>
+          <h3 className="text-sm font-bold text-violet-300 flex items-center gap-2"><Loader2 className="w-4 h-4" /> {t('oits.providerTab.inviteTitle')}</h3>
           {!inviteToken && (
             <button onClick={handleGenerateInvite} disabled={pending}
               className="px-3 py-1.5 rounded-lg text-xs font-bold text-white disabled:opacity-50"
               style={{ background: 'linear-gradient(135deg,#7C3AED,#5B21B6)' }}>
               {pending ? <Loader2 className="w-3 h-3 animate-spin inline mr-1" /> : null}
-              Gerar link de convite
+              {t('oits.providerTab.generateInvite')}
             </button>
           )}
         </div>
-        <p className="text-xs text-blue-400 mb-3">Envie este link ao prestador via WhatsApp para que ele se cadastre rapidamente e seja alocado a esta OIT.</p>
+        <p className="text-xs text-blue-400 mb-3">{t('oits.providerTab.inviteHelp')}</p>
         {inviteToken && (
           <div className="flex items-center gap-2 p-2 rounded-lg" style={{ background: 'rgba(0,0,0,0.3)' }}>
             <code className="text-xs text-violet-300 font-mono flex-1 truncate">
@@ -117,7 +118,7 @@ export default function TabPrestador({ oit, availableProviders }: { oit: DbOit; 
             </code>
             <button onClick={copyInviteLink}
               className="px-2 py-1 rounded text-[10px] font-bold text-violet-300 hover:text-white glass-sm">
-              {copied ? '✓ Copiado!' : 'Copiar URL'}
+              {copied ? t('oits.providerTab.copied') : t('oits.providerTab.copyUrl')}
             </button>
           </div>
         )}
@@ -125,8 +126,8 @@ export default function TabPrestador({ oit, availableProviders }: { oit: DbOit; 
 
       <div className="glass rounded-2xl p-6 space-y-5">
       <div className="flex items-center justify-between">
-        <h2 className="text-base font-bold text-white">Ou Alocar Prestador Existente</h2>
-        <Link href="/prestadores/novo" className="text-xs font-bold text-blue-400 hover:text-blue-300">+ Cadastrar manualmente</Link>
+        <h2 className="text-base font-bold text-white">{t('oits.providerTab.allocateTitle')}</h2>
+        <Link href="/prestadores/novo" className="text-xs font-bold text-blue-400 hover:text-blue-300">{t('oits.providerTab.registerNew')}</Link>
       </div>
 
       <div className="space-y-2 max-h-64 overflow-y-auto scrollbar-thin">
@@ -150,26 +151,26 @@ export default function TabPrestador({ oit, availableProviders }: { oit: DbOit; 
 
       {selectedProvider && (
         <div className="space-y-3 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-          <h3 className="text-sm font-bold text-white">Dados desta viagem</h3>
+          <h3 className="text-sm font-bold text-white">{t('oits.providerTab.tripData')}</h3>
           <div className="grid grid-cols-2 gap-3">
-            <div><label className={L}>Motorista *</label><input value={vehicleData.driver_name} onChange={e=>setVehicle({...vehicleData,driver_name:e.target.value})} className="glass-input" /></div>
-            <div><label className={L}>CPF Motorista</label><input value={vehicleData.driver_cpf} onChange={e=>setVehicle({...vehicleData,driver_cpf:e.target.value})} className="glass-input" /></div>
-            <div><label className={L}>Telefone</label><input value={vehicleData.driver_phone} onChange={e=>setVehicle({...vehicleData,driver_phone:e.target.value})} className="glass-input" /></div>
-            <div><label className={L}>CNH</label><input value={vehicleData.driver_cnh} onChange={e=>setVehicle({...vehicleData,driver_cnh:e.target.value})} className="glass-input" /></div>
-            <div><label className={L}>Tipo de veículo</label><input value={vehicleData.vehicle_type} onChange={e=>setVehicle({...vehicleData,vehicle_type:e.target.value})} className="glass-input" /></div>
-            <div><label className={L}>Carroceria</label><input value={vehicleData.vehicle_body} onChange={e=>setVehicle({...vehicleData,vehicle_body:e.target.value})} className="glass-input" /></div>
-            <div><label className={L}>Placa Cavalo</label><input value={vehicleData.vehicle_plate_cavalo} onChange={e=>setVehicle({...vehicleData,vehicle_plate_cavalo:e.target.value})} className="glass-input" /></div>
-            <div><label className={L}>Placa Carreta</label><input value={vehicleData.vehicle_plate_carreta} onChange={e=>setVehicle({...vehicleData,vehicle_plate_carreta:e.target.value})} className="glass-input" /></div>
+            <div><label className={L}>{t('oits.providerTab.driverName')}</label><input value={vehicleData.driver_name} onChange={e=>setVehicle({...vehicleData,driver_name:e.target.value})} className="glass-input" /></div>
+            <div><label className={L}>{t('oits.providerTab.cpfDriver')}</label><input value={vehicleData.driver_cpf} onChange={e=>setVehicle({...vehicleData,driver_cpf:e.target.value})} className="glass-input" /></div>
+            <div><label className={L}>{t('oits.providerTab.phone')}</label><input value={vehicleData.driver_phone} onChange={e=>setVehicle({...vehicleData,driver_phone:e.target.value})} className="glass-input" /></div>
+            <div><label className={L}>{t('oits.providerTab.cnh')}</label><input value={vehicleData.driver_cnh} onChange={e=>setVehicle({...vehicleData,driver_cnh:e.target.value})} className="glass-input" /></div>
+            <div><label className={L}>{t('oits.providerTab.vehicleType')}</label><input value={vehicleData.vehicle_type} onChange={e=>setVehicle({...vehicleData,vehicle_type:e.target.value})} className="glass-input" /></div>
+            <div><label className={L}>{t('oits.providerTab.carroceria')}</label><input value={vehicleData.vehicle_body} onChange={e=>setVehicle({...vehicleData,vehicle_body:e.target.value})} className="glass-input" /></div>
+            <div><label className={L}>{t('oits.providerTab.plateCavalo')}</label><input value={vehicleData.vehicle_plate_cavalo} onChange={e=>setVehicle({...vehicleData,vehicle_plate_cavalo:e.target.value})} className="glass-input" /></div>
+            <div><label className={L}>{t('oits.providerTab.plateCarreta')}</label><input value={vehicleData.vehicle_plate_carreta} onChange={e=>setVehicle({...vehicleData,vehicle_plate_carreta:e.target.value})} className="glass-input" /></div>
             <div className="flex items-end gap-2 col-span-2">
               <label className="flex items-center gap-2 text-xs text-blue-300 pb-2">
-                <input type="checkbox" checked={vehicleData.vehicle_has_tarp} onChange={e=>setVehicle({...vehicleData,vehicle_has_tarp:e.target.checked})} /> Possui lona
+                <input type="checkbox" checked={vehicleData.vehicle_has_tarp} onChange={e=>setVehicle({...vehicleData,vehicle_has_tarp:e.target.checked})} /> {t('oits.providerTab.hasTarpLabel')}
               </label>
               <label className="flex items-center gap-2 text-xs text-blue-300 pb-2">
-                <input type="checkbox" checked={vehicleData.vehicle_has_tracker} onChange={e=>setVehicle({...vehicleData,vehicle_has_tracker:e.target.checked})} /> Possui rastreador
+                <input type="checkbox" checked={vehicleData.vehicle_has_tracker} onChange={e=>setVehicle({...vehicleData,vehicle_has_tracker:e.target.checked})} /> {t('oits.providerTab.hasTrackerLabel')}
               </label>
             </div>
             {vehicleData.vehicle_has_tracker && (
-              <div className="col-span-2"><label className={L}>Link do rastreador</label><input value={vehicleData.vehicle_tracker_link} onChange={e=>setVehicle({...vehicleData,vehicle_tracker_link:e.target.value})} className="glass-input" /></div>
+              <div className="col-span-2"><label className={L}>{t('oits.providerTab.trackerLink')}</label><input value={vehicleData.vehicle_tracker_link} onChange={e=>setVehicle({...vehicleData,vehicle_tracker_link:e.target.value})} className="glass-input" /></div>
             )}
           </div>
 
@@ -177,7 +178,7 @@ export default function TabPrestador({ oit, availableProviders }: { oit: DbOit; 
             className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold text-white disabled:opacity-50"
             style={{ background: 'linear-gradient(135deg,#059669,#047857)' }}>
             {pending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
-            {pending ? 'Alocando...' : 'Confirmar Alocação'}
+            {pending ? t('oits.providerTab.allocating') : t('oits.providerTab.confirmAllocation')}
           </button>
         </div>
       )}

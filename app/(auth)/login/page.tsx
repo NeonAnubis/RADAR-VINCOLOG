@@ -4,6 +4,9 @@ import { useState, useTransition } from 'react'
 import Link from 'next/link'
 import { signIn } from '@/lib/actions/auth'
 import { Eye, EyeOff, LogIn, MapPin, CheckCircle, Truck, Radio } from 'lucide-react'
+import { useT } from '@/lib/i18n/I18nProvider'
+import { useTheme } from '@/lib/providers/ThemeProvider'
+import ThemeLanguageToggle from '@/components/ThemeLanguageToggle'
 
 /* ── Radar visualization ──────────────────────────────────── */
 function RadarScope() {
@@ -137,20 +140,28 @@ function RadarScope() {
 
 /* ── Left hero panel ─────────────────────────────────────── */
 function HeroPanel() {
+  const t = useT()
+  const { theme } = useTheme()
+  const isLight = theme === 'light'
   const features = [
-    { icon: Radio,     text: 'Torre de controle em tempo real' },
-    { icon: Truck,     text: 'Gestão completa de frete A→B' },
-    { icon: CheckCircle, text: 'Contratos digitais + Ordem de Coleta' },
+    { icon: Radio,     text: t('auth.hero.feat1') },
+    { icon: Truck,     text: t('auth.hero.feat2') },
+    { icon: CheckCircle, text: t('auth.hero.feat3') },
   ]
   const stats = [
-    { value: '1.240+', label: 'Fretes gerenciados' },
-    { value: '48',     label: 'Motoristas parceiros' },
-    { value: '99.7%',  label: 'Disponibilidade' },
+    { value: t('auth.hero.statValue1'), label: t('auth.hero.statLabel1') },
+    { value: t('auth.hero.statValue2'), label: t('auth.hero.statLabel2') },
+    { value: t('auth.hero.statValue3'), label: t('auth.hero.statLabel3') },
   ]
 
   return (
     <div className="relative flex flex-col items-center justify-center h-full px-12 py-10 overflow-hidden"
-      style={{ background: 'linear-gradient(160deg, #030E24 0%, #020918 50%, #010612 100%)' }}>
+      style={{
+        background: isLight
+          ? '#FFFFFF'
+          : 'linear-gradient(160deg, #030E24 0%, #020918 50%, #010612 100%)',
+        borderRight: isLight ? '1px solid #E2E8F0' : 'none',
+      }}>
 
       {/* Ambient blobs */}
       <div className="absolute top-0 left-0 w-96 h-96 rounded-full pointer-events-none"
@@ -182,7 +193,7 @@ function HeroPanel() {
 
       {/* Tagline */}
       <p className="text-blue-300 text-sm text-center mb-8 max-w-xs" style={{ animation: 'fadeInUp 0.6s 0.1s ease-out both' }}>
-        Controle total da sua operação logística em tempo real
+        {t('auth.hero.tagline')}
       </p>
 
       {/* Radar */}
@@ -194,7 +205,7 @@ function HeroPanel() {
       <div className="flex items-center gap-1.5 mt-4 px-3 py-1.5 rounded-full"
         style={{ background: 'rgba(52,211,153,0.1)', border: '1px solid rgba(52,211,153,0.25)', animation: 'fadeInUp 0.6s 0.3s ease-out both' }}>
         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" style={{ animation: 'blipPulse 1.5s ease-in-out infinite' }} />
-        <span className="text-emerald-400 text-xs font-bold">SISTEMA ONLINE</span>
+        <span className="text-emerald-400 text-xs font-bold">{t('auth.hero.systemOnline')}</span>
       </div>
 
       {/* Stats */}
@@ -234,6 +245,9 @@ function HeroPanel() {
 
 /* ── Login page ─────────────────────────────────────────── */
 export default function LoginPage() {
+  const t = useT()
+  const { theme } = useTheme()
+  const isLight = theme === 'light'
   const [showPw, setShowPw]   = useState(false)
   const [error, setError]     = useState<string | null>(null)
   const [pending, startTransition] = useTransition()
@@ -251,7 +265,7 @@ export default function LoginPage() {
   const L = "block text-xs font-bold text-blue-300 mb-1.5 uppercase tracking-wider"
 
   return (
-    <div className="min-h-screen flex" style={{ background: '#020C1F' }}>
+    <div className="min-h-screen flex" style={{ background: isLight ? '#FFFFFF' : '#020C1F' }}>
       {/* ── Left: 2/3 visual ── */}
       <div className="hidden lg:block lg:w-2/3">
         <HeroPanel />
@@ -259,7 +273,10 @@ export default function LoginPage() {
 
       {/* ── Right: 1/3 form ── */}
       <div className="w-full lg:w-1/3 flex flex-col items-center justify-center p-8 relative"
-        style={{ background: 'rgba(1,6,18,0.95)', borderLeft: '1px solid rgba(255,255,255,0.06)' }}>
+        style={{
+          background: isLight ? '#FFFFFF' : 'rgba(1,6,18,0.95)',
+          borderLeft: isLight ? '1px solid #E2E8F0' : '1px solid rgba(255,255,255,0.06)',
+        }}>
 
         {/* Mobile logo */}
         <div className="flex lg:hidden items-center gap-3 mb-8">
@@ -274,20 +291,23 @@ export default function LoginPage() {
         </div>
 
         <div className="w-full max-w-sm">
-          <div className="mb-8">
-            <h1 className="text-3xl font-extrabold text-white tracking-tight">Bem-vindo</h1>
-            <p className="text-blue-400 text-sm mt-1">Acesse a torre de controle</p>
+          <div className="mb-8 flex items-start justify-between gap-3">
+            <div>
+              <h1 className="text-3xl font-extrabold text-white tracking-tight">{t('auth.login.title')}</h1>
+              <p className="text-blue-400 text-sm mt-1">{t('auth.login.subtitle')}</p>
+            </div>
+            <div className="hidden md:block w-44"><ThemeLanguageToggle /></div>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className={L}>E-mail</label>
+              <label className={L}>{t('auth.login.email')}</label>
               <input name="email" type="email" required autoComplete="email"
-                placeholder="operador@empresa.com.br" className="glass-input" />
+                placeholder={t('auth.login.emailPlaceholder')} className="glass-input" />
             </div>
 
             <div>
-              <label className={L}>Senha</label>
+              <label className={L}>{t('auth.login.password')}</label>
               <div className="relative">
                 <input name="password" type={showPw ? 'text' : 'password'} required
                   autoComplete="current-password" placeholder="••••••••"
@@ -312,14 +332,14 @@ export default function LoginPage() {
               className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold text-white disabled:opacity-50 transition-all mt-2"
               style={{ background: 'linear-gradient(135deg,#3B82F6,#1D4ED8)', boxShadow: '0 4px 20px rgba(59,130,246,0.45)' }}>
               <LogIn className="w-4 h-4" />
-              {pending ? 'Entrando...' : 'Entrar'}
+              {pending ? t('auth.login.submitting') : t('auth.login.submit')}
             </button>
           </form>
 
           <p className="text-center text-sm text-blue-500 mt-6">
-            Sem conta?{' '}
+            {t('auth.login.noAccount')}{' '}
             <Link href="/register" className="text-blue-400 font-bold hover:text-blue-300 transition-colors">
-              Criar acesso
+              {t('auth.login.createAccount')}
             </Link>
           </p>
 

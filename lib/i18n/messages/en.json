@@ -1,0 +1,766 @@
+{
+  "common": {
+    "save": "Save", "saving": "Saving...", "cancel": "Cancel", "confirm": "Confirm",
+    "delete": "Delete", "edit": "Edit", "back": "Back", "next": "Next", "previous": "Previous",
+    "close": "Close", "loading": "Loading...", "submit": "Submit", "submitting": "Submitting...",
+    "search": "Search", "filter": "Filters", "actions": "Actions", "status": "Status",
+    "yes": "Yes", "no": "No", "or": "or", "and": "and", "all": "All", "none": "None", "empty": "Empty",
+    "required": "Required", "optional": "Optional", "view": "View", "open": "Open",
+    "send": "Send", "download": "Download", "upload": "Upload", "copy": "Copy", "copied": "Copied!",
+    "online": "Online", "offline": "Offline", "active": "Active", "inactive": "Inactive",
+    "pending": "Pending", "completed": "Completed", "details": "Details", "settings": "Settings",
+    "logout": "Sign out", "login": "Sign in", "register": "Create account", "createAccount": "Create access",
+    "darkMode": "Dark mode", "lightMode": "Light mode", "language": "Language",
+    "portuguese": "Português", "english": "English",
+    "create": "Create", "creating": "Creating...", "update": "Update", "updating": "Updating...",
+    "selectPlaceholder": "Select...", "noResults": "No results.", "attachment": "Attachment",
+    "uploading": "Uploading...", "uploaded": "Uploaded", "sent": "Sent",
+    "addVehiclePhoto": "Add vehicle photo", "jpgOrPng": "JPG or PNG",
+    "notAuthenticated": "Not authenticated", "tokenInvalid": "Invalid token", "error": "Error",
+    "selectOption": "Select an option",
+    "fields": {
+      "name": "Name", "fullName": "Full name", "email": "Email", "phone": "Phone",
+      "address": "Address", "city": "City", "state": "State", "zip": "ZIP",
+      "document": "Tax ID", "cpf": "CPF", "cnpj": "CNPJ", "cnh": "Driver License",
+      "notes": "Notes", "description": "Description", "value": "Value", "amount": "Amount ($)",
+      "date": "Date", "time": "Time", "type": "Type", "contact": "Contact",
+      "contactName": "Contact name", "company": "Company",
+      "password": "Password", "confirmPassword": "Confirm password",
+      "sector": "Sector / Department", "rntrc": "RNTRC", "category": "Category",
+      "bank": "Bank", "pixKey": "Pix Key", "plate": "Plate", "vehicleType": "Vehicle type",
+      "vehicleBody": "Body type", "trackerLink": "Tracker link",
+      "scheduledDate": "Scheduled date", "timeWindow": "Time window",
+      "accessInstructions": "Access instructions", "needsScheduling": "Needs scheduling",
+      "validity": "Validity", "paymentTerms": "Payment terms", "premises": "Premises",
+      "exclusions": "Exclusions", "generalNotes": "General notes"
+    }
+  },
+
+  "landing": {
+    "nav": { "platform": "Platform", "levels": "Service Levels", "howItWorks": "How it works", "signIn": "Sign in", "accessRadar": "Access RADAR" },
+    "hero": {
+      "badge": "100% traceable operation · VINCOLOG internal system",
+      "title1": "Intelligence that", "title2": "connects every shipment", "title3": "to your decision.",
+      "subtitle": "Full operational management for A+ → B+ transport: from commercial quote to proven delivery, with continuous GPS, photos tied to every step and a tracking link for the client.",
+      "ctaPrimary": "Access RADAR", "ctaSecondary": "Explore the platform",
+      "chip1": "Per-trip contract", "chip2": "GPS online/offline", "chip3": "Secure public token"
+    },
+    "trust": { "title": "Operational coverage", "road": "Road", "air": "Air", "sea": "Sea", "project": "Project Cargo", "express": "Express", "dedicated": "Dedicated" },
+    "showcase": {
+      "badge": "RADAR Operational",
+      "title1": "Complete", "title2": "visibility", "title3": "over your operation on the road.",
+      "subtitle": "From approved quote to signed POD, every operational event is recorded, linked to photos and available in real time to your team and your client.",
+      "tag1": "24/7 monitoring", "tag2": "Operational safety", "tag3": "Performance indicators", "tag4": "Compliance & alerts"
+    },
+    "features": {
+      "badge": "Platform",
+      "title1": "Everything your operation", "title2": "needs", "title3": "in a single system.",
+      "subtitle": "Replace spreadsheets, loose WhatsApp threads and scattered emails with one auditable flow.",
+      "f1Title": "Quote → automatic OIT", "f1Desc": "Commercial creates the proposal; when the client approves, the OIT lands on the operational Kanban instantly.",
+      "f2Title": "A+ → B+ Route", "f2Desc": "One OIT, multiple pickups and deliveries. Dedicated, FTL, express, air or project cargo.",
+      "f3Title": "Per-trip contract + Collection Order PDF", "f3Desc": "Provider contract and client Collection Order generated as PDF with VINCOLOG visual identity.",
+      "f4Title": "Continuous GPS on/offline", "f4Desc": "Vehicle tracking during the trip. Lost signal? Records locally and syncs once back online.",
+      "f5Title": "Photos bound to events", "f5Desc": "Every photo sticks to its corresponding status — arrival, loading, strapping, POD. Full visual trail.",
+      "f6Title": "Structured occurrences", "f6Desc": "Delay, damage, refusal, incident — logged with impact, action taken and new ETA."
+    },
+    "levels": {
+      "badge": "Service Levels",
+      "title1": "Four products.", "title2": "Your choice.",
+      "subtitle": "Every shipment is sold with a level of tracking — from final proof to a full operational plan.",
+      "level": "Level", "indicatedFor": "Indicated for",
+      "essencialTagline": "Basic communication + proof",
+      "basicoTagline": "Status by main milestones",
+      "completoTagline": "Active monitoring + evidence",
+      "primeTagline": "Operational management + reports",
+      "essencialUses": "Simple cargo, low complexity.",
+      "basicoUses": "Standard recurring client.",
+      "completoUses": "Sensitive cargo, healthy margin.",
+      "primeUses": "Strategic client, high value."
+    },
+    "stats": {
+      "kanbanSteps": "Kanban stages", "kanbanSub": "from creation to closure",
+      "pointsPerOit": "Points per OIT", "pointsSub": "multiple pickups & deliveries",
+      "serviceLevels": "Service levels", "levelsSub": "from Essential to Prime",
+      "clientWatch": "Client watches", "watchSub": "public link by token"
+    },
+    "howItWorks": {
+      "badge": "How it works",
+      "title1": "From", "title2": "quote", "title3": "to POD in 5 auditable steps.",
+      "subtitle": "Each step records event, user, attachment and timestamp. Client follows in real time through the public link.",
+      "s1Label": "Request",    "s1Desc": "Commercial registers a quote with client, A+→B+ route, cargo and vehicle.",
+      "s2Label": "Approval",   "s2Desc": "Client approves one of the service levels. OIT is created automatically.",
+      "s3Label": "Allocation", "s3Desc": "Operations allocates provider, vehicle and driver. Contract generated.",
+      "s4Label": "Execution",  "s4Desc": "Driver updates status, attaches photos and POD. GPS tracks in real time.",
+      "s5Label": "Closure",    "s5Desc": "Delivery confirmed, proof attached. OIT closed with complete history."
+    },
+    "human": {
+      "badge": "Human operation",
+      "title1": "Technology that", "title2": "simplifies", "title3": "the routine of those who run the operation.",
+      "subtitle": "Operators work in the Kanban. Drivers use the app via link, no install needed. Clients follow a public link. Everything wired into a single OIT.",
+      "b1": "Driver onboarding in 2 minutes via invite link",
+      "b2": "Status updates in 2 taps on the driver's phone",
+      "b3": "POD with photo + recipient name + signature",
+      "b4": "Client always informed, no more phone calls"
+    },
+    "finalCta": {
+      "title1": "Ready to", "title2": "accelerate", "title3": "your operation?",
+      "subtitle": "Access RADAR VINCOLOG now and turn every shipment into operational intelligence.",
+      "cta": "Create account now", "ctaSecondary": "I already have an account"
+    },
+    "footer": {
+      "tagline": "Speed, intelligence and logistics connection. Internal operational management system for A+→B+ transport.",
+      "platform": "Platform", "access": "Access",
+      "rights": "© {year} VINCOLOG Transportes · RADAR System · Phase 1",
+      "powered": "Powered by RADAR Operational"
+    }
+  },
+
+  "auth": {
+    "hero": {
+      "tagline": "Total control of your logistics operation in real time",
+      "feat1": "Real-time control tower", "feat2": "Complete A→B freight management",
+      "feat3": "Digital contracts + Pickup Order",
+      "statValue1": "1,240+", "statLabel1": "Freights managed",
+      "statValue2": "48",     "statLabel2": "Partner drivers",
+      "statValue3": "99.7%",  "statLabel3": "Uptime",
+      "systemOnline": "SYSTEM ONLINE",
+      "registerTagline": "Logistics management platform for A→B operations",
+      "registerFeat1": "Real-time GPS monitoring",
+      "registerFeat2": "Checkpoints + evidence photos",
+      "registerFeat3": "Complete operations audit"
+    },
+    "login": {
+      "title": "Welcome", "subtitle": "Access the control tower",
+      "email": "Email", "emailPlaceholder": "operator@company.com", "password": "Password",
+      "submit": "Sign in", "submitting": "Signing in...",
+      "noAccount": "No account?", "createAccount": "Create access"
+    },
+    "register": {
+      "title": "Create access", "subtitle": "New operator on the system",
+      "fullName": "Full name", "namePlaceholder": "Felipe V.",
+      "password": "Password (min. 6 characters)", "confirmPassword": "Confirm password",
+      "submit": "Create account", "submitting": "Creating account...",
+      "haveAccount": "Already have an account?", "signIn": "Sign in",
+      "passwordMismatch": "Passwords do not match.",
+      "emailExists": "This email is already registered."
+    }
+  },
+
+  "sidebar": {
+    "controlTower": "Control Tower", "budgets": "Budgets", "oits": "OITs",
+    "providers": "Providers", "contracts": "Contracts", "finance": "Finance",
+    "reports": "Reports", "occurrences": "Occurrences", "audit": "Audit",
+    "settings": "Settings", "operator": "Operator", "online": "Online"
+  },
+
+  "dashboard": {
+    "title": "Control Tower", "newOrder": "New Order",
+    "viewKanban": "View Kanban →",
+    "totalToday": "Today's OITs", "totalTodaySub": "created today",
+    "inProgress": "In Progress", "inProgressSub": "active operations",
+    "deliveredToday": "Finalized Today", "deliveredTodaySub": "delivered & closed",
+    "occurrences": "Occurrences", "occurrencesSub": "open",
+    "activeFreights": "OITs in Progress", "activeFreightsSub": "{count} in operation now",
+    "noActiveFreights": "No operation in progress",
+    "recent": "Recent", "viewAll": "View all",
+    "providers": "Providers", "providersActive": "active", "providersDormant": "dormant",
+    "providersStatusSub": "{active} active · {dormant} dormant",
+    "addProvider": "Add provider",
+    "commercial": "Commercial", "financial": "Financial", "operationalAudit": "operational audit",
+    "openLink": "Access →",
+    "pendingProposals": "{count} pending proposals", "last7Days": "approved last 7 days",
+    "occurrenceActive": "Active Occurrence", "viewOrder": "View order",
+    "noOccurrences": "No occurrences", "normalOperation": "Normal operation",
+    "currentWeek": "Current Week", "weekRevenue": "Total freight value (7 days)",
+    "viewFinancial": "View financial panel →", "live": "Live"
+  },
+
+  "budgets": {
+    "title": "Budgets", "registered": "{count} budgets registered",
+    "new": "New Budget", "searchPlaceholder": "Search by number, client or city...",
+    "columns": {
+      "number": "Budget Nº", "client": "Client", "route": "Route",
+      "cargo": "Cargo", "approvedValue": "Approved Value", "createdAt": "Created at"
+    },
+    "noBudgets": "No budgets registered.",
+    "collections": "{count} pickups", "deliveries": "{count} deliveries",
+    "filterAll": "All", "filterRegistered": "Registered", "filterProposalGenerated": "Proposal Generated",
+    "filterProposalSent": "Proposal Sent", "filterApproved": "Approved", "filterRejected": "Rejected",
+    "form": {
+      "stepId": "Identification", "stepClient": "Client",
+      "stepPoints": "Pickups & Deliveries", "stepCargo": "Cargo",
+      "stepVehicle": "Vehicle", "stepValues": "Values", "stepLevels": "Service Levels",
+      "stepProgress": "Step {step} of {total} — {label}",
+      "blockId": "Identification", "blockClient": "Client",
+      "demandOrigin": "Demand source", "demandDescription": "Description / Subject",
+      "sourceEmail": "Email", "sourceWhatsapp": "WhatsApp", "sourceCall": "Phone call",
+      "sourcePortal": "Portal", "sourceReferral": "Referral", "sourceOther": "Other",
+      "clientNameLabel": "Company / Name *", "documentLabel": "Tax ID",
+      "sectorLabel": "Sector / Department", "contactRequester": "Requesting contact",
+      "phoneWhatsapp": "Phone / WhatsApp", "commercialNotes": "Commercial notes",
+      "pickupPointsLabel": "Pickup Points ({count})", "deliveryPointsLabel": "Delivery Points ({count})",
+      "addPickup": "Add pickup", "addDelivery": "Add delivery",
+      "pickupNumber": "Pickup #{n}", "deliveryNumber": "Delivery #{n}",
+      "locationName": "Location name", "pointContact": "Contact",
+      "fullAddress": "Full address", "city": "City", "uf": "State", "cep": "ZIP",
+      "pickupDate": "Pickup date", "deliveryDate": "Delivery date",
+      "schedule": "Time / Window", "needsScheduling": "Needs scheduling", "accessNotes": "Access notes",
+      "documentCargo": "Document & Cargo",
+      "nfDocument": "Invoice Nº", "nfValue": "Invoice Value ($)", "xmlReceived": "XML received",
+      "cargoDescription": "Cargo description", "volumes": "Volumes", "totalWeight": "Total weight",
+      "cubage": "Cubage (m³)", "length": "Length (m)", "width": "Width (m)", "height": "Height (m)",
+      "cargoSensitive": "Sensitive", "cargoHighValue": "High value",
+      "cargoNeedsTarp": "Requires tarp", "cargoNeedsStrap": "Requires strapping",
+      "cargoNeedsTracker": "Requires tracker", "cargoNeedsPhoto": "Requires photo",
+      "cargoNotes": "Cargo notes",
+      "vehicleProfile": "Vehicle Profile",
+      "suggestedVehicle": "Suggested vehicle type", "bodyType": "Body type",
+      "vehicleExclusive": "Exclusive vehicle", "fullLoad": "Full truckload",
+      "dedicatedOp": "Dedicated operation", "airOp": "Air operation", "projectOp": "Project cargo",
+      "vehicleNotes": "Vehicle notes",
+      "freightComposition": "Freight Composition",
+      "freightWeight": "Freight (Weight)", "freightValue": "Freight (Value)", "freightMin": "Minimum Freight",
+      "toll": "Toll", "tollVoucher": "Toll voucher", "insurance": "Insurance", "gris": "GRIS",
+      "unload": "Unloading", "handling": "Handling", "helper": "Helper",
+      "daily": "Daily", "overnight": "Overnight", "escort": "Escort", "convoy": "Convoy",
+      "munck": "Munck", "forklift": "Forklift",
+      "feeAccess": "Difficult access", "feeSchedule": "Scheduling fee",
+      "feeUrgency": "Urgency", "feeWait": "Waiting", "feeRedelivery": "Redelivery",
+      "feeOther": "Other fees", "icms": "ICMS Tax", "valueNotes": "Value notes",
+      "levelsOfferedTitle": "Service Levels Offered",
+      "levelsHelp": "Check which products to send on the proposal. For each, enter the additional value.",
+      "additionalValue": "Additional value ($)", "condition": "Condition", "noteSpec": "Note",
+      "essencialDesc": "Basic communication + final proof",
+      "basicoDesc": "Status by main milestones",
+      "completoDesc": "Active monitoring + evidence",
+      "primeDesc": "Operational management + reports",
+      "commercialObs": "Commercial Observations",
+      "proposalValidity": "Proposal validity", "paymentCondition": "Payment condition",
+      "premises": "Premises", "exclusions": "Exclusions", "generalObs": "General notes",
+      "create": "Create Budget", "creating": "Creating..."
+    },
+    "clientSelector": {
+      "existing": "Existing Client", "new": "New Client",
+      "searchPlaceholder": "Search by name or Tax ID...",
+      "noResults": "No client found.",
+      "razaoSocial": "Company Name / Name *", "documentField": "Tax ID",
+      "sector": "Sector", "contact": "Contact",
+      "phone": "Phone", "email": "Email"
+    }
+  },
+
+  "budgetDetail": {
+    "createdAt": "Created at {date}", "generateProposal": "Generate Proposal PDF", "generating": "Generating...",
+    "markSent": "Mark as Sent", "registerApproval": "Register Approval", "viewOit": "View OIT {number} →",
+    "client": "Client",
+    "clientFields": {
+      "companyName": "Company Name", "document": "Tax ID",
+      "contact": "Contact", "phone": "Phone", "email": "Email"
+    },
+    "routeTitle": "A+ → B+ Route", "pickupPointsCount": "{count} pickup point(s)", "deliveryPointsCount": "{count} delivery point(s)",
+    "pickupNumber": "Pickup #{n}: {name}", "deliveryNumber": "Delivery #{n}: {name}",
+    "cepLabel": "ZIP", "dateLabel": "Date:",
+    "cargo": "Cargo", "cargoFields": { "description": "Description", "weight": "Weight", "volumes": "Volumes", "nf": "Invoice", "nfValue": "Invoice Value" },
+    "cargoTags": {
+      "sensitive": "Sensitive", "highValue": "High value",
+      "tarp": "Tarp", "strap": "Strapping", "tracker": "Tracker", "photo": "Photo"
+    },
+    "vehicleTags": {
+      "exclusive": "Exclusive", "fullLoad": "Full load",
+      "dedicated": "Dedicated", "aero": "Air", "project": "Project"
+    },
+    "vehicleType": "Type", "vehicleBody": "Body type",
+    "vehicleProfile": "Vehicle Profile",
+    "levelsOffered": "Service Levels Offered", "noneConfigured": "No level configured.",
+    "proposal": "Proposal", "proposalSentAt": "Sent at", "approvedAt": "Approved at", "approvedValue": "Approved value",
+    "commercialConditions": "Commercial Conditions",
+    "needsOperationalApproval": "Requires operational approval",
+    "needsDirectorApproval": "Requires director approval",
+    "approveModal": {
+      "title": "Client Approval",
+      "instruction": "Select the service level approved by the client:",
+      "evidence": "Evidence (optional)",
+      "evidencePlaceholder": "URL or email/WhatsApp reference",
+      "warning": "⚠ Upon approval, an OIT will be created automatically and the operational team will be notified.",
+      "submit": "Approve and Create OIT", "validity": "Validity:", "selectError": "Select a level."
+    }
+  },
+
+  "oits": {
+    "title": "Control Tower", "subtitle": "{count} OITs · Operational Kanban",
+    "newFromBudget": "New from Budget", "emptyColumn": "Empty",
+    "indicators": "Legend",
+    "indicatorMultiPoints": "multiple points", "indicatorOpenOccurrence": "open occurrence",
+    "indicatorPodPending": "POD pending", "indicatorContractPending": "contract pending",
+    "indicatorPodAttached": "POD attached", "indicatorGpsActive": "GPS active",
+    "subtitleHeader": "{collections}× pickup(s) → {deliveries}× delivery(s) · {client}",
+    "detail": {
+      "tabs": {
+        "summary": "Summary", "commercial": "Commercial", "operation": "Operation", "provider": "Provider",
+        "cost": "Cost", "contract": "Contract", "collectionOrder": "Pickup Order",
+        "timeline": "Timeline", "photos": "Photos", "occurrences": "Occurrences", "gps": "GPS"
+      },
+      "clientLink": "Client Link", "providerMode": "Provider Mode", "flow": "Flow:",
+      "occurrenceRegistered": "Occurrence registered"
+    },
+    "actions": {
+      "startAnalysis": "Start analysis", "findProvider": "Find provider",
+      "generateContract": "Generate contract", "confirmAllocation": "Confirm allocation",
+      "waitPickup": "Wait pickup", "startPickup": "Start pickup", "inTransit": "In transit",
+      "arrivedDestination": "Arrived at destination", "waitPod": "Wait for POD",
+      "finalizeOit": "Finalize OIT", "confirmFinalize": "Finalize this OIT?",
+      "finalizedBadge": "OIT Finalized · Provider unlinked"
+    },
+    "summary": {
+      "client": "Client", "responsible": "Responsible", "toDefine": "To define",
+      "valueSold": "Sold Value", "pickups": "Pickups ({count})", "deliveries": "Deliveries ({count})",
+      "provider": "Provider", "notAllocated": "Not allocated", "vehicle": "Vehicle", "driver": "Driver",
+      "createdAt": "Created at {date}", "allocatedAt": "Allocated at {date}", "finalizedAt": "Finalized at {date}"
+    },
+    "commercialTab": {
+      "title": "Inherited Commercial Data",
+      "approvedLevel": "Approved Level", "soldValue": "Sold Value",
+      "sourceBudget": "Source Budget", "approvedAt": "Approved at",
+      "validity": "Proposal Validity", "paymentCondition": "Payment Condition",
+      "premises": "Premises", "exclusions": "Exclusions", "obs": "Notes",
+      "evidence": "Evidence:", "viewOriginal": "View original proposal"
+    },
+    "operationTab": {
+      "nextAction": "Next Action", "nextActionLabel": "Next action",
+      "nextActionPlaceholder": "E.g.: Confirm pickup with provider",
+      "deadline": "Deadline", "priority": "Priority",
+      "priorityLow": "Low", "priorityNormal": "Normal", "priorityHigh": "High", "priorityCritical": "Critical",
+      "save": "Save", "saving": "Saving...",
+      "operationalInstructions": "Operational Instructions",
+      "pendencies": "Pendencies", "restrictions": "Restrictions",
+      "specificInstructions": "Specific instructions", "notes": "Notes"
+    },
+    "providerTab": {
+      "linkedTitle": "Linked Provider", "allocated": "Allocated",
+      "viewProfile": "View full profile →",
+      "vehicleDriverTitle": "Vehicle / Driver",
+      "type": "Type", "body": "Body",
+      "plateCavalo": "Truck Plate", "plateCarreta": "Trailer Plate",
+      "driver": "Driver", "cpf": "CPF", "phone": "Phone", "cnh": "Driver License",
+      "hasTarp": "Tarp", "hasTracker": "Tracker", "openTrackerLink": "Open tracker link →",
+      "allocateTitle": "Allocate Provider",
+      "registerNew": "+ Register manually",
+      "selectInstruction": "Select an active provider for this freight:",
+      "tripData": "Trip data",
+      "driverName": "Driver *", "cpfDriver": "Driver CPF",
+      "vehicleType": "Vehicle type", "carroceria": "Body type",
+      "hasTarpLabel": "Has tarp", "hasTrackerLabel": "Has tracker",
+      "trackerLink": "Tracker link",
+      "confirmAllocation": "Confirm Allocation", "allocating": "Allocating...",
+      "inviteTitle": "Quick Invite for Spot Provider",
+      "inviteHelp": "Send this link to the provider via WhatsApp so they can register quickly and be allocated to this OIT.",
+      "generateInvite": "Generate invite link",
+      "copyUrl": "Copy URL", "copied": "✓ Copied!"
+    },
+    "costTab": {
+      "title": "Cost / Financial Audit",
+      "valueSoldToClient": "Value sold to client",
+      "contractedValue": "Value contracted with provider *",
+      "advance": "Advance", "balance": "Balance",
+      "toll": "Toll", "tollVoucher": "Toll voucher", "insurance": "Insurance",
+      "ciot": "CIOT/PEF", "otherExpenses": "Other expenses",
+      "financialNote": "Financial note",
+      "totalEstimatedCost": "Total estimated cost",
+      "grossMargin": "Gross margin", "marginPct": "Margin %",
+      "marginAlert": "Margin below 5% — needs financial audit attention.",
+      "save": "Save Cost/Audit", "saving": "Saving...",
+      "paymentTitle": "Provider Payment Status",
+      "paymentFlow": "Flow per spec §20.2 — advance, balance and financial audit control.",
+      "paymentRule": "Rule (spec §20.3)",
+      "paymentRuleDesc": "Balance shall only be released after: delivery completed, POD received, operational clearance, no serious pending issues and financial approval."
+    },
+    "contractTab": {
+      "title": "Per-trip Contract",
+      "acceptedSigned": "Accepted/Signed", "pending": "Pending",
+      "provider": "Provider", "noProvider": "— Allocate a provider first",
+      "driver": "Driver", "contractedValue": "Contracted value", "advance": "Advance",
+      "generatePdf": "Generate Contract PDF", "generating": "Generating...",
+      "uploadSigned": "Upload signed contract", "uploading": "Uploading...",
+      "signedSent": "Signed contract sent",
+      "registeredAtAccepted": "Attachment recorded · Accepted at {date}",
+      "view": "View",
+      "acceptanceModes": "Acceptance modes (Phase 1):",
+      "mode1": "· Upload of physical signed contract (PDF/image)",
+      "mode2": "· Simple digital acceptance on the provider link",
+      "mode3": "· WhatsApp screenshot attached",
+      "mode4": "· Manual registration by VINCOLOG operator"
+    },
+    "orderTab": {
+      "title": "Pickup Order / Operational Bulletin",
+      "sent": "Sent", "pendingSend": "Pending send",
+      "subtitle": "PDF document for the client — no cost, margin or provider contract info.",
+      "generatePdf": "Generate PDF", "markSent": "Mark as Sent",
+      "sentAt": "Sent at {date}",
+      "templatesTitle": "Ready WhatsApp Bulletins (spec §19)",
+      "templatesHelp": "4 standardized templates to copy & paste in operational groups or send to the client.",
+      "tplEmbarque": "Loading Bulletin", "tplSaida": "Departure Bulletin",
+      "tplEntrega": "Delivery Bulletin", "tplCliente": "Client Message",
+      "trackingLink": "Tracking link"
+    },
+    "timelineTab": {
+      "title": "Operational Timeline ({count})", "addManual": "Add manual event",
+      "type": "Type", "description": "Description", "visibleToClient": "Visible to client",
+      "internalObservation": "Internal observation",
+      "evType_observacao": "Internal observation",
+      "evType_contato_cliente": "Contact with client",
+      "evType_contato_prestador": "Contact with provider",
+      "evType_atualizacao_previsao": "ETA update",
+      "evType_pendencia_documental": "Documental pending",
+      "evType_pendencia_financeira": "Financial pending",
+      "evType_liberacao_operacional": "Operational release",
+      "add": "Add", "noEvents": "No events registered yet.",
+      "sourceCommercial": "commercial", "sourceOperational": "operational",
+      "sourceFinancial": "financial", "sourceProvider": "provider",
+      "sourceClient": "client", "sourceSystem": "system",
+      "internal": "internal", "visible": "visible to client"
+    },
+    "photosTab": {
+      "title": "Photos, Documents and Proofs",
+      "vehicleAllocated": "Vehicle Photos (allocated)",
+      "perEvent": "Per-event Attachments ({count})",
+      "empty": "No attachment registered yet.",
+      "categoriesTitle": "Available categories",
+      "cat_proposal": "Proposal", "cat_approval": "Approval",
+      "cat_contract": "Contract", "cat_order": "Pickup Order",
+      "cat_nf": "Invoice/XML", "cat_vehiclePhoto": "Vehicle Photo",
+      "cat_cargoPhoto": "Cargo Photo", "cat_strapPhoto": "Strapping Photo",
+      "cat_tarpPhoto": "Tarp Photo", "cat_pickupPhoto": "Pickup Photo",
+      "cat_deliveryPhoto": "Delivery Photo", "cat_pod": "Stub / POD",
+      "cat_financial": "Financial Proof", "cat_occurrence": "Occurrence",
+      "cat_other": "Other", "interno": "internal"
+    },
+    "occurrencesTab": {
+      "title": "Occurrences ({count})", "register": "Register Occurrence",
+      "newTitle": "⚠ Report Occurrence",
+      "type": "Type *", "location": "Location",
+      "description": "Fact description *", "impact": "Impact",
+      "impactPlaceholder": "E.g.: 3h delay",
+      "newEstimate": "New ETA", "actionTaken": "Action taken",
+      "visibleToClient": "Visible to client",
+      "submit": "Register", "submitting": "Registering...",
+      "registeredAt": "Registered at {date}",
+      "inTreatment": "In progress", "resolve": "Resolve", "closeBtn": "Close",
+      "noOccurrences": "No occurrences registered.",
+      "impactLabel": "Impact:", "actionLabel": "Action:", "newEstimateLabel": "New ETA:"
+    },
+    "gpsTab": {
+      "title": "GPS Tracking",
+      "pause": "Pause tracking", "activate": "Activate tracking",
+      "statusLabel": "Status", "statusActive": "Active", "statusInactive": "Inactive",
+      "pingsReceived": "Pings received", "lastUpdate": "Last update",
+      "now": "now", "never": "never",
+      "noSignal": "⚠ No update for {minutes} minutes — possible signal loss or driver stop.",
+      "noPings": "No GPS position received yet.",
+      "noPingsSub": "The driver must open the provider link and click \"Start Trip\".",
+      "lastPositionsTitle": "Last positions"
+    }
+  },
+
+  "providers": {
+    "title": "Providers", "registered": "{count} registered",
+    "add": "Add provider", "addShort": "Add",
+    "active": "Active", "dormant": "Dormant",
+    "freightsDone": "Freights done",
+    "statsLabels": { "active": "Active", "dormant": "Dormant", "freightsDone": "Freights done" },
+    "freights": "Freights", "rating": "Rating", "lastFreight": "Last",
+    "contractPending": "⚠ Contract pending",
+    "reactivate": "Reactivate with 1 click",
+    "dormantHelp": "Freight closed — ready to reactivate with 1 click",
+    "newTitle": "New Provider",
+    "newSubtitle": "Manual registration of freelance driver",
+    "personalDataTitle": "Personal Data",
+    "vehicleSection": "Vehicle",
+    "paymentSection": "Payment",
+    "cpfField": "CPF", "phoneField": "Phone / WhatsApp",
+    "cnhField": "Driver License",
+    "vehicleTypeField": "Vehicle type *",
+    "plateField": "Plate *",
+    "bankField": "Bank", "pixField": "Pix Key",
+    "create": "Register Provider", "creating": "Registering...",
+    "detail": {
+      "header": "Provider Profile", "headerSub": "Details and freight history",
+      "createdAt": "Registered at", "lastFreightDate": "Last freight", "total": "Total freights",
+      "reactivateBtn": "Reactivate provider",
+      "putDormantBtn": "Set as dormant",
+      "vehiclePhotosTitle": "Vehicle Photos",
+      "noPhotos": "No photo registered.",
+      "contractTitle": "Contract",
+      "contractSigned": "Digitally signed",
+      "contractAt": "at",
+      "contractPending": "Pending signature",
+      "resendSignLink": "Resend sign link →",
+      "paymentTitle": "Payment",
+      "bank": "Bank", "pix": "Pix",
+      "advance": "Advance", "balance": "Balance to pay",
+      "historyTitle": "Freight History",
+      "freightsCount": "{count} freights",
+      "emptyHistory": "No freight registered."
+    }
+  },
+
+  "occurrences": {
+    "title": "Occurrences", "registered": "{count} occurrences registered",
+    "filterAll": "All", "filterOpen": "Open",
+    "filterInProgress": "In Progress", "filterResolved": "Resolved", "filterEscalated": "Escalated",
+    "statOpen": "Open", "statInTreatment": "In Progress", "statResolved": "Resolved",
+    "tableTitle": "All Occurrences",
+    "impactLabel": "Impact:",
+    "columns": {
+      "type": "Type", "oit": "OIT", "client": "Client",
+      "description": "Description", "impact": "Impact", "createdAt": "Registered at"
+    },
+    "noOccurrences": "No occurrences registered.",
+    "types": {
+      "atraso_coleta": "Pickup Delay", "atraso_entrega": "Delivery Delay",
+      "espera_origem": "Wait at Origin", "espera_destino": "Wait at Destination",
+      "avaria": "Damage", "recusa_recebimento": "Receipt Refusal",
+      "problema_documental": "Document Issue", "problema_veiculo": "Vehicle Issue",
+      "fiscalizacao": "Inspection", "sinistro": "Incident",
+      "reentrega": "Redelivery", "divergencia_carga": "Cargo Mismatch",
+      "outros": "Other"
+    },
+    "status": {
+      "aberta": "Open", "em_tratativa": "In Progress", "resolvida": "Resolved",
+      "encerrada": "Closed", "escalada": "Escalated"
+    }
+  },
+
+  "finance": {
+    "title": "Finance", "subtitle": "Control advances, balances and margins per OIT",
+    "totalRevenue": "Total Revenue", "totalCost": "Contracted Cost",
+    "totalAdvance": "Advances Paid", "totalBalance": "Balance to Pay",
+    "pendingPayments": "with pending balance",
+    "tableTitle": "OITs with commercial conditions",
+    "tableSubtitle": "{count} with pending balance",
+    "noTerms": "No OIT with commercial conditions.",
+    "columns": {
+      "oit": "OIT", "client": "Client", "provider": "Provider", "status": "Status",
+      "sold": "Sold", "cost": "Cost", "advance": "Advance", "balance": "Balance",
+      "margin": "Margin", "marginPct": "Margin %"
+    },
+    "edit": "Edit"
+  },
+
+  "contracts": {
+    "title": "Per-trip Contracts", "subtitle": "Provider documents per OIT",
+    "acceptedSigned": "Accepted / Signed", "pending": "Pending", "cancelled": "Cancelled",
+    "tableTitle": "All Contracts",
+    "columns": {
+      "oit": "OIT", "client": "Client", "provider": "Provider",
+      "value": "Value", "advance": "Advance", "status": "Status", "acceptedAt": "Accepted at"
+    },
+    "empty": "No per-trip contract.",
+    "statusLabels": {
+      "nao_gerado": "Not Generated", "gerado": "Generated", "enviado": "Sent",
+      "aceito": "Accepted", "assinado_anexado": "Signed",
+      "pendente": "Pending", "cancelado": "Cancelled"
+    },
+    "view": "View"
+  },
+
+  "audit": {
+    "title": "Audit", "subtitle": "Log of all actions in the system",
+    "logActivity": "Activity log ({count})",
+    "noActivity": "No activity registered.",
+    "columns": {
+      "datetime": "Date / Time", "entity": "Entity", "action": "Action",
+      "user": "User", "data": "Data"
+    }
+  },
+
+  "reports": {
+    "title": "Reports", "subtitle": "System overview",
+    "totalOits": "Total OITs", "deliveryRate": "Delivery Rate",
+    "totalRevenue": "Total Revenue", "conversionRate": "Commercial Conversion Rate",
+    "commercial": "Commercial", "commercialSub": "{count} budgets · {approved} approved",
+    "financial": "Finance", "financialSub": "{revenue} in revenue",
+    "providers": "Providers", "providersSub": "View stats and ranking",
+    "occurrencesRegistered": "{count} occurrences registered in the system",
+    "viewDetails": "View details →"
+  },
+
+  "settings": {
+    "title": "Settings", "subtitle": "Identity, emails and platform defaults",
+    "company": "Company Identity", "companyName": "Company Name",
+    "tagline": "Tagline", "cnpj": "Tax ID", "mainEmail": "Main email",
+    "addressLabel": "Address", "pdfFooter": "PDF footer",
+    "emailsSection": "Notification Emails",
+    "emailsHelp": "Addresses that receive automatic system notifications.",
+    "emailOperational": "Operational team (new OIT)",
+    "emailFinancial": "Finance", "emailCommercial": "Commercial",
+    "financeRules": "Financial Rules",
+    "marginAlert": "Minimum margin alert (%)",
+    "marginHelp": "OITs with margin below this value show as alerts on the financial dashboard.",
+    "whatsappSection": "WhatsApp", "dispatchPhone": "Dispatch phone (with country code)",
+    "dispatchHelp": "Used on links and automatic messages (Copy button / wa.me).",
+    "saveButton": "Save Settings", "saving": "Saving...",
+    "saved": "Settings saved",
+    "notifQueue": "Notification Queue",
+    "notifPending": "{count} pending", "notifPendingPlural": "{count} pending",
+    "notifHelp": "Messages queued by the system. Transport wire-up (Resend/SendGrid/WhatsApp API) is Phase 2.",
+    "notifEmpty": "No notifications registered yet."
+  },
+
+  "dashboards": {
+    "commercial": {
+      "title": "Commercial Dashboard", "subtitle": "Budget and proposal indicators",
+      "totalBudgets": "Budgets registered", "proposalsSent": "Proposals sent",
+      "proposalsApproved": "Proposals approved", "proposalsRejected": "Proposals rejected",
+      "conversionRate": "Conversion Rate",
+      "conversionSub": "{approved} approved of {total}",
+      "totalProposed": "Total Proposed", "totalApproved": "Total Approved",
+      "productsByLevel": "Products Sold by Service Level"
+    },
+    "financial": {
+      "title": "Financial Dashboard / Audit", "subtitle": "Margins, advances and audit per OIT",
+      "soldValue": "Sold Value", "contractedCost": "Contracted Cost",
+      "grossMargin": "Gross Margin", "marginPct": "Margin %",
+      "pendingAdvance": "Pending advances", "pendingBalance": "Pending balances",
+      "lowMargin": "Margin below 5%",
+      "tableTitle": "OITs with financial audit", "tableEmpty": "No OIT registered.",
+      "columns": { "oit": "OIT", "client": "Client", "status": "Status", "sold": "Sold Value", "cost": "Cost", "margin": "Margin", "marginPct": "Margin %" }
+    },
+    "providers": {
+      "title": "Providers Dashboard", "subtitle": "Managerial view of registered providers",
+      "totalRegistered": "Total registered", "totalActive": "Active",
+      "totalDormant": "Dormant", "freightsDone": "Freights done",
+      "byVehicleType": "By Vehicle Type", "noData": "No data.",
+      "top5": "Top 5 — Most Freights",
+      "allTitle": "All Providers", "noProviders": "No provider registered.",
+      "columns": { "name": "Name", "vehicle": "Vehicle", "plate": "Plate", "status": "Status", "freights": "Freights", "rating": "Rating" }
+    }
+  },
+
+  "providerPortal": {
+    "header": "Provider Mode", "tripFinalized": "Trip Finalized",
+    "tripClosedHelp": "This OIT has been closed. Access automatically revoked.",
+    "yourTrip": "Your Trip", "routeSummary": "{c} pickup(s) → {d} delivery(s)",
+    "cargo": "Cargo", "volumes": "volumes",
+    "updateStatus": "Update Status",
+    "btnEnRouteToPickup": "En route to pickup",
+    "btnArrivedPickup": "Arrived at pickup",
+    "btnLoadingStarted": "Loading started",
+    "btnCargoLoaded": "Cargo loaded",
+    "btnLeftPickup": "Left pickup",
+    "btnInTransit": "In transit",
+    "btnArrivedDestination": "Arrived at destination",
+    "btnUnloadStarted": "Unload started",
+    "attachPhoto": "Attach photo",
+    "podTitle": "📋 Register POD / Delivery Proof",
+    "podRecipient": "Recipient name *",
+    "podRecipientPlaceholder": "E.g.: John Smith",
+    "podPhotoButton": "Photograph POD",
+    "podSending": "Sending...",
+    "podBlockTitle": "Delivery Completed + POD",
+    "reportOccurrence": "Report Occurrence",
+    "reportOccurrenceTitle": "⚠ Report Occurrence",
+    "occurrenceDescPlaceholder": "Describe the occurrence...",
+    "report": "Report",
+    "yourUpdates": "Your updates",
+    "noUpdates": "No updates yet. Use the buttons above to register.",
+    "footer": "Provider Mode · RADAR VINCOLOG · Token expires when the trip is finalized",
+    "contractPending": "Contract Pending",
+    "contractPendingHelp": "Confirm with VINCOLOG operations when you sign the contract.",
+    "gpsTitle": "GPS Tracking", "gpsStart": "Start Trip", "gpsStop": "Stop",
+    "queue": "Queue:", "synced": "Synced", "syncing": "Syncing",
+    "lastPos": "Last:",
+    "gpsHelp": "GPS is collected in real time and synced when there is a connection. Optimized battery — pings every ~30s.",
+    "gpsUnavailable": "Geolocation unavailable on this device."
+  },
+
+  "providerInvite": {
+    "headerLabel": "Quick Provider Registration",
+    "tripInvite": "Trip Invite", "cargoLabel": "Cargo:",
+    "weightLabel": "Weight:", "vehicleRequested": "Requested vehicle:",
+    "providerData": "Provider Data",
+    "razaoSocial": "Company / Name *", "documentLabel": "Tax ID *",
+    "phoneLabel": "Phone / WhatsApp *", "rntrcLabel": "RNTRC", "categoryLabel": "Category",
+    "bankLabel": "Bank", "pixLabel": "Pix Key",
+    "driverSection": "Driver",
+    "driverNameLabel": "Driver name *", "cpfLabel": "CPF *",
+    "driverPhoneLabel": "Phone *", "cnhLabel": "Driver License",
+    "vehicleSection": "Vehicle",
+    "vehicleTypeLabel": "Vehicle type *", "carrocLabel": "Body type",
+    "carrocPlaceholder": "Box, Sider...",
+    "plateCavaloLabel": "Truck Plate *", "plateCarretaLabel": "Trailer Plate",
+    "hasTarpLabel": "Has tarp", "hasTrackerLabel": "Has tracker",
+    "submit": "Finish Registration & Link to Trip", "submitting": "Submitting...",
+    "successTitle": "Registration completed!",
+    "successSub": "You were linked to OIT {oit}. The VINCOLOG team will contact you with the trip link shortly.",
+    "successCheckWhatsapp": "Check your WhatsApp provided above.",
+    "footerHelp": "RADAR VINCOLOG · After registering you will receive the trip link with status buttons, photos and POD.",
+    "errInvalid": "Invalid or expired invite.",
+    "errAlreadyAllocated": "This OIT already has an allocated provider."
+  },
+
+  "tracking": {
+    "headerLabel": "Tracking",
+    "currentStatus": "Current operation status",
+    "route": "A+ → B+ Route",
+    "pickup": "Pickup #{n}", "delivery": "Delivery #{n}",
+    "driver": "Driver",
+    "updates": "Updates", "noUpdates": "No updates yet.",
+    "photoLabel": "Photo {n}",
+    "occurrenceList": "Occurrences",
+    "delivered": "Delivered",
+    "receivedBy": "Received by:",
+    "primeReport": "Prime Report",
+    "primeReportDesc": "Final Prime / Critical report available upon request to the VINCOLOG team.",
+    "impactLabel": "Impact:", "actionLabel": "Action:", "newEstimateLabel": "New ETA:",
+    "questionsTitle": "Questions about the operation?",
+    "contactVincolog": "Talk to VINCOLOG",
+    "noOccurrences": "No occurrences",
+    "podRecipient": "POD: {name}",
+    "footerLine": "Tracking by RADAR VINCOLOG · Level: {level}"
+  },
+
+  "serviceLevels": {
+    "essencial": "Essential", "essencialShort": "Essential",
+    "assistido_basico": "Assisted Basic", "assistido_basicoShort": "Basic",
+    "assistido_completo": "Assisted Full", "assistido_completoShort": "Full",
+    "prime_critico": "Prime / Critical", "prime_criticoShort": "Prime"
+  },
+
+  "oitStatus": {
+    "novos_aprovados": "Newly Approved", "em_analise": "In Analysis",
+    "em_alocacao": "In Allocation", "aguardando_contrato": "Awaiting Contract",
+    "prestador_alocado": "Provider Allocated", "aguardando_coleta": "Awaiting Pickup",
+    "em_coleta": "In Pickup", "em_transito": "In Transit",
+    "em_entrega": "In Delivery", "comprovante_pendente": "Proof Pending",
+    "finalizado": "Completed", "ocorrencia": "Occurrence"
+  },
+
+  "budgetStatus": {
+    "cadastrado": "Registered", "proposta_gerada": "Proposal Generated",
+    "proposta_enviada": "Proposal Sent", "aprovado": "Approved",
+    "recusado": "Rejected", "cancelado": "Cancelled"
+  },
+
+  "paymentStatus": {
+    "nao_iniciado": "Not Started",
+    "adiantamento_pendente": "Advance Pending",
+    "adiantamento_pago": "Advance Paid",
+    "saldo_pendente": "Balance Pending",
+    "saldo_liberado": "Balance Released",
+    "pago_integralmente": "Fully Paid",
+    "bloqueado": "Blocked",
+    "em_auditoria": "In Audit"
+  },
+
+  "providerStatus": {
+    "ativo": "Active", "adormecido": "Dormant"
+  },
+
+  "vehicleTypes": {
+    "Fiorino": "Fiorino", "VUC": "VUC", "3/4": "3/4", "Toco": "Toco",
+    "Truck": "Truck", "Carreta": "Trailer", "Prancha": "Lowboy",
+    "Munck": "Munck", "Baú": "Box", "Sider": "Sider", "Outro": "Other",
+    "Moto": "Motorcycle", "Carro": "Car", "Furgão": "Van", "Caminhonete": "Pickup",
+    "Caminhão Leve": "Light Truck", "Caminhão Médio": "Medium Truck"
+  }
+}

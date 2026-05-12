@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { Search, Plus, User, Check } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
+import { useT } from '@/lib/i18n/I18nProvider'
 import type { DbClient } from '@/lib/types'
 
 interface Props {
@@ -20,6 +21,7 @@ interface Props {
 }
 
 export default function ClientSelector({ value, onChange }: Props) {
+  const t = useT()
   const supabase = createClient()
   const [clients, setClients] = useState<DbClient[]>([])
   const [search, setSearch] = useState('')
@@ -45,18 +47,20 @@ export default function ClientSelector({ value, onChange }: Props) {
     })
   }
 
+  const L = "block text-xs font-bold text-blue-300 mb-1 uppercase tracking-wider"
+
   return (
     <div className="space-y-3">
       <div className="flex gap-2 p-1 rounded-xl glass-sm">
         <button type="button" onClick={() => setMode('select')}
           className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${mode==='select' ? 'text-white' : 'text-blue-400'}`}
           style={mode==='select' ? { background: 'rgba(59,130,246,0.25)', border: '1px solid rgba(96,165,250,0.3)' } : {}}>
-          <Search className="w-3 h-3 inline mr-1" /> Cliente Existente
+          <Search className="w-3 h-3 inline mr-1" /> {t('budgets.clientSelector.existing')}
         </button>
         <button type="button" onClick={() => setMode('new')}
           className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${mode==='new' ? 'text-white' : 'text-blue-400'}`}
           style={mode==='new' ? { background: 'rgba(59,130,246,0.25)', border: '1px solid rgba(96,165,250,0.3)' } : {}}>
-          <Plus className="w-3 h-3 inline mr-1" /> Novo Cliente
+          <Plus className="w-3 h-3 inline mr-1" /> {t('budgets.clientSelector.new')}
         </button>
       </div>
 
@@ -65,7 +69,7 @@ export default function ClientSelector({ value, onChange }: Props) {
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-blue-400" />
             <input value={search} onChange={e => setSearch(e.target.value)}
-              placeholder="Buscar por nome ou CNPJ..." className="glass-input pl-9" />
+              placeholder={t('budgets.clientSelector.searchPlaceholder')} className="glass-input pl-9" />
           </div>
 
           {value.client_id && (
@@ -90,24 +94,24 @@ export default function ClientSelector({ value, onChange }: Props) {
                 </div>
               </button>
             ))}
-            {filtered.length === 0 && <p className="text-xs text-blue-600 text-center py-3">Nenhum cliente encontrado.</p>}
+            {filtered.length === 0 && <p className="text-xs text-blue-600 text-center py-3">{t('budgets.clientSelector.noResults')}</p>}
           </div>
         </>
       )}
 
       {mode === 'new' && (
         <div className="grid grid-cols-2 gap-3">
-          <div className="col-span-2"><label className="block text-xs font-bold text-blue-300 mb-1 uppercase tracking-wider">Razão Social / Nome *</label>
+          <div className="col-span-2"><label className={L}>{t('budgets.clientSelector.razaoSocial')}</label>
             <input value={value.client_name} onChange={e=>onChange({...value, client_name: e.target.value, client_id: null})} required className="glass-input" /></div>
-          <div><label className="block text-xs font-bold text-blue-300 mb-1 uppercase tracking-wider">CNPJ / CPF</label>
+          <div><label className={L}>{t('budgets.clientSelector.documentField')}</label>
             <input value={value.client_document} onChange={e=>onChange({...value, client_document: e.target.value, client_id: null})} className="glass-input" /></div>
-          <div><label className="block text-xs font-bold text-blue-300 mb-1 uppercase tracking-wider">Setor</label>
+          <div><label className={L}>{t('budgets.clientSelector.sector')}</label>
             <input value={value.client_contact_sector} onChange={e=>onChange({...value, client_contact_sector: e.target.value})} className="glass-input" /></div>
-          <div><label className="block text-xs font-bold text-blue-300 mb-1 uppercase tracking-wider">Contato</label>
+          <div><label className={L}>{t('budgets.clientSelector.contact')}</label>
             <input value={value.client_contact_name} onChange={e=>onChange({...value, client_contact_name: e.target.value})} className="glass-input" /></div>
-          <div><label className="block text-xs font-bold text-blue-300 mb-1 uppercase tracking-wider">Telefone</label>
+          <div><label className={L}>{t('budgets.clientSelector.phone')}</label>
             <input value={value.client_contact_phone} onChange={e=>onChange({...value, client_contact_phone: e.target.value})} className="glass-input" /></div>
-          <div className="col-span-2"><label className="block text-xs font-bold text-blue-300 mb-1 uppercase tracking-wider">E-mail</label>
+          <div className="col-span-2"><label className={L}>{t('budgets.clientSelector.email')}</label>
             <input type="email" value={value.client_contact_email} onChange={e=>onChange({...value, client_contact_email: e.target.value})} className="glass-input" /></div>
         </div>
       )}

@@ -4,6 +4,9 @@ import { useState, useTransition } from 'react'
 import Link from 'next/link'
 import { signUp } from '@/lib/actions/auth'
 import { Eye, EyeOff, UserPlus, MapPin, Radio, Truck, ShieldCheck } from 'lucide-react'
+import { useT } from '@/lib/i18n/I18nProvider'
+import { useTheme } from '@/lib/providers/ThemeProvider'
+import ThemeLanguageToggle from '@/components/ThemeLanguageToggle'
 
 /* ── Animated route map visual ───────────────────────────── */
 function RouteMapVisual() {
@@ -125,15 +128,23 @@ function RouteMapVisual() {
 
 /* ── Left hero panel ─────────────────────────────────────── */
 function HeroPanel() {
+  const t = useT()
+  const { theme } = useTheme()
+  const isLight = theme === 'light'
   const features = [
-    { icon: Radio,       text: 'Monitoramento GPS em tempo real' },
-    { icon: Truck,       text: 'Checkpoints + fotos de evidência' },
-    { icon: ShieldCheck, text: 'Auditoria completa de operações' },
+    { icon: Radio,       text: t('auth.hero.registerFeat1') },
+    { icon: Truck,       text: t('auth.hero.registerFeat2') },
+    { icon: ShieldCheck, text: t('auth.hero.registerFeat3') },
   ]
 
   return (
     <div className="relative flex flex-col items-center justify-center h-full px-10 py-10 overflow-hidden"
-      style={{ background: 'linear-gradient(160deg, #030E24 0%, #020918 50%, #010612 100%)' }}>
+      style={{
+        background: isLight
+          ? '#FFFFFF'
+          : 'linear-gradient(160deg, #030E24 0%, #020918 50%, #010612 100%)',
+        borderRight: isLight ? '1px solid #E2E8F0' : 'none',
+      }}>
 
       {/* Ambient blobs */}
       <div className="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none"
@@ -164,7 +175,7 @@ function HeroPanel() {
       </div>
 
       <p className="text-blue-300 text-sm text-center mb-6 max-w-xs" style={{ animation: 'fadeInUp 0.6s 0.1s ease-out both' }}>
-        Plataforma de gestão logística para operações A→B
+        {t('auth.hero.registerTagline')}
       </p>
 
       {/* Route map */}
@@ -197,6 +208,9 @@ function HeroPanel() {
 
 /* ── Register page ─────────────────────────────────────── */
 export default function RegisterPage() {
+  const t = useT()
+  const { theme } = useTheme()
+  const isLight = theme === 'light'
   const [showPw,      setShowPw]      = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
   const [error,  setError]  = useState<string | null>(null)
@@ -207,7 +221,7 @@ export default function RegisterPage() {
     setError(null)
     const fd = new FormData(e.currentTarget)
     if (fd.get('password') !== fd.get('confirmPassword')) {
-      setError('As senhas não conferem.')
+      setError(t('auth.register.passwordMismatch'))
       return
     }
     startTransition(async () => {
@@ -219,7 +233,7 @@ export default function RegisterPage() {
   const L = "block text-xs font-bold text-blue-300 mb-1.5 uppercase tracking-wider"
 
   return (
-    <div className="min-h-screen flex" style={{ background: '#020C1F' }}>
+    <div className="min-h-screen flex" style={{ background: isLight ? '#FFFFFF' : '#020C1F' }}>
       {/* ── Left: 2/3 visual ── */}
       <div className="hidden lg:block lg:w-2/3">
         <HeroPanel />
@@ -227,7 +241,10 @@ export default function RegisterPage() {
 
       {/* ── Right: 1/3 form ── */}
       <div className="w-full lg:w-1/3 flex flex-col items-center justify-center p-8 relative overflow-auto"
-        style={{ background: 'rgba(1,6,18,0.95)', borderLeft: '1px solid rgba(255,255,255,0.06)' }}>
+        style={{
+          background: isLight ? '#FFFFFF' : 'rgba(1,6,18,0.95)',
+          borderLeft: isLight ? '1px solid #E2E8F0' : '1px solid rgba(255,255,255,0.06)',
+        }}>
 
         {/* Mobile logo */}
         <div className="flex lg:hidden items-center gap-3 mb-8">
@@ -242,26 +259,29 @@ export default function RegisterPage() {
         </div>
 
         <div className="w-full max-w-sm">
-          <div className="mb-8">
-            <h1 className="text-3xl font-extrabold text-white tracking-tight">Criar acesso</h1>
-            <p className="text-blue-400 text-sm mt-1">Novo operador no sistema</p>
+          <div className="mb-8 flex items-start justify-between gap-3">
+            <div>
+              <h1 className="text-3xl font-extrabold text-white tracking-tight">{t('auth.register.title')}</h1>
+              <p className="text-blue-400 text-sm mt-1">{t('auth.register.subtitle')}</p>
+            </div>
+            <div className="hidden md:block w-44"><ThemeLanguageToggle /></div>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className={L}>Nome completo</label>
-              <input name="name" type="text" required placeholder="Felipe V."
+              <label className={L}>{t('auth.register.fullName')}</label>
+              <input name="name" type="text" required placeholder={t('auth.register.namePlaceholder')}
                 className="glass-input" />
             </div>
 
             <div>
-              <label className={L}>E-mail</label>
-              <input name="email" type="email" required placeholder="operador@empresa.com.br"
+              <label className={L}>{t('auth.login.email')}</label>
+              <input name="email" type="email" required placeholder={t('auth.login.emailPlaceholder')}
                 className="glass-input" />
             </div>
 
             <div>
-              <label className={L}>Senha <span className="text-blue-500 font-normal normal-case tracking-normal">(mín. 6 caracteres)</span></label>
+              <label className={L}>{t('auth.register.password')}</label>
               <div className="relative">
                 <input name="password" type={showPw ? 'text' : 'password'} required minLength={6}
                   placeholder="••••••••" className="glass-input pr-11" />
@@ -273,7 +293,7 @@ export default function RegisterPage() {
             </div>
 
             <div>
-              <label className={L}>Confirmar senha</label>
+              <label className={L}>{t('auth.register.confirmPassword')}</label>
               <div className="relative">
                 <input name="confirmPassword" type={showConfirm ? 'text' : 'password'} required
                   placeholder="••••••••" className="glass-input pr-11" />
@@ -295,14 +315,14 @@ export default function RegisterPage() {
               className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold text-white disabled:opacity-50 transition-all mt-2"
               style={{ background: 'linear-gradient(135deg,#3B82F6,#1D4ED8)', boxShadow: '0 4px 20px rgba(59,130,246,0.45)' }}>
               <UserPlus className="w-4 h-4" />
-              {pending ? 'Criando conta...' : 'Criar conta'}
+              {pending ? t('auth.register.submitting') : t('auth.register.submit')}
             </button>
           </form>
 
           <p className="text-center text-sm text-blue-500 mt-6">
-            Já tem conta?{' '}
+            {t('auth.register.haveAccount')}{' '}
             <Link href="/login" className="text-blue-400 font-bold hover:text-blue-300 transition-colors">
-              Entrar
+              {t('auth.register.signIn')}
             </Link>
           </p>
 
