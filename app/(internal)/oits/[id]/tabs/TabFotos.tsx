@@ -27,7 +27,7 @@ export default function TabFotos({ oit, timeline }: { oit: DbOit; timeline: DbTi
         {vehiclePhotos.length > 0 && (
           <div className="mb-5">
             <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3">{t('oits.photosTab.vehicleAllocated')}</p>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {vehiclePhotos.map((url, i) => (
                 <a key={i} href={url} target="_blank" className="aspect-video rounded-xl overflow-hidden block"
                   style={{ background: 'rgba(255,255,255,0.04)' }}>
@@ -42,7 +42,7 @@ export default function TabFotos({ oit, timeline }: { oit: DbOit; timeline: DbTi
         {allAttachments.length === 0 ? (
           <p className="text-sm text-blue-600 text-center py-8">{t('oits.photosTab.empty')}</p>
         ) : (
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {allAttachments.map((a, i) => (
               <a key={i} href={a.url} target="_blank" className="rounded-xl overflow-hidden glass-sm hover:glass transition-all">
                 <div className="aspect-video flex items-center justify-center" style={{ background: 'rgba(0,0,0,0.3)' }}>

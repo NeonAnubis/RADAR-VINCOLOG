@@ -39,13 +39,13 @@ export default function FinanceiroView({ oits }: { oits: Row[] }) {
   const headers = ['oit', 'client', 'provider', 'status', 'sold', 'cost', 'advance', 'balance', 'margin', 'marginPct'] as const
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 sm:p-6 space-y-6">
       <div>
         <h1 className="text-3xl font-extrabold text-white tracking-tight">{t('finance.title')}</h1>
         <p className="text-blue-400 mt-0.5 text-sm">{t('finance.subtitle')}</p>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {cards.map(({ tkey, v, icon: Icon, accent }) => (
           <div key={tkey} className="glass rounded-2xl p-5">
             <div className="flex items-start justify-between">

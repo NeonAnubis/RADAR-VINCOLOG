@@ -181,7 +181,7 @@ export default function NovoOrcamentoPage() {
   }
 
   return (
-    <div className="p-6 max-w-4xl mx-auto space-y-6">
+    <div className="p-4 sm:p-6 max-w-4xl mx-auto space-y-6">
       <div className="flex items-center gap-3">
         <Link href="/orcamentos" className="p-2 rounded-xl text-blue-400 hover:text-white glass"><ArrowLeft className="w-4 h-4" /></Link>
         <div>
@@ -216,7 +216,7 @@ export default function NovoOrcamentoPage() {
         {step === 1 && (
           <div className="space-y-4">
             <h2 className="text-base font-bold text-white">{t('budgets.form.blockId')}</h2>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className={L}>{t('budgets.form.demandOrigin')}</label>
                 <select value={identification.origin_source} onChange={e => setId({...identification, origin_source: e.target.value})} className="glass-select">
@@ -229,7 +229,7 @@ export default function NovoOrcamentoPage() {
                   <option value="outro">{t('budgets.form.sourceOther')}</option>
                 </select>
               </div>
-              <div className="col-span-2"><label className={L}>{t('budgets.form.demandDescription')}</label>
+              <div className="sm:col-span-2"><label className={L}>{t('budgets.form.demandDescription')}</label>
                 <textarea value={identification.description} onChange={e => setId({...identification, description: e.target.value})} rows={3} className="glass-input resize-none" /></div>
             </div>
           </div>
@@ -279,8 +279,8 @@ export default function NovoOrcamentoPage() {
                       </button>
                     )}
                   </div>
-                  <div className="grid grid-cols-3 gap-3">
-                    <div className="col-span-2"><label className={L}>{t('budgets.form.locationName')}</label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <div className="sm:col-span-2"><label className={L}>{t('budgets.form.locationName')}</label>
                       <input value={c.name} onChange={e => updatePoint(collections, setCollections, i, 'name', e.target.value)} className="glass-input" /></div>
                     <div><label className={L}>{t('common.fields.cnpj')}</label>
                       <input value={c.cnpj} onChange={e => updatePoint(collections, setCollections, i, 'cnpj', e.target.value)} className="glass-input" /></div>
@@ -290,7 +290,7 @@ export default function NovoOrcamentoPage() {
                       <input value={c.phone} onChange={e => updatePoint(collections, setCollections, i, 'phone', e.target.value)} className="glass-input" /></div>
                     <div><label className={L}>{t('common.fields.email')}</label>
                       <input value={c.email} onChange={e => updatePoint(collections, setCollections, i, 'email', e.target.value)} className="glass-input" /></div>
-                    <div className="col-span-3"><label className={L}>{t('budgets.form.fullAddress')}</label>
+                    <div className="sm:col-span-3"><label className={L}>{t('budgets.form.fullAddress')}</label>
                       <input value={c.full_address} onChange={e => updatePoint(collections, setCollections, i, 'full_address', e.target.value)} className="glass-input" /></div>
                     <div><label className={L}>{t('budgets.form.city')}</label>
                       <input value={c.city} onChange={e => updatePoint(collections, setCollections, i, 'city', e.target.value)} className="glass-input" /></div>
@@ -308,7 +308,7 @@ export default function NovoOrcamentoPage() {
                         {t('budgets.form.needsScheduling')}
                       </label>
                     </div>
-                    <div className="col-span-3"><label className={L}>{t('budgets.form.accessNotes')}</label>
+                    <div className="sm:col-span-3"><label className={L}>{t('budgets.form.accessNotes')}</label>
                       <textarea value={c.access_instructions} onChange={e => updatePoint(collections, setCollections, i, 'access_instructions', e.target.value)} rows={1} className="glass-input resize-none" /></div>
                   </div>
                 </div>
@@ -333,8 +333,8 @@ export default function NovoOrcamentoPage() {
                       </button>
                     )}
                   </div>
-                  <div className="grid grid-cols-3 gap-3">
-                    <div className="col-span-2"><label className={L}>{t('budgets.form.locationName')}</label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <div className="sm:col-span-2"><label className={L}>{t('budgets.form.locationName')}</label>
                       <input value={d.name} onChange={e => updatePoint(deliveries, setDeliveries, i, 'name', e.target.value)} className="glass-input" /></div>
                     <div><label className={L}>{t('common.fields.cnpj')}</label>
                       <input value={d.cnpj} onChange={e => updatePoint(deliveries, setDeliveries, i, 'cnpj', e.target.value)} className="glass-input" /></div>
@@ -344,7 +344,7 @@ export default function NovoOrcamentoPage() {
                       <input value={d.phone} onChange={e => updatePoint(deliveries, setDeliveries, i, 'phone', e.target.value)} className="glass-input" /></div>
                     <div><label className={L}>{t('common.fields.email')}</label>
                       <input value={d.email} onChange={e => updatePoint(deliveries, setDeliveries, i, 'email', e.target.value)} className="glass-input" /></div>
-                    <div className="col-span-3"><label className={L}>{t('budgets.form.fullAddress')}</label>
+                    <div className="sm:col-span-3"><label className={L}>{t('budgets.form.fullAddress')}</label>
                       <input value={d.full_address} onChange={e => updatePoint(deliveries, setDeliveries, i, 'full_address', e.target.value)} className="glass-input" /></div>
                     <div><label className={L}>{t('budgets.form.city')}</label>
                       <input value={d.city} onChange={e => updatePoint(deliveries, setDeliveries, i, 'city', e.target.value)} className="glass-input" /></div>
@@ -362,7 +362,7 @@ export default function NovoOrcamentoPage() {
                         {t('budgets.form.needsScheduling')}
                       </label>
                     </div>
-                    <div className="col-span-3"><label className={L}>{t('budgets.form.accessNotes')}</label>
+                    <div className="sm:col-span-3"><label className={L}>{t('budgets.form.accessNotes')}</label>
                       <textarea value={d.access_instructions} onChange={e => updatePoint(deliveries, setDeliveries, i, 'access_instructions', e.target.value)} rows={1} className="glass-input resize-none" /></div>
                   </div>
                 </div>
@@ -375,7 +375,7 @@ export default function NovoOrcamentoPage() {
         {step === 4 && (
           <div className="space-y-4">
             <h2 className="text-base font-bold text-white">{t('budgets.form.documentCargo')}</h2>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <div><label className={L}>{t('budgets.form.nfDocument')}</label>
                 <input value={cargo.document_number} onChange={e => setCargo({...cargo, document_number: e.target.value})} className="glass-input" /></div>
               <div><label className={L}>{t('budgets.form.nfValue')}</label>
@@ -386,7 +386,7 @@ export default function NovoOrcamentoPage() {
                   {t('budgets.form.xmlReceived')}
                 </label>
               </div>
-              <div className="col-span-3"><label className={L}>{t('budgets.form.cargoDescription')}</label>
+              <div className="sm:col-span-3"><label className={L}>{t('budgets.form.cargoDescription')}</label>
                 <input value={cargo.cargo_description} onChange={e => setCargo({...cargo, cargo_description: e.target.value})} className="glass-input" /></div>
               <div><label className={L}>{t('budgets.form.volumes')}</label>
                 <input type="number" value={cargo.cargo_volumes} onChange={e => setCargo({...cargo, cargo_volumes: e.target.value})} className="glass-input" /></div>
@@ -401,7 +401,7 @@ export default function NovoOrcamentoPage() {
               <div><label className={L}>{t('budgets.form.height')}</label>
                 <input value={cargo.cargo_height} onChange={e => setCargo({...cargo, cargo_height: e.target.value})} className="glass-input" /></div>
             </div>
-            <div className="grid grid-cols-3 gap-3 mt-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
               {([
                 ['cargo_sensitive','cargoSensitive'],
                 ['cargo_high_value','cargoHighValue'],
@@ -425,7 +425,7 @@ export default function NovoOrcamentoPage() {
         {step === 5 && (
           <div className="space-y-4">
             <h2 className="text-base font-bold text-white">{t('budgets.form.vehicleProfile')}</h2>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div><label className={L}>{t('budgets.form.suggestedVehicle')}</label>
                 <select value={vehicle.vehicle_suggested_type} onChange={e => setVehicle({...vehicle, vehicle_suggested_type: e.target.value})} className="glass-select">
                   <option value="">{t('common.selectPlaceholder')}</option>
@@ -434,7 +434,7 @@ export default function NovoOrcamentoPage() {
               <div><label className={L}>{t('budgets.form.bodyType')}</label>
                 <input value={vehicle.vehicle_body_type} onChange={e => setVehicle({...vehicle, vehicle_body_type: e.target.value})} className="glass-input" /></div>
             </div>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {([
                 ['vehicle_exclusive','vehicleExclusive'],
                 ['vehicle_full_load','fullLoad'],
@@ -457,7 +457,7 @@ export default function NovoOrcamentoPage() {
         {step === 6 && (
           <div className="space-y-4">
             <h2 className="text-base font-bold text-white">{t('budgets.form.freightComposition')}</h2>
-            <div className="grid grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
               {([
                 ['fretePeso','freightWeight'],['freteValor','freightValue'],['freteMinimo','freightMin'],
                 ['pedagio','toll'],['valePedagio','tollVoucher'],['seguro','insurance'],['gris','gris'],
@@ -507,7 +507,7 @@ export default function NovoOrcamentoPage() {
                     </label>
                   </div>
                   {cfg.offered && (
-                    <div className="grid grid-cols-3 gap-3 mt-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
                       <div><label className={L}>{t('budgets.form.additionalValue')}</label>
                         <input type="number" step="0.01" value={cfg.additionalValue ?? ''}
                           onChange={e => setLevels({...levels, [key]: { ...cfg, additionalValue: e.target.value ? parseFloat(e.target.value) : undefined }})}
@@ -516,7 +516,7 @@ export default function NovoOrcamentoPage() {
                         <input value={cfg.validity ?? ''} onChange={e => setLevels({...levels, [key]: { ...cfg, validity: e.target.value }})} className="glass-input" placeholder="7 dias" /></div>
                       <div><label className={L}>{t('budgets.form.condition')}</label>
                         <input value={cfg.conditions ?? ''} onChange={e => setLevels({...levels, [key]: { ...cfg, conditions: e.target.value }})} className="glass-input" /></div>
-                      <div className="col-span-3"><label className={L}>{t('budgets.form.noteSpec')}</label>
+                      <div className="sm:col-span-3"><label className={L}>{t('budgets.form.noteSpec')}</label>
                         <input value={cfg.notes ?? ''} onChange={e => setLevels({...levels, [key]: { ...cfg, notes: e.target.value }})} className="glass-input" /></div>
                     </div>
                   )}
@@ -526,16 +526,16 @@ export default function NovoOrcamentoPage() {
 
             <div className="mt-6 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
               <h3 className="text-sm font-bold text-white mb-3">{t('budgets.form.commercialObs')}</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div><label className={L}>{t('budgets.form.proposalValidity')}</label>
                   <input type="date" value={obs.validity_date} onChange={e => setObs({...obs, validity_date: e.target.value})} className="glass-input" /></div>
                 <div><label className={L}>{t('budgets.form.paymentCondition')}</label>
                   <input value={obs.payment_condition} onChange={e => setObs({...obs, payment_condition: e.target.value})} className="glass-input" placeholder="28 dias" /></div>
-                <div className="col-span-2"><label className={L}>{t('budgets.form.premises')}</label>
+                <div className="sm:col-span-2"><label className={L}>{t('budgets.form.premises')}</label>
                   <textarea value={obs.premises} onChange={e => setObs({...obs, premises: e.target.value})} rows={2} className="glass-input resize-none" /></div>
-                <div className="col-span-2"><label className={L}>{t('budgets.form.exclusions')}</label>
+                <div className="sm:col-span-2"><label className={L}>{t('budgets.form.exclusions')}</label>
                   <textarea value={obs.exclusions} onChange={e => setObs({...obs, exclusions: e.target.value})} rows={2} className="glass-input resize-none" /></div>
-                <div className="col-span-2"><label className={L}>{t('budgets.form.generalObs')}</label>
+                <div className="sm:col-span-2"><label className={L}>{t('budgets.form.generalObs')}</label>
                   <textarea value={obs.general_notes} onChange={e => setObs({...obs, general_notes: e.target.value})} rows={2} className="glass-input resize-none" /></div>
               </div>
             </div>

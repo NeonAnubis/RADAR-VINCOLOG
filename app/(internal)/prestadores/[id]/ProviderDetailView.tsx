@@ -45,7 +45,7 @@ export default function ProviderDetailView({ provider, oits }: Props) {
   const isDormant = provider.status === 'adormecido'
 
   return (
-    <div className="p-6 space-y-5">
+    <div className="p-4 sm:p-6 space-y-5">
       <div className="flex items-center gap-3">
         <Link href="/prestadores" className="p-2 rounded-xl text-blue-400 hover:text-white glass">
           <ArrowLeft className="w-4 h-4" />
@@ -109,7 +109,7 @@ export default function ProviderDetailView({ provider, oits }: Props) {
               <Truck className="w-4 h-4" /> {t('providers.detail.vehiclePhotosTitle')}
             </h3>
             {provider.vehicle_photos && provider.vehicle_photos.length > 0 ? (
-              <div className="grid grid-cols-2 gap-2 mb-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
                 {provider.vehicle_photos.map((url: string, i: number) => (
                   <a key={i} href={url} target="_blank" className="aspect-video rounded-lg overflow-hidden block"
                     style={{ background: 'rgba(255,255,255,0.05)' }}>

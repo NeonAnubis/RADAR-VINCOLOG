@@ -62,7 +62,7 @@ export default function TabTimeline({ oit, timeline }: { oit: DbOit; timeline: D
 
       {open && (
         <div className="rounded-xl p-4 space-y-3" style={{ background: 'rgba(59,130,246,0.08)', border: '1px solid rgba(96,165,250,0.25)' }}>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div><label className={L}>{t('oits.timelineTab.type')}</label>
               <select value={eventType} onChange={e => setEventType(e.target.value)} className="glass-select">
                 {EVENT_TYPES.map(k => (
@@ -75,7 +75,7 @@ export default function TabTimeline({ oit, timeline }: { oit: DbOit; timeline: D
                 {t('oits.timelineTab.visibleToClient')}
               </label>
             </div>
-            <div className="col-span-2"><label className={L}>{t('oits.timelineTab.description')}</label>
+            <div className="sm:col-span-2"><label className={L}>{t('oits.timelineTab.description')}</label>
               <textarea value={description} onChange={e => setDescription(e.target.value)} rows={2} className="glass-input resize-none" /></div>
           </div>
           <div className="flex gap-2">

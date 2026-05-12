@@ -27,8 +27,8 @@ export default function TabOperacao({ oit }: { oit: DbOit }) {
     <div className="space-y-4">
       <div className="glass rounded-2xl p-6 space-y-4">
         <h2 className="text-base font-bold text-white">{t('oits.operationTab.nextAction')}</h2>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="col-span-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="sm:col-span-2">
             <label className={L}>{t('oits.operationTab.nextActionLabel')}</label>
             <input value={nextAction} onChange={e => setNextActionVal(e.target.value)} placeholder={t('oits.operationTab.nextActionPlaceholder')} className="glass-input" />
           </div>

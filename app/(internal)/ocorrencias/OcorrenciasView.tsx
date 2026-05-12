@@ -32,7 +32,7 @@ export default function OcorrenciasView({ rows }: { rows: Row[] }) {
   ]
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {stats.map(s => (
         <div key={s.tkey} className="glass rounded-2xl p-5 flex items-center gap-4">
           <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ background: s.bg }}>

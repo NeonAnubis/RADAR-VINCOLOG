@@ -72,7 +72,7 @@ export default function TabPrestador({ oit, availableProviders }: { oit: DbOit; 
 
         <div className="glass rounded-2xl p-6 space-y-3">
           <h2 className="text-base font-bold text-white flex items-center gap-2"><Truck className="w-4 h-4" /> {t('oits.providerTab.vehicleDriverTitle')}</h2>
-          <div className="grid grid-cols-2 gap-3 text-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
             <div><p className="text-blue-500 text-xs">{t('oits.providerTab.type')}</p><p className="text-white">{oit.vehicle_type ?? '—'}</p></div>
             <div><p className="text-blue-500 text-xs">{t('oits.providerTab.body')}</p><p className="text-white">{oit.vehicle_body ?? '—'}</p></div>
             <div><p className="text-blue-500 text-xs">{t('oits.providerTab.plateCavalo')}</p><p className="text-white font-mono">{oit.vehicle_plate_cavalo ?? p.vehicle_plate}</p></div>
@@ -152,7 +152,7 @@ export default function TabPrestador({ oit, availableProviders }: { oit: DbOit; 
       {selectedProvider && (
         <div className="space-y-3 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           <h3 className="text-sm font-bold text-white">{t('oits.providerTab.tripData')}</h3>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div><label className={L}>{t('oits.providerTab.driverName')}</label><input value={vehicleData.driver_name} onChange={e=>setVehicle({...vehicleData,driver_name:e.target.value})} className="glass-input" /></div>
             <div><label className={L}>{t('oits.providerTab.cpfDriver')}</label><input value={vehicleData.driver_cpf} onChange={e=>setVehicle({...vehicleData,driver_cpf:e.target.value})} className="glass-input" /></div>
             <div><label className={L}>{t('oits.providerTab.phone')}</label><input value={vehicleData.driver_phone} onChange={e=>setVehicle({...vehicleData,driver_phone:e.target.value})} className="glass-input" /></div>
@@ -170,7 +170,7 @@ export default function TabPrestador({ oit, availableProviders }: { oit: DbOit; 
               </label>
             </div>
             {vehicleData.vehicle_has_tracker && (
-              <div className="col-span-2"><label className={L}>{t('oits.providerTab.trackerLink')}</label><input value={vehicleData.vehicle_tracker_link} onChange={e=>setVehicle({...vehicleData,vehicle_tracker_link:e.target.value})} className="glass-input" /></div>
+              <div className="sm:col-span-2"><label className={L}>{t('oits.providerTab.trackerLink')}</label><input value={vehicleData.vehicle_tracker_link} onChange={e=>setVehicle({...vehicleData,vehicle_tracker_link:e.target.value})} className="glass-input" /></div>
             )}
           </div>
 

@@ -20,16 +20,16 @@ export default function PageHeader({ titleKey, subtitleKey, subtitle, vars, acti
   const t = useT()
   const resolvedSubtitle = subtitle ?? (subtitleKey ? t(subtitleKey, vars) : undefined)
   return (
-    <div className="flex items-center justify-between flex-wrap gap-3">
-      <div>
-        <h1 className="text-3xl font-extrabold tracking-tight" style={{ color: 'var(--text-primary)' }}>
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between flex-wrap gap-3">
+      <div className="min-w-0">
+        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight" style={{ color: 'var(--text-primary)' }}>
           {t(titleKey, vars)}
         </h1>
         {resolvedSubtitle && (
-          <p className="mt-0.5 text-sm" style={{ color: 'var(--text-muted)' }}>{resolvedSubtitle}</p>
+          <p className="mt-0.5 text-xs sm:text-sm" style={{ color: 'var(--text-muted)' }}>{resolvedSubtitle}</p>
         )}
       </div>
-      {actions && <div className="flex items-center gap-2">{actions}</div>}
+      {actions && <div className="flex items-center gap-2 flex-wrap">{actions}</div>}
     </div>
   )
 }

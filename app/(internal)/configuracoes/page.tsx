@@ -14,7 +14,7 @@ export default async function ConfiguracoesPage() {
     .limit(20)
 
   return (
-    <div className="p-6 space-y-5">
+    <div className="p-4 sm:p-6 space-y-5">
       <PageHeader titleKey="settings.title" subtitleKey="settings.subtitle" />
       <SettingsForm initial={settings} />
       <NotificationsQueueView notifications={(notifications ?? []) as Parameters<typeof NotificationsQueueView>[0]['notifications']} />

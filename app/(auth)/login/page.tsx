@@ -155,7 +155,7 @@ function HeroPanel() {
   ]
 
   return (
-    <div className="relative flex flex-col items-center justify-center h-full px-12 py-10 overflow-hidden"
+    <div className="relative flex flex-col items-center justify-center h-full px-6 sm:px-12 py-8 sm:py-10 overflow-hidden"
       style={{
         background: isLight
           ? '#FFFFFF'
@@ -209,7 +209,7 @@ function HeroPanel() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4 mt-8 w-full max-w-sm" style={{ animation: 'fadeInUp 0.6s 0.4s ease-out both' }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8 w-full max-w-sm" style={{ animation: 'fadeInUp 0.6s 0.4s ease-out both' }}>
         {stats.map(({ value, label }) => (
           <div key={label} className="text-center p-3 rounded-xl"
             style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>

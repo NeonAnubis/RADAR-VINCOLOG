@@ -19,7 +19,7 @@ export default function PrestadoresListView({ all, ativos, adormecidos }: Props)
   ]
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 sm:p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-extrabold text-white tracking-tight">{t('providers.title')}</h1>
@@ -33,7 +33,7 @@ export default function PrestadoresListView({ all, ativos, adormecidos }: Props)
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {stats.map(({ key, v, color, bg }) => (
           <div key={key} className="glass rounded-2xl p-5 flex items-center gap-4">
             <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ background: bg }}>

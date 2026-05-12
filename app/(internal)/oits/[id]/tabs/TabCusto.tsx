@@ -54,7 +54,7 @@ export default function TabCusto({ oit }: { oit: DbOit }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div><label className={L}>{t('oits.costTab.contractedValue')}</label>
             <input type="number" step="0.01" value={data.contracted_value} onChange={e=>setData({...data,contracted_value:e.target.value})} className="glass-input" /></div>
           <div><label className={L}>{t('oits.costTab.advance')}</label>
@@ -73,13 +73,13 @@ export default function TabCusto({ oit }: { oit: DbOit }) {
             <input type="number" step="0.01" value={data.seguro} onChange={e=>setData({...data,seguro:e.target.value})} className="glass-input" /></div>
           <div><label className={L}>{t('oits.costTab.ciot')}</label>
             <input value={data.ciot} onChange={e=>setData({...data,ciot:e.target.value})} className="glass-input" /></div>
-          <div className="col-span-2"><label className={L}>{t('oits.costTab.otherExpenses')}</label>
+          <div className="sm:col-span-2"><label className={L}>{t('oits.costTab.otherExpenses')}</label>
             <input type="number" step="0.01" value={data.other_expenses} onChange={e=>setData({...data,other_expenses:e.target.value})} className="glass-input" /></div>
-          <div className="col-span-3"><label className={L}>{t('oits.costTab.financialNote')}</label>
+          <div className="sm:col-span-3"><label className={L}>{t('oits.costTab.financialNote')}</label>
             <textarea value={data.financial_notes} onChange={e=>setData({...data,financial_notes:e.target.value})} rows={2} className="glass-input resize-none" /></div>
         </div>
 
-        <div className="grid grid-cols-3 gap-3 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           <div className="p-4 rounded-xl" style={{ background: 'rgba(59,130,246,0.1)', border: '1px solid rgba(96,165,250,0.25)' }}>
             <p className="text-[10px] text-blue-400 uppercase">{t('oits.costTab.totalEstimatedCost')}</p>
             <p className="text-xl font-extrabold text-white mt-1">{fmtCurrency(totalCost)}</p>
@@ -138,7 +138,7 @@ function PaymentStatusBlock({ oit }: { oit: DbOit }) {
 
       <p className="text-xs text-blue-400">{t('oits.costTab.paymentFlow')}</p>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
         {(Object.keys(PAYMENT_STATUSES) as PaymentStatus[]).map(s => {
           const sc = PAYMENT_STATUSES[s]
           const isCurrent = current === s

@@ -46,20 +46,20 @@ export default function DashboardView({
   const dateStr = new Date().toLocaleDateString(localeTag, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="p-4 sm:p-6 space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <h1 className="text-3xl font-extrabold text-white tracking-tight">{t('dashboard.title')}</h1>
-          <p className="text-blue-400 mt-0.5 text-sm">{dateStr}</p>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">{t('dashboard.title')}</h1>
+          <p className="text-blue-400 mt-0.5 text-xs sm:text-sm">{dateStr}</p>
         </div>
-        <Link href="/oits" className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold text-white"
+        <Link href="/oits" className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold text-white w-fit"
           style={{ background: 'linear-gradient(135deg,#3B82F6,#1D4ED8)', boxShadow: '0 4px 18px rgba(59,130,246,0.4)' }}>
           {t('dashboard.viewKanban')}
         </Link>
       </div>
 
       {/* Metrics */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <MetricCard label={t('dashboard.totalToday')}     value={todayOits.length}   sub={t('dashboard.totalTodaySub')}     icon={Package}       accent="bg-blue-500/25 text-blue-300" />
         <MetricCard label={t('dashboard.inProgress')}     value={activeOits.length}  sub={t('dashboard.inProgressSub')}     icon={Truck}         accent="bg-violet-500/25 text-violet-300" />
         <MetricCard label={t('dashboard.deliveredToday')} value={finalizedToday}     sub={t('dashboard.deliveredTodaySub')} icon={CheckCircle}   accent="bg-emerald-500/25 text-emerald-300" />
@@ -133,7 +133,7 @@ export default function DashboardView({
       </div>
 
       {/* Quick links */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Link href="/dashboards/comercial" className="glass glass-hover rounded-2xl p-5 transition-all">
           <div className="flex items-center gap-3 mb-2">
             <FileText className="w-5 h-5 text-cyan-400" />

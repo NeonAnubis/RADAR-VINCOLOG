@@ -30,13 +30,13 @@ export default function CommercialDashboardView({ totals, taxa, totalCount, byLe
   ]
 
   return (
-    <div className="p-6 space-y-5">
+    <div className="p-4 sm:p-6 space-y-5">
       <div>
         <h1 className="text-3xl font-extrabold text-white tracking-tight">{t('dashboards.commercial.title')}</h1>
         <p className="text-blue-400 mt-0.5 text-sm">{t('dashboards.commercial.subtitle')}</p>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {cards.map(({ tkey, value, icon: Icon, color }) => (
           <div key={tkey} className="glass rounded-2xl p-5">
             <div className="flex items-start justify-between">
@@ -79,7 +79,7 @@ export default function CommercialDashboardView({ totals, taxa, totalCount, byLe
 
       <div className="glass rounded-2xl p-5">
         <h2 className="font-bold text-white mb-4">{t('dashboards.commercial.productsByLevel')}</h2>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {Object.entries(SERVICE_LEVELS).map(([key, meta]) => (
             <div key={key} className="rounded-xl p-4" style={{ background: `${meta.color}1a`, border: `1px solid ${meta.color}55` }}>
               <p className="text-xs font-bold uppercase tracking-wider" style={{ color: meta.color }}>{meta.short}</p>

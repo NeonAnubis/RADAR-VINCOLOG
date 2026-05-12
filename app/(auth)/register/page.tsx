@@ -138,7 +138,7 @@ function HeroPanel() {
   ]
 
   return (
-    <div className="relative flex flex-col items-center justify-center h-full px-10 py-10 overflow-hidden"
+    <div className="relative flex flex-col items-center justify-center h-full px-6 sm:px-10 py-8 sm:py-10 overflow-hidden"
       style={{
         background: isLight
           ? '#FFFFFF'

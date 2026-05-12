@@ -24,7 +24,7 @@ export default async function OrcamentosPage() {
   }
 
   return (
-    <div className="p-6 space-y-5">
+    <div className="p-4 sm:p-6 space-y-5">
       <PageHeader
         titleKey="budgets.title"
         subtitleKey="budgets.registered"

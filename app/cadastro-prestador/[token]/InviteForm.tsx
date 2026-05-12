@@ -56,8 +56,8 @@ export default function InviteForm({ token }: { token: string }) {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="glass rounded-2xl p-5 space-y-3">
         <h3 className="text-sm font-bold text-white flex items-center gap-2"><User className="w-4 h-4 text-blue-400" /> {t('providerInvite.providerData')}</h3>
-        <div className="grid grid-cols-2 gap-3">
-          <div className="col-span-2"><label className={L}>{t('providerInvite.razaoSocial')}</label>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="sm:col-span-2"><label className={L}>{t('providerInvite.razaoSocial')}</label>
             <input required value={form.name} onChange={e=>setForm({...form,name:e.target.value})} className="glass-input" /></div>
           <div><label className={L}>{t('providerInvite.documentLabel')}</label>
             <input required value={form.cpf_cnpj} onChange={e=>setForm({...form,cpf_cnpj:e.target.value})} className="glass-input" /></div>
@@ -78,21 +78,21 @@ export default function InviteForm({ token }: { token: string }) {
 
       <div className="glass rounded-2xl p-5 space-y-3">
         <h3 className="text-sm font-bold text-white flex items-center gap-2"><User className="w-4 h-4 text-blue-400" /> {t('providerInvite.driverSection')}</h3>
-        <div className="grid grid-cols-2 gap-3">
-          <div className="col-span-2"><label className={L}>{t('providerInvite.driverNameLabel')}</label>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="sm:col-span-2"><label className={L}>{t('providerInvite.driverNameLabel')}</label>
             <input required value={form.driver_name} onChange={e=>setForm({...form,driver_name:e.target.value})} className="glass-input" /></div>
           <div><label className={L}>{t('providerInvite.cpfLabel')}</label>
             <input required value={form.driver_cpf} onChange={e=>setForm({...form,driver_cpf:e.target.value})} className="glass-input" /></div>
           <div><label className={L}>{t('providerInvite.driverPhoneLabel')}</label>
             <input required value={form.driver_phone} onChange={e=>setForm({...form,driver_phone:e.target.value})} className="glass-input" /></div>
-          <div className="col-span-2"><label className={L}>{t('providerInvite.cnhLabel')}</label>
+          <div className="sm:col-span-2"><label className={L}>{t('providerInvite.cnhLabel')}</label>
             <input value={form.driver_cnh} onChange={e=>setForm({...form,driver_cnh:e.target.value})} className="glass-input" /></div>
         </div>
       </div>
 
       <div className="glass rounded-2xl p-5 space-y-3">
         <h3 className="text-sm font-bold text-white flex items-center gap-2"><Truck className="w-4 h-4 text-blue-400" /> {t('providerInvite.vehicleSection')}</h3>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div><label className={L}>{t('providerInvite.vehicleTypeLabel')}</label>
             <select required value={form.vehicle_type} onChange={e=>setForm({...form,vehicle_type:e.target.value})} className="glass-select">
               <option value="">{t('common.selectPlaceholder')}</option>
@@ -104,7 +104,7 @@ export default function InviteForm({ token }: { token: string }) {
             <input required value={form.vehicle_plate} onChange={e=>setForm({...form,vehicle_plate:e.target.value})} className="glass-input" /></div>
           <div><label className={L}>{t('providerInvite.plateCarretaLabel')}</label>
             <input value={form.vehicle_plate_carreta} onChange={e=>setForm({...form,vehicle_plate_carreta:e.target.value})} className="glass-input" /></div>
-          <div className="col-span-2 flex gap-3 mt-1">
+          <div className="sm:col-span-2 flex gap-3 mt-1">
             <label className="flex items-center gap-2 text-xs text-blue-300">
               <input type="checkbox" checked={form.has_tarp} onChange={e=>setForm({...form,has_tarp:e.target.checked})} /> {t('providerInvite.hasTarpLabel')}
             </label>

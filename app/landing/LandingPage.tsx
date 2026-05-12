@@ -1,8 +1,9 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Radio, Truck, FileSignature, Send, Image as ImageIcon, AlertTriangle, ShieldCheck, BarChart2, Globe, Zap, Lock, Plane, Ship, Package } from 'lucide-react'
+import { ArrowRight, Radio, Truck, FileSignature, Send, Image as ImageIcon, AlertTriangle, ShieldCheck, BarChart2, Globe, Zap, Lock, Plane, Ship, Package, Menu, X } from 'lucide-react'
 import { useT } from '@/lib/i18n/I18nProvider'
 import { useTheme } from '@/lib/providers/ThemeProvider'
 import ThemeLanguageToggle from '@/components/ThemeLanguageToggle'
@@ -59,6 +60,9 @@ function Nav() {
   const t = useT()
   const { theme } = useTheme()
   const isLight = theme === 'light'
+  const [open, setOpen] = useState(false)
+  const linkColor = { color: 'var(--text-secondary)' as const }
+
   return (
     <nav
       className="sticky top-0 z-50 backdrop-blur-xl"
@@ -67,33 +71,68 @@ function Nav() {
         borderBottom: isLight ? '1px solid #E2E8F0' : '1px solid rgba(255,255,255,0.06)',
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3 min-w-0">
           <Image
             src={isLight ? '/landing/logo.png' : '/landing/logo_white.png'}
             alt="VINCOLOG"
             width={170}
             height={36}
             priority
-            className="h-9 w-auto"
+            className="h-7 sm:h-9 w-auto flex-shrink-0"
           />
-          <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-widest"
+          <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-widest flex-shrink-0"
             style={{ background: 'rgba(167,139,250,0.18)', color: isLight ? '#6D28D9' : '#C4B5FD', border: '1px solid rgba(167,139,250,0.35)' }}>
             <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
             RADAR
           </span>
         </div>
-        <div className="flex items-center gap-2">
-          <Link href="#features" className="hidden md:inline-block text-sm font-medium px-3 py-2" style={{ color: 'var(--text-secondary)' }}>{t('landing.nav.platform')}</Link>
-          <Link href="#niveis" className="hidden md:inline-block text-sm font-medium px-3 py-2" style={{ color: 'var(--text-secondary)' }}>{t('landing.nav.levels')}</Link>
-          <Link href="#fluxo" className="hidden md:inline-block text-sm font-medium px-3 py-2" style={{ color: 'var(--text-secondary)' }}>{t('landing.nav.howItWorks')}</Link>
+
+        {/* Desktop links */}
+        <div className="hidden md:flex items-center gap-2">
+          <Link href="#features" className="text-sm font-medium px-3 py-2" style={linkColor}>{t('landing.nav.platform')}</Link>
+          <Link href="#niveis" className="text-sm font-medium px-3 py-2" style={linkColor}>{t('landing.nav.levels')}</Link>
+          <Link href="#fluxo" className="text-sm font-medium px-3 py-2" style={linkColor}>{t('landing.nav.howItWorks')}</Link>
           <div className="hidden lg:block w-40"><ThemeLanguageToggle /></div>
           <Link href="/login" className="text-sm font-bold px-4 py-2 rounded-xl glass" style={{ color: 'var(--text-primary)' }}>{t('landing.nav.signIn')}</Link>
           <Link href="/register" className="text-sm font-bold px-4 py-2 rounded-xl btn-glass-primary">
             {t('landing.nav.accessRadar')}
           </Link>
         </div>
+
+        {/* Mobile hamburger */}
+        <button
+          type="button"
+          className="md:hidden p-2 -mr-2 rounded-lg"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          onClick={() => setOpen(o => !o)}
+          style={{ color: 'var(--text-primary)' }}
+        >
+          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
       </div>
+
+      {/* Mobile dropdown panel */}
+      {open && (
+        <div
+          className="md:hidden border-t"
+          style={{
+            background: isLight ? '#FFFFFF' : 'rgba(5,6,21,0.95)',
+            borderColor: isLight ? '#E2E8F0' : 'rgba(255,255,255,0.06)',
+          }}
+        >
+          <div className="px-4 py-4 space-y-1">
+            <Link href="#features" onClick={() => setOpen(false)} className="block text-sm font-medium px-3 py-2.5 rounded-lg" style={linkColor}>{t('landing.nav.platform')}</Link>
+            <Link href="#niveis"   onClick={() => setOpen(false)} className="block text-sm font-medium px-3 py-2.5 rounded-lg" style={linkColor}>{t('landing.nav.levels')}</Link>
+            <Link href="#fluxo"    onClick={() => setOpen(false)} className="block text-sm font-medium px-3 py-2.5 rounded-lg" style={linkColor}>{t('landing.nav.howItWorks')}</Link>
+            <div className="pt-2"><ThemeLanguageToggle /></div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
+              <Link href="/login"    onClick={() => setOpen(false)} className="text-center text-sm font-bold px-4 py-2.5 rounded-xl glass" style={{ color: 'var(--text-primary)' }}>{t('landing.nav.signIn')}</Link>
+              <Link href="/register" onClick={() => setOpen(false)} className="text-center text-sm font-bold px-4 py-2.5 rounded-xl btn-glass-primary">{t('landing.nav.accessRadar')}</Link>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   )
 }
@@ -107,7 +146,7 @@ function Hero() {
         <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(5,6,21,0.4) 0%, rgba(5,6,21,0.75) 70%, rgba(5,6,21,1) 100%)' }} />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 pt-20 pb-32 lg:pt-28 lg:pb-40 grid lg:grid-cols-12 gap-10 items-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-12 sm:pt-20 pb-16 sm:pb-32 lg:pt-28 lg:pb-40 grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
         <div className="lg:col-span-7 space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold"
             style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>
@@ -115,7 +154,7 @@ function Hero() {
             <span className="text-blue-200">{t('landing.hero.badge')}</span>
           </div>
 
-          <h1 className="text-5xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight">
             <span className="text-white">{t('landing.hero.title1')}</span><br/>
             <span className="text-vincolog-gradient">{t('landing.hero.title2')}</span><br/>
             <span className="text-white">{t('landing.hero.title3')}</span>
@@ -228,7 +267,7 @@ function ProductShowcase() {
           <p className="text-lg text-blue-300 leading-relaxed">
             {t('landing.showcase.subtitle')}
           </p>
-          <div className="grid grid-cols-2 gap-3 pt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
             {[
               t('landing.showcase.tag1'),
               t('landing.showcase.tag2'),
@@ -459,7 +498,7 @@ function FinalCta() {
       </div>
 
       <div className="relative max-w-4xl mx-auto px-6 text-center">
-        <h2 className="text-5xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight">
+        <h2 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight">
           {t('landing.finalCta.title1')} <span className="text-vincolog-gradient">{t('landing.finalCta.title2')}</span><br/>{t('landing.finalCta.title3')}
         </h2>
         <p className="text-lg lg:text-xl text-blue-200 mt-6 max-w-2xl mx-auto leading-relaxed">

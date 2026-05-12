@@ -131,7 +131,7 @@ export default function GpsTracker({ token, initiallyActive }: { token: string; 
         </button>
       </div>
 
-      <div className="grid grid-cols-3 gap-2 text-[10px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-[10px]">
         <div className="flex items-center gap-1.5">
           {isOnline ? <Cloud className="w-3 h-3 text-emerald-400" /> : <CloudOff className="w-3 h-3 text-amber-400" />}
           <span className={isOnline ? 'text-emerald-300' : 'text-amber-300'}>{isOnline ? t('common.online') : t('common.offline')}</span>

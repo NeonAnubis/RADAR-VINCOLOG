@@ -65,7 +65,7 @@ export default function TabGps({ oit, positions }: { oit: DbOit; positions: DbGp
         </button>
       </div>
 
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         <Stat label={t('oits.gpsTab.statusLabel')} value={active ? t('oits.gpsTab.statusActive') : t('oits.gpsTab.statusInactive')} color={active ? '#A78BFA' : '#94A3B8'} />
         <Stat label={t('oits.gpsTab.pingsReceived')} value={String(positions.length)} color="#60A5FA" />
         <Stat label={t('oits.gpsTab.lastUpdate')} value={lastUpdateLabel} color={minutesSinceLast !== null && minutesSinceLast > 20 ? '#F87171' : '#34D399'} />

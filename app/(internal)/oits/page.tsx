@@ -27,7 +27,7 @@ export default async function OitsPage() {
   all.forEach(oit => { byStatus[oit.status]?.push(oit) })
 
   return (
-    <div className="p-6 space-y-5">
+    <div className="p-4 sm:p-6 space-y-5">
       <PageHeader
         titleKey="oits.title"
         subtitleKey="oits.subtitle"

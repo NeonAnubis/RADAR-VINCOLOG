@@ -45,7 +45,7 @@ export default function TabContrato({ oit, collectionPoints, deliveryPoints, con
         )}
       </div>
 
-      <div className="grid grid-cols-2 gap-4 text-sm">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
         <div><p className="text-blue-500 text-xs">{t('oits.contractTab.provider')}</p><p className="text-white font-bold">{oit.providers?.name ?? t('oits.contractTab.noProvider')}</p></div>
         <div><p className="text-blue-500 text-xs">{t('oits.contractTab.driver')}</p><p className="text-white">{oit.driver_name ?? '—'}</p></div>
         <div><p className="text-blue-500 text-xs">{t('oits.contractTab.contractedValue')}</p><p className="text-white font-bold">{fmtCurrency(oit.contracted_value)}</p></div>

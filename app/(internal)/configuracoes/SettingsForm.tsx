@@ -44,28 +44,28 @@ export default function SettingsForm({ initial }: { initial: Record<string, unkn
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <Section title={t('settings.company')} icon={Building2}>
-        <div className="grid grid-cols-2 gap-3">
-          <div className="col-span-2"><label className={L}>{t('settings.companyName')}</label>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="sm:col-span-2"><label className={L}>{t('settings.companyName')}</label>
             <input value={state['company.name']} onChange={e=>set('company.name',e.target.value)} className="glass-input" /></div>
-          <div className="col-span-2"><label className={L}>{t('settings.tagline')}</label>
+          <div className="sm:col-span-2"><label className={L}>{t('settings.tagline')}</label>
             <input value={state['company.tagline']} onChange={e=>set('company.tagline',e.target.value)} className="glass-input" /></div>
           <div><label className={L}>{t('settings.cnpj')}</label>
             <input value={state['company.cnpj']} onChange={e=>set('company.cnpj',e.target.value)} className="glass-input" /></div>
           <div><label className={L}>{t('common.fields.phone')}</label>
             <input value={state['company.phone']} onChange={e=>set('company.phone',e.target.value)} className="glass-input" /></div>
-          <div className="col-span-2"><label className={L}>{t('settings.mainEmail')}</label>
+          <div className="sm:col-span-2"><label className={L}>{t('settings.mainEmail')}</label>
             <input type="email" value={state['company.email']} onChange={e=>set('company.email',e.target.value)} className="glass-input" /></div>
-          <div className="col-span-2"><label className={L}>{t('settings.addressLabel')}</label>
+          <div className="sm:col-span-2"><label className={L}>{t('settings.addressLabel')}</label>
             <input value={state['company.address']} onChange={e=>set('company.address',e.target.value)} className="glass-input" /></div>
-          <div className="col-span-2"><label className={L}>{t('settings.pdfFooter')}</label>
+          <div className="sm:col-span-2"><label className={L}>{t('settings.pdfFooter')}</label>
             <input value={state['pdf.footer']} onChange={e=>set('pdf.footer',e.target.value)} className="glass-input" /></div>
         </div>
       </Section>
 
       <Section title={t('settings.emailsSection')} icon={Mail}>
         <p className="text-xs text-blue-400 mb-3">{t('settings.emailsHelp')}</p>
-        <div className="grid grid-cols-2 gap-3">
-          <div className="col-span-2"><label className={L}>{t('settings.emailOperational')}</label>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="sm:col-span-2"><label className={L}>{t('settings.emailOperational')}</label>
             <input type="email" value={state['emails.operational']} onChange={e=>set('emails.operational',e.target.value)} className="glass-input" /></div>
           <div><label className={L}>{t('settings.emailFinancial')}</label>
             <input type="email" value={state['emails.financial']} onChange={e=>set('emails.financial',e.target.value)} className="glass-input" /></div>
@@ -75,18 +75,18 @@ export default function SettingsForm({ initial }: { initial: Record<string, unkn
       </Section>
 
       <Section title={t('settings.financeRules')} icon={FileText}>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div><label className={L}>{t('settings.marginAlert')}</label>
             <input type="number" min="0" max="100" value={state['finance.margin_alert']} onChange={e=>set('finance.margin_alert',e.target.value)} className="glass-input" /></div>
-          <p className="col-span-2 text-xs text-blue-500">{t('settings.marginHelp')}</p>
+          <p className="sm:col-span-2 text-xs text-blue-500">{t('settings.marginHelp')}</p>
         </div>
       </Section>
 
       <Section title={t('settings.whatsappSection')} icon={MessageSquare}>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div><label className={L}>{t('settings.dispatchPhone')}</label>
             <input value={state['whatsapp.dispatch_phone']} onChange={e=>set('whatsapp.dispatch_phone',e.target.value)} placeholder="5511999999999" className="glass-input" /></div>
-          <p className="col-span-2 text-xs text-blue-500">{t('settings.dispatchHelp')}</p>
+          <p className="sm:col-span-2 text-xs text-blue-500">{t('settings.dispatchHelp')}</p>
         </div>
       </Section>
 

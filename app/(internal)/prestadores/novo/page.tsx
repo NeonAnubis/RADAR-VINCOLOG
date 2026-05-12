@@ -23,7 +23,7 @@ export default function NovoPrestadorPage() {
   }
 
   return (
-    <div className="p-6 max-w-2xl mx-auto space-y-6">
+    <div className="p-4 sm:p-6 max-w-2xl mx-auto space-y-6">
       <div className="flex items-center gap-3">
         <Link href="/prestadores" className="p-2 rounded-xl text-blue-400 hover:text-white glass">
           <ArrowLeft className="w-4 h-4" />
@@ -36,8 +36,8 @@ export default function NovoPrestadorPage() {
 
       <form onSubmit={handleSubmit} className="glass rounded-2xl p-6 space-y-4">
         <h2 className="text-base font-bold text-white">{t('providers.personalDataTitle')}</h2>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="col-span-2"><label className={L}>{t('common.fields.fullName')} *</label><input name="name" required placeholder="João da Silva Santos" className="glass-input" /></div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="sm:col-span-2"><label className={L}>{t('common.fields.fullName')} *</label><input name="name" required placeholder="João da Silva Santos" className="glass-input" /></div>
           <div><label className={L}>{t('providers.cpfField')}</label><input name="cpf" placeholder="000.000.000-00" className="glass-input" /></div>
           <div><label className={L}>{t('providers.phoneField')}</label><input name="phone" placeholder="(11) 99999-9999" className="glass-input" /></div>
           <div><label className={L}>{t('providers.cnhField')}</label><input name="cnh" placeholder="12345678901" className="glass-input" /></div>
@@ -45,7 +45,7 @@ export default function NovoPrestadorPage() {
 
         <div className="h-px" style={{ background:'rgba(255,255,255,0.07)' }} />
         <h2 className="text-base font-bold text-white">{t('providers.vehicleSection')}</h2>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={L}>{t('providers.vehicleTypeField')}</label>
             <select name="vehicleType" className="glass-select">
@@ -58,7 +58,7 @@ export default function NovoPrestadorPage() {
 
         <div className="h-px" style={{ background:'rgba(255,255,255,0.07)' }} />
         <h2 className="text-base font-bold text-white">{t('providers.paymentSection')}</h2>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div><label className={L}>{t('providers.bankField')}</label><input name="bankName" placeholder="Nubank, Itaú..." className="glass-input" /></div>
           <div><label className={L}>{t('providers.pixField')}</label><input name="pixKey" placeholder="CPF, e-mail ou telefone" className="glass-input" /></div>
         </div>

@@ -33,7 +33,7 @@ export default function AuditView({ logs }: { logs: Log[] }) {
   const headers = ['datetime', 'entity', 'action', 'user', 'data'] as const
 
   return (
-    <div className="p-6 space-y-5">
+    <div className="p-4 sm:p-6 space-y-5">
       <div>
         <h1 className="text-3xl font-extrabold text-white tracking-tight">{t('audit.title')}</h1>
         <p className="text-blue-400 mt-0.5 text-sm">{t('audit.subtitle')}</p>

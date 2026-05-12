@@ -38,7 +38,7 @@ export default function BudgetDetailView({ b, collectionPoints, deliveryPoints, 
   const t = useT()
 
   return (
-    <div className="p-6 space-y-5">
+    <div className="p-4 sm:p-6 space-y-5">
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-3">
           <Link href="/orcamentos" className="p-2 rounded-xl text-blue-400 hover:text-white glass">
@@ -75,12 +75,12 @@ export default function BudgetDetailView({ b, collectionPoints, deliveryPoints, 
           {/* Cliente */}
           <div className="glass rounded-2xl p-5">
             <h2 className="text-xs font-bold text-blue-400 mb-4 uppercase tracking-wider flex items-center gap-2"><User className="w-4 h-4" /> {t('budgetDetail.client')}</h2>
-            <div className="grid grid-cols-2 gap-3 text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
               <div><p className="text-blue-500 text-xs">{t('budgetDetail.clientFields.companyName')}</p><p className="text-white font-bold">{b.client_name ?? '—'}</p></div>
               <div><p className="text-blue-500 text-xs">{t('budgetDetail.clientFields.document')}</p><p className="text-blue-200">{b.client_document ?? '—'}</p></div>
               <div><p className="text-blue-500 text-xs">{t('budgetDetail.clientFields.contact')}</p><p className="text-blue-200">{b.client_contact_name ?? '—'}</p></div>
               <div><p className="text-blue-500 text-xs">{t('budgetDetail.clientFields.phone')}</p><p className="text-blue-200">{b.client_contact_phone ?? '—'}</p></div>
-              <div className="col-span-2"><p className="text-blue-500 text-xs">{t('budgetDetail.clientFields.email')}</p><p className="text-blue-200">{b.client_contact_email ?? '—'}</p></div>
+              <div className="sm:col-span-2"><p className="text-blue-500 text-xs">{t('budgetDetail.clientFields.email')}</p><p className="text-blue-200">{b.client_contact_email ?? '—'}</p></div>
             </div>
           </div>
 
@@ -118,8 +118,8 @@ export default function BudgetDetailView({ b, collectionPoints, deliveryPoints, 
           {/* Carga */}
           <div className="glass rounded-2xl p-5">
             <h2 className="text-xs font-bold text-blue-400 mb-4 uppercase tracking-wider flex items-center gap-2"><Package className="w-4 h-4" /> {t('budgetDetail.cargo')}</h2>
-            <div className="grid grid-cols-3 gap-3 text-sm">
-              <div className="col-span-3"><p className="text-blue-500 text-xs">{t('budgetDetail.cargoFields.description')}</p><p className="text-white">{b.cargo_description ?? '—'}</p></div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
+              <div className="sm:col-span-3"><p className="text-blue-500 text-xs">{t('budgetDetail.cargoFields.description')}</p><p className="text-white">{b.cargo_description ?? '—'}</p></div>
               <div><p className="text-blue-500 text-xs">{t('budgetDetail.cargoFields.weight')}</p><p className="text-white">{b.cargo_weight ?? '—'}</p></div>
               <div><p className="text-blue-500 text-xs">{t('budgetDetail.cargoFields.volumes')}</p><p className="text-white">{b.cargo_volumes ?? '—'}</p></div>
               <div><p className="text-blue-500 text-xs">{t('budgetDetail.cargoFields.nf')}</p><p className="text-white">{b.document_number ?? '—'}</p></div>
@@ -135,7 +135,7 @@ export default function BudgetDetailView({ b, collectionPoints, deliveryPoints, 
           {/* Veículo */}
           <div className="glass rounded-2xl p-5">
             <h2 className="text-xs font-bold text-blue-400 mb-4 uppercase tracking-wider flex items-center gap-2"><Truck className="w-4 h-4" /> {t('budgetDetail.vehicleProfile')}</h2>
-            <div className="grid grid-cols-2 gap-3 text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
               <div><p className="text-blue-500 text-xs">{t('budgetDetail.vehicleType')}</p><p className="text-white">{b.vehicle_suggested_type ?? '—'}</p></div>
               <div><p className="text-blue-500 text-xs">{t('budgetDetail.vehicleBody')}</p><p className="text-white">{b.vehicle_body_type ?? '—'}</p></div>
             </div>

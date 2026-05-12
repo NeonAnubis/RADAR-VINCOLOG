@@ -13,7 +13,7 @@ export default function TabComercial({ oit, budget }: { oit: DbOit; budget: DbBu
     <div className="glass rounded-2xl p-6 space-y-5">
       <h2 className="text-base font-bold text-white">{t('oits.commercialTab.title')}</h2>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Field label={t('oits.commercialTab.approvedLevel')} value={<ServiceLevelBadge level={oit.service_level} />} />
         <Field label={t('oits.commercialTab.soldValue')} value={fmtCurrency(oit.vendor_value)} bold />
         <Field label={t('oits.commercialTab.sourceBudget')} value={budget ? <Link href={`/orcamentos/${budget.id}`} className="text-blue-400 hover:text-blue-300 font-mono">{budget.number}</Link> : '—'} />
@@ -27,7 +27,7 @@ export default function TabComercial({ oit, budget }: { oit: DbOit; budget: DbBu
             <Field label={t('oits.commercialTab.paymentCondition')} value={budget.payment_condition ?? '—'} />
             <Field label={t('oits.commercialTab.premises')} value={budget.premises ?? '—'} />
             <Field label={t('oits.commercialTab.exclusions')} value={budget.exclusions ?? '—'} />
-            <div className="col-span-2"><Field label={t('oits.commercialTab.obs')} value={budget.general_notes ?? '—'} /></div>
+            <div className="sm:col-span-2"><Field label={t('oits.commercialTab.obs')} value={budget.general_notes ?? '—'} /></div>
           </div>
 
           {budget.approval_evidence_url && (

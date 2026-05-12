@@ -100,8 +100,8 @@ export default function ClientSelector({ value, onChange }: Props) {
       )}
 
       {mode === 'new' && (
-        <div className="grid grid-cols-2 gap-3">
-          <div className="col-span-2"><label className={L}>{t('budgets.clientSelector.razaoSocial')}</label>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="sm:col-span-2"><label className={L}>{t('budgets.clientSelector.razaoSocial')}</label>
             <input value={value.client_name} onChange={e=>onChange({...value, client_name: e.target.value, client_id: null})} required className="glass-input" /></div>
           <div><label className={L}>{t('budgets.clientSelector.documentField')}</label>
             <input value={value.client_document} onChange={e=>onChange({...value, client_document: e.target.value, client_id: null})} className="glass-input" /></div>
@@ -111,7 +111,7 @@ export default function ClientSelector({ value, onChange }: Props) {
             <input value={value.client_contact_name} onChange={e=>onChange({...value, client_contact_name: e.target.value})} className="glass-input" /></div>
           <div><label className={L}>{t('budgets.clientSelector.phone')}</label>
             <input value={value.client_contact_phone} onChange={e=>onChange({...value, client_contact_phone: e.target.value})} className="glass-input" /></div>
-          <div className="col-span-2"><label className={L}>{t('budgets.clientSelector.email')}</label>
+          <div className="sm:col-span-2"><label className={L}>{t('budgets.clientSelector.email')}</label>
             <input type="email" value={value.client_contact_email} onChange={e=>onChange({...value, client_contact_email: e.target.value})} className="glass-input" /></div>
         </div>
       )}

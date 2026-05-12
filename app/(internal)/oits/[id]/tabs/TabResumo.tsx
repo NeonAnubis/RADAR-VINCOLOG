@@ -32,7 +32,7 @@ export default function TabResumo({ oit, collectionPoints, deliveryPoints }: {
 
   return (
     <div className="glass rounded-2xl p-6 space-y-5">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Block label={t('oits.summary.client')} value={oit.client_name ?? '—'} />
         <Block label={t('oits.summary.responsible')} value={t('oits.summary.toDefine')} />
         <Block label={t('oits.summary.valueSold')} value={fmtCurrency(oit.vendor_value)} bold />
@@ -62,7 +62,7 @@ export default function TabResumo({ oit, collectionPoints, deliveryPoints }: {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-3 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
         <Block label={t('oits.summary.provider')} value={oit.providers?.name ?? <span className="text-amber-400">{t('oits.summary.notAllocated')}</span>} />
         <Block label={t('oits.summary.vehicle')} value={oit.providers ? `${oit.providers.vehicle_type ?? '—'} · ${oit.providers.vehicle_plate}` : '—'} />
         <Block label={t('oits.summary.driver')} value={oit.driver_name ?? '—'} />

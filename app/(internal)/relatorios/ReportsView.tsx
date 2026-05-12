@@ -25,13 +25,13 @@ export default function ReportsView({ totalOits, taxa, receita, conversionRate, 
   ]
 
   return (
-    <div className="p-6 space-y-5">
+    <div className="p-4 sm:p-6 space-y-5">
       <div>
         <h1 className="text-3xl font-extrabold text-white tracking-tight">{t('reports.title')}</h1>
         <p className="text-blue-400 mt-0.5 text-sm">{t('reports.subtitle')}</p>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {cards.map(({ tkey, value, icon: Icon, bg, color }) => (
           <div key={tkey} className="glass rounded-2xl p-5">
             <div className="flex items-start justify-between">

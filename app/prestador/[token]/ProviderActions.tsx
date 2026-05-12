@@ -68,7 +68,7 @@ export default function ProviderActions({ token, oit }: { token: string; oit: Db
       {/* Status buttons grid */}
       <div className="glass rounded-2xl p-4">
         <p className="text-xs font-bold text-blue-400 uppercase tracking-wider mb-3">{t('providerPortal.updateStatus')}</p>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {STATUS_BUTTONS.map(b => {
             const Icon = b.icon
             const sentNow = lastStatus === b.key

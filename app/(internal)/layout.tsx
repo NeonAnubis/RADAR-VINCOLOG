@@ -8,9 +8,9 @@ export default async function InternalLayout({ children }: { children: React.Rea
   if (!user) redirect('/login')
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex flex-col lg:flex-row min-h-screen">
       <Sidebar userEmail={user.email} />
-      <main className="flex-1 overflow-auto">
+      <main className="flex-1 overflow-auto min-w-0 w-full">
         {children}
       </main>
     </div>

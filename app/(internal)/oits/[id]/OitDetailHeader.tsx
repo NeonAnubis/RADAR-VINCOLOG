@@ -20,25 +20,25 @@ export default function OitDetailHeader({ oit, collectionCount, deliveryCount }:
 
   return (
     <>
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <Link href="/oits" className="p-2 rounded-xl text-blue-400 hover:text-white glass"><ArrowLeft className="w-4 h-4" /></Link>
-          <div>
-            <div className="flex items-center gap-3 flex-wrap">
-              <h1 className="text-2xl font-extrabold text-white font-mono">{oit.number}</h1>
+      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-3">
+        <div className="flex items-center gap-3 min-w-0">
+          <Link href="/oits" className="p-2 rounded-xl text-blue-400 hover:text-white glass flex-shrink-0"><ArrowLeft className="w-4 h-4" /></Link>
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+              <h1 className="text-xl sm:text-2xl font-extrabold text-white font-mono">{oit.number}</h1>
               <OitStatusBadge status={oit.status} />
               <ServiceLevelBadge level={oit.service_level} />
             </div>
-            <p className="text-sm text-blue-400 mt-0.5 flex items-center gap-1.5">
-              <MapPin className="w-3 h-3" /> {t('oits.subtitleHeader', { collections: collectionCount, deliveries: deliveryCount, client: oit.client_name ?? '' })}
+            <p className="text-xs sm:text-sm text-blue-400 mt-0.5 flex items-center gap-1.5">
+              <MapPin className="w-3 h-3 flex-shrink-0" /> <span className="truncate">{t('oits.subtitleHeader', { collections: collectionCount, deliveries: deliveryCount, client: oit.client_name ?? '' })}</span>
             </p>
           </div>
         </div>
-        <div className="flex gap-2 flex-wrap justify-end">
-          <Link href={trackingUrl} target="_blank" className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-semibold text-blue-300 hover:text-white glass">
+        <div className="flex gap-2 flex-wrap lg:justify-end">
+          <Link href={trackingUrl} target="_blank" className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold text-blue-300 hover:text-white glass">
             <ExternalLink className="w-4 h-4" /> {t('oits.detail.clientLink')}
           </Link>
-          <Link href={providerUrl} target="_blank" className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-semibold text-blue-300 hover:text-white glass">
+          <Link href={providerUrl} target="_blank" className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold text-blue-300 hover:text-white glass">
             <ExternalLink className="w-4 h-4" /> {t('oits.detail.providerMode')}
           </Link>
         </div>

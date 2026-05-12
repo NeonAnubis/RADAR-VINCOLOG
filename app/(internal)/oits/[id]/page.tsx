@@ -41,7 +41,7 @@ export default async function OitDetailPage({ params }: { params: { id: string }
   const oitOccurrences   = (occurrences ?? []) as DbOccurrence[]
 
   return (
-    <div className="p-6 space-y-5">
+    <div className="p-4 sm:p-6 space-y-5">
       <OitDetailHeader oit={oit} collectionCount={collectionPoints.length} deliveryCount={deliveryPoints.length} />
 
       <OitTabs

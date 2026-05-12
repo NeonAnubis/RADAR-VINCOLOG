@@ -68,22 +68,22 @@ export default function TabOcorrencias({ oit, occurrences }: { oit: DbOit; occur
 
       {open && (
         <div className="rounded-xl p-4 space-y-3" style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.25)' }}>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div><label className={L}>{t('oits.occurrencesTab.type')}</label>
               <select value={form.type} onChange={e => setForm({...form, type: e.target.value as OccurrenceType})} className="glass-select">
                 {Object.keys(OCCURRENCE_TYPES).map(k => <option key={k} value={k}>{t(`occurrences.types.${k}`)}</option>)}
               </select></div>
             <div><label className={L}>{t('oits.occurrencesTab.location')}</label>
               <input value={form.location} onChange={e => setForm({...form, location: e.target.value})} className="glass-input" /></div>
-            <div className="col-span-2"><label className={L}>{t('oits.occurrencesTab.description')}</label>
+            <div className="sm:col-span-2"><label className={L}>{t('oits.occurrencesTab.description')}</label>
               <textarea value={form.description} onChange={e => setForm({...form, description: e.target.value})} rows={2} className="glass-input resize-none" /></div>
             <div><label className={L}>{t('oits.occurrencesTab.impact')}</label>
               <input value={form.impact} onChange={e => setForm({...form, impact: e.target.value})} placeholder={t('oits.occurrencesTab.impactPlaceholder')} className="glass-input" /></div>
             <div><label className={L}>{t('oits.occurrencesTab.newEstimate')}</label>
               <input type="datetime-local" value={form.new_estimate} onChange={e => setForm({...form, new_estimate: e.target.value})} className="glass-input" /></div>
-            <div className="col-span-2"><label className={L}>{t('oits.occurrencesTab.actionTaken')}</label>
+            <div className="sm:col-span-2"><label className={L}>{t('oits.occurrencesTab.actionTaken')}</label>
               <textarea value={form.action_taken} onChange={e => setForm({...form, action_taken: e.target.value})} rows={2} className="glass-input resize-none" /></div>
-            <div className="col-span-2">
+            <div className="sm:col-span-2">
               <label className="flex items-center gap-2 text-xs text-blue-300">
                 <input type="checkbox" checked={form.visible_to_client} onChange={e => setForm({...form, visible_to_client: e.target.checked})} />
                 {t('oits.occurrencesTab.visibleToClient')}
