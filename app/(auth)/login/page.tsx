@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { signIn } from '@/lib/actions/auth'
 import { Eye, EyeOff, LogIn, MapPin, CheckCircle, Truck, Radio } from 'lucide-react'
 import { useT } from '@/lib/i18n/I18nProvider'
@@ -179,17 +180,17 @@ function HeroPanel() {
         <rect width="100%" height="100%" fill="url(#authGrid)" />
       </svg>
 
-      {/* Brand */}
-      <div className="flex items-center gap-3 mb-2" style={{ animation: 'fadeInUp 0.6s ease-out both' }}>
-        <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-          style={{ background: 'linear-gradient(135deg,#3B82F6,#1D4ED8)', boxShadow: '0 4px 20px rgba(59,130,246,0.5)' }}>
-          <Truck className="w-5 h-5 text-white" />
-        </div>
-        <div>
-          <p className="text-white font-extrabold text-xl leading-none tracking-wider">RADAR</p>
-          <p className="text-blue-400 font-bold text-[10px] tracking-[0.3em] uppercase mt-0.5">VINCOLOG</p>
-        </div>
-      </div>
+      {/* Brand — clickable, returns to landing */}
+      <Link href="/" aria-label="VINCOLOG" className="block mb-2" style={{ animation: 'fadeInUp 0.6s ease-out both' }}>
+        <Image
+          src={isLight ? '/landing/logo.png' : '/landing/logo_white.png'}
+          alt="VINCOLOG"
+          width={210}
+          height={44}
+          priority
+          className="h-10 w-auto"
+        />
+      </Link>
 
       {/* Tagline */}
       <p className="text-blue-300 text-sm text-center mb-8 max-w-xs" style={{ animation: 'fadeInUp 0.6s 0.1s ease-out both' }}>
@@ -278,17 +279,17 @@ export default function LoginPage() {
           borderLeft: isLight ? '1px solid #E2E8F0' : '1px solid rgba(255,255,255,0.06)',
         }}>
 
-        {/* Mobile logo */}
-        <div className="flex lg:hidden items-center gap-3 mb-8">
-          <div className="w-9 h-9 rounded-xl flex items-center justify-center"
-            style={{ background: 'linear-gradient(135deg,#3B82F6,#1D4ED8)', boxShadow: '0 4px 16px rgba(59,130,246,0.5)' }}>
-            <Truck className="w-4 h-4 text-white" />
-          </div>
-          <div>
-            <p className="text-white font-extrabold text-base leading-none tracking-wider">RADAR</p>
-            <p className="text-blue-400 font-bold text-[9px] tracking-[0.28em] uppercase">VINCOLOG</p>
-          </div>
-        </div>
+        {/* Mobile logo — clickable, returns to landing */}
+        <Link href="/" aria-label="VINCOLOG" className="lg:hidden mb-8 inline-block">
+          <Image
+            src={isLight ? '/landing/logo.png' : '/landing/logo_white.png'}
+            alt="VINCOLOG"
+            width={180}
+            height={38}
+            priority
+            className="h-9 w-auto"
+          />
+        </Link>
 
         <div className="w-full max-w-sm">
           <div className="mb-8 flex items-start justify-between gap-3">
